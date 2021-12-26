@@ -48,10 +48,16 @@ function addBook(event) {
     
     // Creates card for the new book added to the array and renders it on the page
     let book = myLibrary[myLibrary.length - 1];
+    const removeBook = document.createElement("div");
+        removeBook.classList.add("removeBook");
+        removeBook.textContent = "X";
+        removeBook.addEventListener("click", handleDeleteBook);
     const card = document.createElement("div");
+    card.setAttribute("data-bookindex", myLibrary.indexOf(book))
     card.classList.add("card");
     card.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`;
     booksDisplay.appendChild(card);
+    card.appendChild(removeBook);
 
     // Removes bookForm from screen
     if (bookForm.className === "activeAddBook") {
@@ -63,17 +69,40 @@ function addBook(event) {
 // Creates card for all the books stored in the myLibrary array and renders them to the page
 function displayBooks() {
     myLibrary.map(book => {
+        const removeBook = document.createElement("div");
+        removeBook.classList.add("removeBook");
+        removeBook.textContent = "X";
         const card = document.createElement("div")
+        card.setAttribute("data-bookindex", myLibrary.indexOf(book))
         card.classList.add("card");
         card.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`
         card.style.backgroundImage = `url(${book.backgroundImage})`
         booksDisplay.appendChild(card)
+        card.appendChild(removeBook);
     })
 }
 
 displayBooks();
 
 
+const removeBookButton = document.querySelectorAll(".removeBook").forEach(book => book.addEventListener("click", handleDeleteBook))
+
+// Deletes book from display and myLibrary array
+function handleDeleteBook() {
+    let bookIndex = this.parentElement.dataset.bookindex;
+    myLibrary.splice(this.parentElement.dataset.bookindex, 1)
+    this.parentElement.remove()
+    handleRefreshOfBookIndex(bookIndex);
+    console.log(myLibrary)
+}
+
+// Refreshes each book's index so it corresponds to the correct element in the array
+// Starts from previously removed book's index so it doesn't have to loop through the entire array
+function handleRefreshOfBookIndex(removedBookIndex) {
+    for (let i = removedBookIndex; i < myLibrary.length; i++) {
+        document.querySelectorAll(".card")[i].setAttribute("data-bookindex", i)
+    }
+}
 
 
 /** Animations */

@@ -20,6 +20,7 @@ img {
     position: fixed;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.349);
+    z-index: 1;
 }
 
 #navigation {
@@ -65,7 +66,8 @@ img {
     left: 50%;
     margin-left: -20rem;
     margin-top: -10rem;
-    background-color: rgba(0, 0, 0, 0.829);;
+    background-color: rgba(0, 0, 0, 0.829);
+    z-index: 1;
 }
 
 #exitAddBook {
@@ -88,10 +90,19 @@ img {
 .card {
     width: 22rem;
     height: 32rem;
+    position: relative;
     background-size: cover;
     background-color: black;
     color: white;
     box-shadow: 0px 10px 13px -7px #000000, 0px 11px 50px 7px rgba(0,0,0,0.12);
+}
+
+.removeBook {
+    position: absolute;
+    cursor: pointer;
+    color: red;
+    right: 0.5rem;
+    top: 0.5rem;
 }
 
 .activeMenu {
