@@ -56,10 +56,11 @@ function addBook(event) {
         isReadCheckbox.type = "checkbox";
         isReadCheckbox.classList.add("isReadCheckbox");
         isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
+        book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
     const card = document.createElement("div");
     card.setAttribute("data-bookindex", myLibrary.indexOf(book))
     card.classList.add("card");
-    card.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`;
+    card.textContent = `${book.title} ${book.author} ${book.pages}`;
     booksDisplay.appendChild(card);
     card.appendChild(removeBook);
     card.appendChild(isReadCheckbox);
@@ -82,7 +83,7 @@ function displayBooks() {
         const card = document.createElement("div")
         card.setAttribute("data-bookindex", myLibrary.indexOf(book))
         card.classList.add("card");
-        card.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`
+        card.textContent = `${book.title} ${book.author} ${book.pages}`
         card.style.backgroundImage = `url(${book.backgroundImage})`
         booksDisplay.appendChild(card)
         card.appendChild(removeBook);
