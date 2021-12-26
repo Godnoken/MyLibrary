@@ -52,18 +52,20 @@ function addBook(event) {
         removeBook.classList.add("removeBook");
         removeBook.textContent = "X";
         removeBook.addEventListener("click", handleDeleteBook);
+        const isReadCheckbox = document.createElement("input");
+        isReadCheckbox.type = "checkbox";
+        isReadCheckbox.classList.add("isReadCheckbox");
+        isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
     const card = document.createElement("div");
     card.setAttribute("data-bookindex", myLibrary.indexOf(book))
     card.classList.add("card");
     card.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`;
     booksDisplay.appendChild(card);
     card.appendChild(removeBook);
+    card.appendChild(isReadCheckbox);
 
     // Removes bookForm from screen
-    if (bookForm.className === "activeAddBook") {
-        bookForm.classList.remove("activeAddBook");
-        bookForm.classList.add("inactiveAddBook");
-    }
+    handleAddBookAnimation();
 }
 
 // Creates card for all the books stored in the myLibrary array and renders them to the page
@@ -72,6 +74,11 @@ function displayBooks() {
         const removeBook = document.createElement("div");
         removeBook.classList.add("removeBook");
         removeBook.textContent = "X";
+        removeBook.addEventListener("click", handleDeleteBook);
+        const isReadCheckbox = document.createElement("input");
+        isReadCheckbox.type = "checkbox";
+        isReadCheckbox.classList.add("isReadCheckbox");
+        isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
         const card = document.createElement("div")
         card.setAttribute("data-bookindex", myLibrary.indexOf(book))
         card.classList.add("card");
@@ -79,13 +86,12 @@ function displayBooks() {
         card.style.backgroundImage = `url(${book.backgroundImage})`
         booksDisplay.appendChild(card)
         card.appendChild(removeBook);
+        card.appendChild(isReadCheckbox);
     })
 }
 
 displayBooks();
 
-
-const removeBookButton = document.querySelectorAll(".removeBook").forEach(book => book.addEventListener("click", handleDeleteBook))
 
 // Deletes book from display and myLibrary array
 function handleDeleteBook() {
@@ -104,6 +110,15 @@ function handleRefreshOfBookIndex(removedBookIndex) {
     }
 }
 
+
+// Reads checkbox for checked or not checked and sets the book to read or not read in the myLibrary array
+function handleIsReadCheckbox(book) {
+    if (book.target.checked === false) {
+        myLibrary[book.target.parentElement.dataset.bookindex].read = false;
+        return;
+    }
+    myLibrary[book.target.parentElement.dataset.bookindex].read = true;
+}
 
 /** Animations */
 
