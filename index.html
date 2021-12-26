@@ -9,14 +9,26 @@
         <script src="javascript/script.js" defer></script>
     </head>
     <body>
-        <main>
+        <main id="myLibraryContainer">
+            <header id="header">
+                <nav id="navigation">
+                    <div id="menuButton">Menu</div>
+                </nav>
+                <section id="menu">
+                    <button id="addBookButton">Add Book</button>
+                </section>
+            </header>
             <form id="bookForm">
                 <input id="title" name="title" type="text" placeholder="Title..">
                 <input id="author" type="text" placeholder="Author..">
                 <input id="pages" type="text" placeholder="Pages..">
                 <input id="read" type="checkbox" placeholder="Read..">
                 <input id="bookFormSubmit" type="submit">
+                <div id="exitAddBook">X</div>
             </form>
+            <section id="booksDisplay">
+
+            </section>
         </main>
     </body>
 </html>

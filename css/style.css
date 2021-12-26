@@ -1,0 +1,111 @@
+html {
+    font-size: 62.5%;
+    overflow-y: scroll;
+}
+
+body {
+    font-size: 1.6rem;
+    background-color: lightslategrey;
+}
+
+img {
+    object-fit: fill;
+}
+
+#myLibraryContainer {
+    
+}
+
+#header {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.349);
+}
+
+#navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menuButton {
+    width: 6rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+
+#menu {
+    position: fixed;
+    top: 2.5rem;
+    height: 15rem;
+    max-height: 40rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.349);
+    clip: rect(auto, auto, 0, auto);
+    transition-property: clip;
+    transition-duration: 1s;
+}
+
+#bookForm {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    width: 40rem;
+    height: 20rem;
+    top: 50%;
+    left: 50%;
+    margin-left: -20rem;
+    margin-top: -10rem;
+    background-color: rgba(0, 0, 0, 0.829);;
+}
+
+#exitAddBook {
+    position: absolute;
+    cursor: pointer;
+    color: red;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+#booksDisplay {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 26rem);
+    row-gap: 4rem;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 8rem;
+}
+
+.card {
+    width: 22rem;
+    height: 32rem;
+    background-size: cover;
+    background-color: black;
+    color: white;
+    box-shadow: 0px 10px 13px -7px #000000, 0px 11px 50px 7px rgba(0,0,0,0.12);
+}
+
+.activeMenu {
+    clip: rect(auto, auto, 15rem, auto) !important;
+}
+
+.inactiveMenu {
+    clip: rect(auto, auto, 0rem, auto) !important;
+}
+
+.activeAddBook {
+    display: flex !important;
+}
+
+.inactiveAddBook {
+    display: none !important;
+}
