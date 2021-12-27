@@ -85,11 +85,20 @@ function displayBooks() {
         const card = document.createElement("div")
         card.setAttribute("data-bookindex", myLibrary.indexOf(book))
         card.classList.add("card");
-        card.textContent = `${book.title} ${book.author} ${book.pages}`
-        card.style.backgroundImage = `url(${book.backgroundImage})`
         booksDisplay.appendChild(card)
-        card.appendChild(removeBook);
-        card.appendChild(isReadCheckbox);
+        const flipCardInner = document.createElement("div");
+        const flipCardFront = document.createElement("div");
+        const flipCardBack = document.createElement("div");
+        flipCardInner.classList.add("flipCardInner");
+        flipCardFront.classList.add("flipCardFront");
+        flipCardBack.classList.add("flipCardBack");
+        card.appendChild(flipCardInner);
+        flipCardInner.appendChild(flipCardFront);
+        flipCardInner.appendChild(flipCardBack);
+        flipCardBack.textContent = `${book.title} ${book.author} ${book.pages}`
+        flipCardBack.appendChild(isReadCheckbox);
+        flipCardBack.appendChild(removeBook);
+        flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`
     })
 }
 
@@ -98,11 +107,10 @@ displayBooks();
 
 // Deletes book from display and myLibrary array
 function handleDeleteBook() {
-    let bookIndex = this.parentElement.dataset.bookindex;
-    myLibrary.splice(this.parentElement.dataset.bookindex, 1)
-    this.parentElement.remove()
-    handleRefreshOfBookIndex(bookIndex);
-    console.log(myLibrary)
+    let book = this.parentElement.parentElement.parentElement;
+    myLibrary.splice(book.dataset.bookindex, 1)
+    book.remove()
+    handleRefreshOfBookIndex(book.dataset.bookindex);
 }
 
 // Refreshes each book's index so it corresponds to the correct element in the array
