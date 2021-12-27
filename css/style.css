@@ -166,3 +166,10 @@ img {
     margin: 0;
     padding: 0;
 }
+
+
+@media only screen and (max-width: 760px) {
+    html {
+        font-size: 37.5%;
+    }
+}
