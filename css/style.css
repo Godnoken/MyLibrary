@@ -96,6 +96,7 @@ img {
     color: white;
     background-color: transparent;
     perspective: 750px;
+    transition: all 0.65s ease-in-out;
 }
 
 .flipCardInner {
@@ -124,6 +125,7 @@ img {
     background-color: #bbb;
     color: black;
     background-size: cover;
+    background-position: center;
 }
 
 .flipCardBack {
@@ -157,4 +159,10 @@ img {
 
 .inactiveAddBook {
     display: none !important;
+}
+
+.hide {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
 }

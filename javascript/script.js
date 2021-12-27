@@ -32,8 +32,9 @@ function Book(title, author, pages, backgroundImage = "", read = false) {
 // Dummy data
 const LOTR = new Book("Lord Of The Rings", "J.R.R. Tolkien", "421", "https://images-na.ssl-images-amazon.com/images/I/81rzgaqcfZL.jpg", false)
 const STARWARS = new Book("Star Wars", "George Lucas", "351", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg", true);
-const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna", true)
-myLibrary.push(LOTR, STARWARS, HJARNSTARK);
+const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna", true);
+
+myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book());
 
 
 
@@ -123,11 +124,39 @@ function handleRefreshOfBookIndex(removedBookIndex) {
 // Deletes book from display and myLibrary array
 function handleDeleteBook() {
     let book = this.parentElement.parentElement.parentElement;
+
+    smoothDeletion(book);
+    
     myLibrary.splice(book.dataset.bookindex, 1)
-    book.remove()
-    handleRefreshOfBookIndex(book.dataset.bookindex);
+    
+    setTimeout(() => {
+
+        const nextElement = book.nextElementSibling;
+        let bookNumber = Number(book.dataset.bookindex);
+        book.remove()
+        handleRefreshOfBookIndex(book.dataset.bookindex);
+        const cards = document.querySelectorAll(".card");
+        
+        for (let i = bookNumber; i < cards.length; i++) {
+            cards[i].style.transitionDuration = "0.000000001s";
+            cards[i].style.transform = "none";
+        }
+    }, 650)
 }
 
+function smoothDeletion(book) {
+    let bookNumber = Number(book.dataset.bookindex);
+    
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => card.style.transitionDuration = "0.65s")
+    book.classList.toggle("hide");
+    
+    for (let i = bookNumber + 1; i < cards.length; i++) {
+        let cardPosition = cards[i].getBoundingClientRect();
+        let previousCardPosition = cards[i].previousElementSibling.getBoundingClientRect();
+        cards[i].style.transform = `translate(${previousCardPosition.x - cardPosition.x}px, ${previousCardPosition.y - cardPosition.y}px)`;
+    }
+}
 
 // Reads checkbox for checked or not checked and sets the book to read or not read in the myLibrary array
 function handleIsReadCheckbox(book) {
