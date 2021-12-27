@@ -1,29 +1,11 @@
-let myLibrary = [
-    {
-        title: "Lord Of The Rings",
-        author: "J.R.R. Tolkien",
-        pages: "434",
-        backgroundImage: "https://images-na.ssl-images-amazon.com/images/I/81rzgaqcfZL.jpg",
-        read: false
-    }
-
-];
+/** Elements */
 
 const body = document.body;
-
-function Book(title, author, pages, backgroundImage = "", read = false) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.backgroundImage = backgroundImage
-    this.read = read
-}
-
-const STARWARS = new Book("Star Wars", "George Lucas", "351", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg", "false");
-
-myLibrary.push(STARWARS);
-
-
+const menuButton = document.querySelector("#menuButton");
+const menu = document.querySelector("#menu");
+const addBookButton = document.querySelector("#addBookButton");
+const exitAddBookFormButton = document.querySelector("#exitAddBook");
+const booksDisplay = document.querySelector("#booksDisplay");
 const bookForm = document.querySelector("#bookForm")
 const bookFormSubmit = document.querySelector("#bookFormSubmit")
 const bookTitle = document.querySelector("#title")
@@ -33,85 +15,101 @@ const bookCover = document.querySelector("#bookCover");
 const bookRead = document.querySelector("#read")
 
 
-const booksDisplay = document.querySelector("#booksDisplay");
 
-// Adds a new book when pressing submit
+
+// Initalize library array
+let myLibrary = [];
+
+// Constructor for books
+function Book(title, author, pages, backgroundImage = "", read = false) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.backgroundImage = backgroundImage
+    this.read = read
+}
+
+// Dummy data
+const LOTR = new Book("Lord Of The Rings", "J.R.R. Tolkien", "421", "https://images-na.ssl-images-amazon.com/images/I/81rzgaqcfZL.jpg", false)
+const STARWARS = new Book("Star Wars", "George Lucas", "351", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg", true);
+const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna", true)
+myLibrary.push(LOTR, STARWARS, HJARNSTARK);
+
+
+
+
+/** Functions */
+
+// Creates card for all the books stored in the myLibrary array and renders them to the page
+function displayBooks() {
+    myLibrary.map(book => {
+        createCard(book)
+    })
+}
+
+
 bookFormSubmit.addEventListener("click", addBook);
 
 function addBook(event) {
-    
+
     // Prevents reloading of the page
     event.preventDefault();
-    
+
     // Adds new book to array
     const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
     myLibrary.push(bookToAdd);
-    
-    // Creates card for the new book added to the array and renders it on the page
+
+    // Creates card for the new book and renders it on the page
     let book = myLibrary[myLibrary.length - 1];
-    const removeBook = document.createElement("div");
-        removeBook.classList.add("removeBook");
-        removeBook.textContent = "X";
-        removeBook.addEventListener("click", handleDeleteBook);
-        const isReadCheckbox = document.createElement("input");
-        isReadCheckbox.type = "checkbox";
-        isReadCheckbox.classList.add("isReadCheckbox");
-        isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
-        book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
-    const card = document.createElement("div");
-    card.setAttribute("data-bookindex", myLibrary.indexOf(book))
-    card.classList.add("card");
-    card.textContent = `${book.title} ${book.author} ${book.pages}`;
-    card.style.backgroundImage = `url(${book.backgroundImage})`
-    booksDisplay.appendChild(card);
-    card.appendChild(removeBook);
-    card.appendChild(isReadCheckbox);
+    createCard(book);
 
     // Removes bookForm from screen
     handleAddBookAnimation();
 }
 
-// Creates card for all the books stored in the myLibrary array and renders them to the page
-function displayBooks() {
-    myLibrary.map(book => {
-        const removeBook = document.createElement("div");
-        removeBook.classList.add("removeBook");
-        removeBook.textContent = "X";
-        removeBook.addEventListener("click", handleDeleteBook);
-        const isReadCheckbox = document.createElement("input");
-        isReadCheckbox.type = "checkbox";
-        isReadCheckbox.classList.add("isReadCheckbox");
-        isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
-        const card = document.createElement("div")
-        card.setAttribute("data-bookindex", myLibrary.indexOf(book))
-        card.classList.add("card");
-        booksDisplay.appendChild(card)
-        const flipCardInner = document.createElement("div");
-        const flipCardFront = document.createElement("div");
-        const flipCardBack = document.createElement("div");
-        flipCardInner.classList.add("flipCardInner");
-        flipCardFront.classList.add("flipCardFront");
-        flipCardBack.classList.add("flipCardBack");
-        card.appendChild(flipCardInner);
-        flipCardInner.appendChild(flipCardFront);
-        flipCardInner.appendChild(flipCardBack);
-        flipCardBack.textContent = `${book.title} ${book.author} ${book.pages}`
-        flipCardBack.appendChild(isReadCheckbox);
-        flipCardBack.appendChild(removeBook);
-        flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`
-    })
+
+function createCard(book) {
+    const card = document.createElement("div");
+    const flipCardInner = document.createElement("div");
+    const flipCardFront = document.createElement("div");
+    const flipCardBack = document.createElement("div");
+    const removeBook = document.createElement("div");
+    const isReadCheckbox = document.createElement("input");
+
+    card.classList.add("card");
+    flipCardInner.classList.add("flipCardInner");
+    flipCardFront.classList.add("flipCardFront");
+    flipCardBack.classList.add("flipCardBack");
+    removeBook.classList.add("removeBook");
+    isReadCheckbox.classList.add("isReadCheckbox");
+
+    removeBook.addEventListener("click", handleDeleteBook);
+    isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
+    
+    card.setAttribute("data-bookindex", myLibrary.indexOf(book));
+    flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
+    removeBook.textContent = "X";
+    isReadCheckbox.type = "checkbox";
+
+    // Adds text content to the back of the book card and only if user input something
+    for (let i = 0; i < Object.values(book).length - 2; i++) {
+        if (Object.values(book)[i] !== "") {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = Object.values(book)[i];
+            flipCardBack.appendChild(paragraph);
+        }
+    }
+    
+    booksDisplay.appendChild(card);
+    card.appendChild(flipCardInner);
+    flipCardInner.appendChild(flipCardFront);
+    flipCardInner.appendChild(flipCardBack);
+    flipCardBack.appendChild(isReadCheckbox);
+    flipCardBack.appendChild(removeBook);
+    
+    book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
 }
 
-displayBooks();
-
-
-// Deletes book from display and myLibrary array
-function handleDeleteBook() {
-    let book = this.parentElement.parentElement.parentElement;
-    myLibrary.splice(book.dataset.bookindex, 1)
-    book.remove()
-    handleRefreshOfBookIndex(book.dataset.bookindex);
-}
 
 // Refreshes each book's index so it corresponds to the correct element in the array
 // Starts from previously removed book's index so it doesn't have to loop through the entire array
@@ -122,20 +120,35 @@ function handleRefreshOfBookIndex(removedBookIndex) {
 }
 
 
+// Deletes book from display and myLibrary array
+function handleDeleteBook() {
+    let book = this.parentElement.parentElement.parentElement;
+    myLibrary.splice(book.dataset.bookindex, 1)
+    book.remove()
+    handleRefreshOfBookIndex(book.dataset.bookindex);
+}
+
+
 // Reads checkbox for checked or not checked and sets the book to read or not read in the myLibrary array
 function handleIsReadCheckbox(book) {
-    if (book.target.checked === false) {
-        myLibrary[book.target.parentElement.dataset.bookindex].read = false;
+    book = book.target.parentElement.parentElement.parentElement;
+    const checkbox = book.children[0].children[1].children[0];
+
+    if (checkbox.checked === false) {
+        myLibrary[book.dataset.bookindex].read = false;
         return;
     }
-    myLibrary[book.target.parentElement.dataset.bookindex].read = true;
+
+    myLibrary[book.dataset.bookindex].read = true;
 }
+
+
+
 
 /** Animations */
 
-document.querySelector("#menuButton").addEventListener("click", handleMenuAnimation)
-
-const menu = document.querySelector("#menu");
+// Handles animation of the menu button
+menuButton.addEventListener("click", handleMenuAnimation)
 
 function handleMenuAnimation() {
     if (menu.className === "activeMenu") {
@@ -149,8 +162,9 @@ function handleMenuAnimation() {
     }
 }
 
-document.querySelector("#addBookButton").addEventListener("click", handleAddBookAnimation);
-document.querySelector("#exitAddBook").addEventListener("click", handleAddBookAnimation);
+// Handles animation of the form that lets user add a book
+addBookButton.addEventListener("click", handleAddBookAnimation);
+exitAddBookFormButton.addEventListener("click", handleAddBookAnimation);
 
 function handleAddBookAnimation() {
     if (bookForm.className === "activeAddBook") {
@@ -163,3 +177,10 @@ function handleAddBookAnimation() {
         bookForm.classList.add("activeAddBook");
     }
 }
+
+
+
+
+/** Run at start */
+
+displayBooks();
