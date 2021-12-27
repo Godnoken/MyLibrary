@@ -3,23 +3,23 @@ let myLibrary = [
         title: "Lord Of The Rings",
         author: "J.R.R. Tolkien",
         pages: "434",
-        read: false,
-        backgroundImage: "https://images-na.ssl-images-amazon.com/images/I/81rzgaqcfZL.jpg"
+        backgroundImage: "https://images-na.ssl-images-amazon.com/images/I/81rzgaqcfZL.jpg",
+        read: false
     }
 
 ];
 
 const body = document.body;
 
-function Book(title, author, pages, read = false, backgroundImage = "") {
+function Book(title, author, pages, backgroundImage = "", read = false) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
     this.backgroundImage = backgroundImage
+    this.read = read
 }
 
-const STARWARS = new Book("Star Wars", "George Lucas", "351", "false", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg");
+const STARWARS = new Book("Star Wars", "George Lucas", "351", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg", "false");
 
 myLibrary.push(STARWARS);
 
@@ -29,6 +29,7 @@ const bookFormSubmit = document.querySelector("#bookFormSubmit")
 const bookTitle = document.querySelector("#title")
 const bookAuthor = document.querySelector("#author")
 const bookPages = document.querySelector("#pages")
+const bookCover = document.querySelector("#bookCover");
 const bookRead = document.querySelector("#read")
 
 
@@ -43,7 +44,7 @@ function addBook(event) {
     event.preventDefault();
     
     // Adds new book to array
-    const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
+    const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
     myLibrary.push(bookToAdd);
     
     // Creates card for the new book added to the array and renders it on the page
@@ -61,6 +62,7 @@ function addBook(event) {
     card.setAttribute("data-bookindex", myLibrary.indexOf(book))
     card.classList.add("card");
     card.textContent = `${book.title} ${book.author} ${book.pages}`;
+    card.style.backgroundImage = `url(${book.backgroundImage})`
     booksDisplay.appendChild(card);
     card.appendChild(removeBook);
     card.appendChild(isReadCheckbox);
