@@ -36,16 +36,25 @@ const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://imag
 
 myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book());
 
-
-
+// If local storage isn't empty, set myLibrary to local storage. Otherwise keep dummy data for new users
+if (window.localStorage.length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
 
 /** Functions */
 
+
+// Saves entire library to local storage aka browser
+function saveToLocalStorage() {
+    localStorage.setItem("userLibrary", JSON.stringify(myLibrary));
+}
+
+
 // Creates card for all the books stored in the myLibrary array and renders them to the page
 function displayBooks() {
+    
     myLibrary.map(book => {
         createCard(book)
     })
+    
 }
 
 
@@ -66,6 +75,8 @@ function addBook(event) {
 
     // Removes bookForm from screen
     handleAddBookAnimation();
+
+    saveToLocalStorage();
 }
 
 
@@ -128,6 +139,7 @@ function handleDeleteBook() {
     smoothDeletion(book);
     
     myLibrary.splice(book.dataset.bookindex, 1)
+    saveToLocalStorage();
     
     setTimeout(() => {
 
@@ -158,6 +170,8 @@ function smoothDeletion(book) {
     }
 }
 
+
+
 // Reads checkbox for checked or not checked and sets the book to read or not read in the myLibrary array
 function handleIsReadCheckbox(book) {
     book = book.target.parentElement.parentElement.parentElement;
@@ -165,10 +179,12 @@ function handleIsReadCheckbox(book) {
 
     if (checkbox.checked === false) {
         myLibrary[book.dataset.bookindex].read = false;
+        saveToLocalStorage();
         return;
     }
 
     myLibrary[book.dataset.bookindex].read = true;
+    saveToLocalStorage();
 }
 
 
