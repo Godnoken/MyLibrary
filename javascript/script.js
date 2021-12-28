@@ -34,13 +34,15 @@ const LOTR = new Book("Lord Of The Rings", "J.R.R. Tolkien", "421", "https://ima
 const STARWARS = new Book("Star Wars", "George Lucas", "351", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg", true);
 const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna", true);
 
-myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book(), new Book());
+myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
 
 // If local storage isn't empty, set myLibrary to local storage. Otherwise keep dummy data for new users
-if (window.localStorage.length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
+if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
+
+
+
 
 /** Functions */
-
 
 // Saves entire library to local storage aka browser
 function saveToLocalStorage() {
@@ -55,6 +57,7 @@ function displayBooks() {
         createCard(book)
     })
     
+    saveToLocalStorage();
 }
 
 
