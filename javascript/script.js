@@ -13,6 +13,7 @@ const bookAuthor = document.querySelector("#author")
 const bookPages = document.querySelector("#pages")
 const bookCover = document.querySelector("#bookCover");
 const bookRead = document.querySelector("#read")
+let bookCards = document.querySelectorAll(".card");
 
 
 
@@ -36,8 +37,14 @@ const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://imag
 
 myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
 
+for (let i = 0; i < 1000; i++) {
+    myLibrary.push(new Book());
+}
+
 // If local storage isn't empty, set myLibrary to local storage. Otherwise keep dummy data for new users
+console.log(window.localStorage.length)
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
+saveToLocalStorage();
 
 
 
@@ -53,11 +60,11 @@ function saveToLocalStorage() {
 // Creates card for all the books stored in the myLibrary array and renders them to the page
 function displayBooks() {
     
+    
     myLibrary.map(book => {
         createCard(book)
     })
     
-    saveToLocalStorage();
 }
 
 
@@ -139,38 +146,39 @@ function handleRefreshOfBookIndex(removedBookIndex) {
 function handleDeleteBook() {
     let book = this.parentElement.parentElement.parentElement;
 
+    // Updates variable tracking cards of books
+    bookCards = document.querySelectorAll(".card");
+
     smoothDeletion(book);
     
-    myLibrary.splice(book.dataset.bookindex, 1)
     saveToLocalStorage();
-    
-    setTimeout(() => {
-
-        const nextElement = book.nextElementSibling;
-        let bookNumber = Number(book.dataset.bookindex);
-        book.remove()
-        handleRefreshOfBookIndex(book.dataset.bookindex);
-        const cards = document.querySelectorAll(".card");
-        
-        for (let i = bookNumber; i < cards.length; i++) {
-            cards[i].style.transitionDuration = "0.000000001s";
-            cards[i].style.transform = "none";
-        }
-    }, 650)
 }
 
 function smoothDeletion(book) {
     let bookNumber = Number(book.dataset.bookindex);
     
-    const cards = document.querySelectorAll(".card");
-    cards.forEach(card => card.style.transitionDuration = "0.65s")
     book.classList.toggle("hide");
     
-    for (let i = bookNumber + 1; i < cards.length; i++) {
-        let cardPosition = cards[i].getBoundingClientRect();
-        let previousCardPosition = cards[i].previousElementSibling.getBoundingClientRect();
-        cards[i].style.transform = `translate(${previousCardPosition.x - cardPosition.x}px, ${previousCardPosition.y - cardPosition.y}px)`;
+    for (let i = bookNumber + 1; i < bookNumber + 40; i++) {
+        bookCards[i].style.transitionDuration = "0.65s";
+        let cardPosition = bookCards[i].getBoundingClientRect();
+        let previousCardPosition = bookCards[i].previousElementSibling.getBoundingClientRect();
+        bookCards[i].style.transform = `translate(${previousCardPosition.x - cardPosition.x}px, ${previousCardPosition.y - cardPosition.y}px)`;
     }
+
+    myLibrary.splice(book.dataset.bookindex, 1)
+
+    setTimeout(() => {
+        
+        let bookNumber = Number(book.dataset.bookindex);
+        book.remove()
+        handleRefreshOfBookIndex(book.dataset.bookindex);
+        
+        for (let i = bookNumber; i < bookNumber + 40; i++) {
+            bookCards[i].style.transitionDuration = "0.0000001s";
+            bookCards[i].style.transform = "none";
+        }
+    }, 650)
 }
 
 
