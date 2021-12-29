@@ -37,7 +37,7 @@ const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://imag
 
 myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
 
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 100; i++) {
     myLibrary.push(new Book());
 }
 
@@ -214,16 +214,17 @@ function smoothDeletion(book) {
 
 // Reads checkbox for checked or not checked and sets the book to read or not read in the myLibrary array
 function handleIsReadCheckbox(book) {
-    book = book.target.parentElement.parentElement.parentElement;
-    const checkbox = book.children[0].children[1].children[0];
+
+    const bookTarget = book.target.parentElement.parentElement.parentElement;
+    const checkbox = book.target;
 
     if (checkbox.checked === false) {
-        myLibrary[book.dataset.bookindex].read = false;
+        myLibrary[bookTarget.dataset.bookindex].read = false;
         saveToLocalStorage();
         return;
     }
 
-    myLibrary[book.dataset.bookindex].read = true;
+    myLibrary[bookTarget.dataset.bookindex].read = true;
     saveToLocalStorage();
 }
 
