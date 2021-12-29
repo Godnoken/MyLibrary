@@ -42,6 +42,7 @@ for (let i = 0; i < 1000; i++) {
 }
 
 // If local storage isn't empty, set myLibrary to local storage. Otherwise keep dummy data for new users
+if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary", JSON.stringify([]))
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
 saveToLocalStorage();
 
@@ -51,8 +52,8 @@ saveToLocalStorage();
 /** Functions */
 
 
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
+function isInViewport(book) {
+    const rect = book.getBoundingClientRect();
     return (
         rect.top >= 0 - 350 &&
         rect.left >= 0 &&
@@ -60,7 +61,6 @@ function isInViewport(element) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
-
 
 // Saves entire library to local storage aka browser
 function saveToLocalStorage() {
@@ -71,7 +71,6 @@ function saveToLocalStorage() {
 // Creates card for all the books stored in the myLibrary array and renders them to the page
 function displayBooks() {
     
-    
     myLibrary.map(book => {
         createCard(book)
     })
@@ -79,7 +78,7 @@ function displayBooks() {
     bookCards = document.querySelectorAll(".card");
 
     bookCards.forEach(book => {
-        if (isInViewport(book) === false) return book.style.visibility = "hidden";
+        if (isInViewport(book) === false) book.style.visibility = "hidden";
     })
 }
 
@@ -87,9 +86,10 @@ document.addEventListener("scroll", handleVisibleCards);
 window.addEventListener("resize", handleVisibleCards);
 
 function handleVisibleCards() {
+    
     bookCards.forEach(book => {
-        if (isInViewport(book) === false) return book.style.visibility = "hidden";
-        if (isInViewport(book) === true) return book.style.visibility = "visible";
+        if (isInViewport(book) === false) book.style.visibility = "hidden";
+        else book.style.visibility = "visible";
     })
 }
 
@@ -162,8 +162,11 @@ function createCard(book) {
 // Refreshes each book's index so it corresponds to the correct element in the array
 // Starts from previously removed book's index so it doesn't have to loop through the entire array
 function handleRefreshOfBookIndex(removedBookIndex) {
+
+    bookCards = document.querySelectorAll(".card");
+
     for (let i = removedBookIndex; i < myLibrary.length; i++) {
-        document.querySelectorAll(".card")[i].setAttribute("data-bookindex", i)
+        bookCards[i].setAttribute("data-bookindex", i);
     }
 }
 
@@ -184,8 +187,6 @@ function smoothDeletion(book) {
     let bookNumber = Number(book.dataset.bookindex);
     
     book.classList.toggle("hide");
-
-    bookCards = document.querySelectorAll(".card");
     
     for (let i = bookNumber + 1; i < bookNumber + 25; i++) {
         bookCards[i].style.transitionDuration = "0.65s";
@@ -198,9 +199,10 @@ function smoothDeletion(book) {
 
     setTimeout(() => {
         book.remove()
-        handleRefreshOfBookIndex(book.dataset.bookindex);
+        handleRefreshOfBookIndex(bookNumber);
         
-        for (let i = bookNumber + 1; i < bookNumber + 25; i++) {
+        
+        for (let i = bookNumber; i < bookNumber + 25; i++) {
             bookCards[i].style.transitionDuration = "0.0000001s";
             bookCards[i].style.transform = "none";
             bookCards[i].style.visibility = "visible"
