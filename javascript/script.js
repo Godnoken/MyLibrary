@@ -42,7 +42,6 @@ for (let i = 0; i < 1000; i++) {
 }
 
 // If local storage isn't empty, set myLibrary to local storage. Otherwise keep dummy data for new users
-console.log(window.localStorage.length)
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
 saveToLocalStorage();
 
@@ -50,6 +49,18 @@ saveToLocalStorage();
 
 
 /** Functions */
+
+
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 - 350 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight + 350 || document.documentElement.clientHeight + 350) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 
 // Saves entire library to local storage aka browser
 function saveToLocalStorage() {
@@ -65,6 +76,21 @@ function displayBooks() {
         createCard(book)
     })
     
+    bookCards = document.querySelectorAll(".card");
+
+    bookCards.forEach(book => {
+        if (isInViewport(book) === false) return book.style.visibility = "hidden";
+    })
+}
+
+document.addEventListener("scroll", handleVisibleCards);
+window.addEventListener("resize", handleVisibleCards);
+
+function handleVisibleCards() {
+    bookCards.forEach(book => {
+        if (isInViewport(book) === false) return book.style.visibility = "hidden";
+        if (isInViewport(book) === true) return book.style.visibility = "visible";
+    })
 }
 
 
@@ -150,7 +176,7 @@ function handleDeleteBook() {
     bookCards = document.querySelectorAll(".card");
 
     smoothDeletion(book);
-    
+
     saveToLocalStorage();
 }
 
@@ -158,8 +184,10 @@ function smoothDeletion(book) {
     let bookNumber = Number(book.dataset.bookindex);
     
     book.classList.toggle("hide");
+
+    bookCards = document.querySelectorAll(".card");
     
-    for (let i = bookNumber + 1; i < bookNumber + 40; i++) {
+    for (let i = bookNumber + 1; i < bookNumber + 25; i++) {
         bookCards[i].style.transitionDuration = "0.65s";
         let cardPosition = bookCards[i].getBoundingClientRect();
         let previousCardPosition = bookCards[i].previousElementSibling.getBoundingClientRect();
@@ -169,14 +197,13 @@ function smoothDeletion(book) {
     myLibrary.splice(book.dataset.bookindex, 1)
 
     setTimeout(() => {
-        
-        let bookNumber = Number(book.dataset.bookindex);
         book.remove()
         handleRefreshOfBookIndex(book.dataset.bookindex);
         
-        for (let i = bookNumber; i < bookNumber + 40; i++) {
+        for (let i = bookNumber + 1; i < bookNumber + 25; i++) {
             bookCards[i].style.transitionDuration = "0.0000001s";
             bookCards[i].style.transform = "none";
+            bookCards[i].style.visibility = "visible"
         }
     }, 650)
 }
