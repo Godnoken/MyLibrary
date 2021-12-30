@@ -22,7 +22,7 @@ let bookCards = document.querySelectorAll(".card");
 let myLibrary = [];
 
 // Constructor for books
-function Book(title, author, pages, backgroundImage = "", read = false) {
+function Book(title = "", author = "", pages = "", backgroundImage = "", read = false) {
     this.title = title
     this.author = author
     this.pages = pages
@@ -37,9 +37,10 @@ const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://imag
 
 myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 1000; i++) {
     myLibrary.push(new Book());
 }
+
 
 // If local storage isn't empty, set myLibrary to local storage. Otherwise keep dummy data for new users
 if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary", JSON.stringify([]))
@@ -70,9 +71,9 @@ function saveToLocalStorage() {
 
 // Creates card for all the books stored in the myLibrary array and renders them to the page
 function displayBooks() {
-    
+
     myLibrary.map(book => {
-        createCard(book)
+        createCard(book);
     })
     
     bookCards = document.querySelectorAll(".card");
@@ -81,6 +82,7 @@ function displayBooks() {
         if (isInViewport(book) === false) book.style.visibility = "hidden";
     })
 }
+
 
 document.addEventListener("scroll", handleVisibleCards);
 window.addEventListener("resize", handleVisibleCards);
@@ -101,18 +103,26 @@ function addBook(event) {
     // Prevents reloading of the page
     event.preventDefault();
 
-    // Adds new book to array
-    const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
-    myLibrary.push(bookToAdd);
+    for (let i = 0; i < bookForm.length - 2; i++) {
+        if (bookForm.children[i].value !== "") {
+            
+            // Adds new book to array
+            const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
+            myLibrary.push(bookToAdd);
+        
+            // Creates card for the new book and renders it on the page
+            let book = myLibrary[myLibrary.length - 1];
+            createCard(book);
+        
+            // Removes bookForm from screen
+            handleAddBookAnimation();
+        
+            saveToLocalStorage();
+            return;
+        }
+    }
 
-    // Creates card for the new book and renders it on the page
-    let book = myLibrary[myLibrary.length - 1];
-    createCard(book);
-
-    // Removes bookForm from screen
-    handleAddBookAnimation();
-
-    saveToLocalStorage();
+    alert("Need user input!")
 }
 
 
@@ -135,24 +145,25 @@ function createCard(book) {
     isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
     
     card.setAttribute("data-bookindex", myLibrary.indexOf(book));
-    flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
     removeBook.textContent = "X";
     isReadCheckbox.type = "checkbox";
 
-    // Adds text content to the back of the book card and only if user input something
+    // Adds content to the book card only if user input something
     for (let i = 0; i < Object.values(book).length - 2; i++) {
         if (Object.values(book)[i] !== "") {
             const paragraph = document.createElement("p");
             paragraph.textContent = Object.values(book)[i];
             flipCardBack.appendChild(paragraph);
+            flipCardBack.appendChild(isReadCheckbox);
         }
     }
+
+    if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
     
     booksDisplay.appendChild(card);
     card.appendChild(flipCardInner);
     flipCardInner.appendChild(flipCardFront);
     flipCardInner.appendChild(flipCardBack);
-    flipCardBack.appendChild(isReadCheckbox);
     flipCardBack.appendChild(removeBook);
     
     book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
@@ -227,6 +238,8 @@ function handleIsReadCheckbox(book) {
     myLibrary[bookTarget.dataset.bookindex].read = true;
     saveToLocalStorage();
 }
+
+
 
 
 
