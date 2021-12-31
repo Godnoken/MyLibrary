@@ -37,8 +37,8 @@ const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://imag
 
 myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
 
-for (let i = 0; i < 1000; i++) {
-    myLibrary.push(new Book());
+for (let i = 0; i < 500; i++) {
+    myLibrary.push(new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna"));
 }
 
 
@@ -84,11 +84,28 @@ function displayBooks() {
 }
 
 
-document.addEventListener("scroll", handleVisibleCards);
-window.addEventListener("resize", handleVisibleCards);
+
+let scheduledAnimationFrame;
+
+function onScroll() {
+
+   // Prevent multiple rAF callbacks.
+   if (scheduledAnimationFrame) {
+      return;
+   }
+
+   scheduledAnimationFrame = true;
+
+   // Decides how often to listen to the scroll animations
+   setTimeout(handleVisibleCards, 250);
+}
+
+document.addEventListener("scroll", onScroll)
+document.addEventListener("resize", handleVisibleCards);
 
 function handleVisibleCards() {
-    
+    scheduledAnimationFrame = false;
+
     bookCards.forEach(book => {
         if (isInViewport(book) === false) book.style.visibility = "hidden";
         else book.style.visibility = "visible";
@@ -159,7 +176,8 @@ function createCard(book) {
     }
 
     if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
-    
+    //if (Object.values(book)[3] !== "") flipCardFront.setAttribute("data-src", book.backgroundImage)
+
     booksDisplay.appendChild(card);
     card.appendChild(flipCardInner);
     flipCardInner.appendChild(flipCardFront);
