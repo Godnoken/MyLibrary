@@ -1,3 +1,5 @@
+//import Axios from 'axios';
+
 /** Elements */
 
 const body = document.body;
@@ -37,8 +39,12 @@ const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://imag
 
 myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
 
-for (let i = 0; i < 500; i++) {
-    myLibrary.push(new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna"));
+for (let i = 0; i < 200; i++) {
+    let bookCover = `https://picsum.photos/200/${Math.floor(Math.random() * 400) + 300}`;
+    for (let j = 0; j < 1; j++) {
+        myLibrary.push(new Book("", "", "", bookCover));
+    
+    }
 }
 
 
