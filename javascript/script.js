@@ -1,5 +1,3 @@
-//import Axios from 'axios';
-
 /** Elements */
 
 const body = document.body;
@@ -37,13 +35,13 @@ const LOTR = new Book("Lord Of The Rings", "J.R.R. Tolkien", "421", "https://ima
 const STARWARS = new Book("Star Wars", "George Lucas", "351", "https://d29xot63vimef3.cloudfront.net/image/star-wars-books/1-1.jpg", true);
 const HJARNSTARK = new Book("Hjärnstark", "Anders Hansen", "268", "https://image.bokus.com/images/9789173630788_200x_hjarnstark-hur-motion-och-traning-starker-din-hjarna", true);
 
-myLibrary.push(LOTR, STARWARS, HJARNSTARK, new Book(), new Book());
+myLibrary.push(LOTR, STARWARS, HJARNSTARK);
 
 for (let i = 0; i < 200; i++) {
-    let bookCover = `https://picsum.photos/200/${Math.floor(Math.random() * 400) + 300}`;
+    let bookCover = `https://picsum.photos/200/${Math.floor(Math.random() * 150) + 300}`;
     for (let j = 0; j < 1; j++) {
         myLibrary.push(new Book("", "", "", bookCover));
-    
+
     }
 }
 
@@ -52,6 +50,21 @@ for (let i = 0; i < 200; i++) {
 if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary", JSON.stringify([]))
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibrary = JSON.parse(window.localStorage.getItem("userLibrary"));
 saveToLocalStorage();
+
+
+let googleBooks;
+
+axios.get("https://www.googleapis.com/books/v1/volumes?q=programming&maxResults=40&key=AIzaSyBXm_TNm0HaOpDailF2fTkIMThUKnaVVpc")
+    .then(response => {
+        googleBooks = response.data["items"];
+        console.log(googleBooks);
+        displayBooks();
+    })
+    .catch(error => {
+        alert(`You ran into.. ${error}`)
+        console.log(`You ran into.. ${error}`)
+    })
+
 
 
 
@@ -78,10 +91,17 @@ function saveToLocalStorage() {
 // Creates card for all the books stored in the myLibrary array and renders them to the page
 function displayBooks() {
 
-    myLibrary.map(book => {
-        createCard(book);
-    })
-    
+    if (googleBooks !== undefined) {
+        googleBooks.map(book => {
+            createCard(book);
+        })
+    }
+    else {
+        myLibrary.map(book => {
+            createCard(book);
+        })
+    }
+
     bookCards = document.querySelectorAll(".card");
 
     bookCards.forEach(book => {
@@ -95,15 +115,15 @@ let scheduledAnimationFrame;
 
 function onScroll() {
 
-   // Prevent multiple rAF callbacks.
-   if (scheduledAnimationFrame) {
-      return;
-   }
+    // Prevent multiple rAF callbacks.
+    if (scheduledAnimationFrame) {
+        return;
+    }
 
-   scheduledAnimationFrame = true;
+    scheduledAnimationFrame = true;
 
-   // Decides how often to listen to the scroll animations
-   setTimeout(handleVisibleCards, 250);
+    // Decides how often to listen to the scroll animations
+    setTimeout(handleVisibleCards, 250);
 }
 
 document.addEventListener("scroll", onScroll)
@@ -128,18 +148,18 @@ function addBook(event) {
 
     for (let i = 0; i < bookForm.length - 2; i++) {
         if (bookForm.children[i].value !== "") {
-            
+
             // Adds new book to array
             const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
             myLibrary.push(bookToAdd);
-        
+
             // Creates card for the new book and renders it on the page
             let book = myLibrary[myLibrary.length - 1];
             createCard(book);
-        
+
             // Removes bookForm from screen
             handleAddBookAnimation();
-        
+
             saveToLocalStorage();
             return;
         }
@@ -166,30 +186,51 @@ function createCard(book) {
 
     removeBook.addEventListener("click", handleDeleteBook);
     isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
-    
+
     card.setAttribute("data-bookindex", myLibrary.indexOf(book));
     removeBook.textContent = "X";
     isReadCheckbox.type = "checkbox";
 
     // Adds content to the book card only if user input something
-    for (let i = 0; i < Object.values(book).length - 2; i++) {
+    /*for (let i = 0; i < Object.values(book).length - 2; i++) {
         if (Object.values(book)[i] !== "") {
             const paragraph = document.createElement("p");
             paragraph.textContent = Object.values(book)[i];
             flipCardBack.appendChild(paragraph);
             flipCardBack.appendChild(isReadCheckbox);
         }
-    }
+    }*/
+    /*
+        const paragraph = document.createElement("p");
+        paragraph.innerHTML = `${book.title}<br>${book.author}`
+        flipCardBack.appendChild(paragraph);
+        flipCardBack.appendChild(isReadCheckbox);
+    */
 
-    if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
-    //if (Object.values(book)[3] !== "") flipCardFront.setAttribute("data-src", book.backgroundImage)
+    const paragraph = document.createElement("p");
+    paragraph.innerHTML =
+        `
+    Title: ${book["volumeInfo"].title} <br>
+    Author: ${book["volumeInfo"].authors} <br>
+    Pages : ${book["volumeInfo"].pageCount}
+    `;
+
+    //if (book["volumeInfo"].hasOwnProperty("pageCount")) paragraph.innerHTML += book["volumeInfo"].pageCount;
+
+    flipCardBack.appendChild(paragraph);
+    flipCardBack.appendChild(isReadCheckbox);
+
+    if (book["volumeInfo"].hasOwnProperty("imageLinks")) {
+        flipCardFront.style.backgroundImage = `url(${book["volumeInfo"]["imageLinks"]["thumbnail"]})`;
+    }
+    //if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
 
     booksDisplay.appendChild(card);
     card.appendChild(flipCardInner);
     flipCardInner.appendChild(flipCardFront);
     flipCardInner.appendChild(flipCardBack);
     flipCardBack.appendChild(removeBook);
-    
+
     book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
 }
 
@@ -220,9 +261,9 @@ function handleDeleteBook() {
 
 function smoothDeletion(book) {
     let bookNumber = Number(book.dataset.bookindex);
-    
+
     book.classList.toggle("hide");
-    
+
     for (let i = bookNumber + 1; i < bookNumber + 25; i++) {
         bookCards[i].style.transitionDuration = "0.65s";
         let cardPosition = bookCards[i].getBoundingClientRect();
@@ -235,8 +276,8 @@ function smoothDeletion(book) {
     setTimeout(() => {
         book.remove()
         handleRefreshOfBookIndex(bookNumber);
-        
-        
+
+
         for (let i = bookNumber; i < bookNumber + 25; i++) {
             bookCards[i].style.transitionDuration = "0.0000001s";
             bookCards[i].style.transform = "none";
@@ -306,4 +347,4 @@ function handleAddBookAnimation() {
 
 /** Run at start */
 
-displayBooks();
+//displayBooks();
