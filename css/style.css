@@ -78,6 +78,26 @@ img {
     top: 0.5rem;
 }
 
+#pages {
+    height: 50%;
+    width: 5rem;
+    position: fixed;
+    top: 25%;
+    right: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 2.6rem;
+    color: white;
+    user-select: none;
+}
+
+#pages p {
+    cursor: pointer;
+    margin: 0;
+}
+
 #booksDisplay {
     display: grid;
     grid-template-columns: repeat(auto-fill, 26rem);

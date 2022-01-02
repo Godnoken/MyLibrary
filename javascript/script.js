@@ -1,3 +1,10 @@
+/** Global Variables */
+
+let myLibrary = [];
+let currentPage = 1;
+let googleBooks;
+let startIndex = 0;
+
 /** Elements */
 
 const body = document.body;
@@ -10,16 +17,15 @@ const bookForm = document.querySelector("#bookForm")
 const bookFormSubmit = document.querySelector("#bookFormSubmit")
 const bookTitle = document.querySelector("#title")
 const bookAuthor = document.querySelector("#author")
-const bookPages = document.querySelector("#pages")
+const bookPages = document.querySelector("#formPages")
 const bookCover = document.querySelector("#bookCover");
 const bookRead = document.querySelector("#read")
 let bookCards = document.querySelectorAll(".card");
+const pages = document.querySelector("#pages");
+const pageNumbers = document.querySelector("#pages").childNodes;
 
 
 
-
-// Initalize library array
-let myLibrary = [];
 
 // Constructor for books
 function Book(title = "", author = "", pages = "", backgroundImage = "", read = false) {
@@ -52,21 +58,51 @@ if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibra
 saveToLocalStorage();
 
 
-let googleBooks;
 
-axios.get("https://www.googleapis.com/books/v1/volumes?q=programming&maxResults=40&key=AIzaSyBXm_TNm0HaOpDailF2fTkIMThUKnaVVpc")
-    .then(response => {
-        googleBooks = response.data["items"];
-        console.log(googleBooks);
-        displayBooks();
+function getGoogleBooks() {
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=programming&maxResults=40&startIndex=${startIndex}&key=AIzaSyBXm_TNm0HaOpDailF2fTkIMThUKnaVVpc`)
+        .then(response => {
+            googleBooks = response.data["items"];
+            //console.log(googleBooks);
+            displayBooks();
+        })
+        .catch(error => {
+            alert(`You ran into.. ${error}`)
+            console.log(`You ran into.. ${error}`)
+        })
+}
+
+// Creates page numbers
+for (let i = 1; i < 11; i++) {
+    const pageNumber = document.createElement("p");
+    pageNumber.textContent = i;
+    pages.appendChild(pageNumber);
+}
+
+pageNumbers.forEach(page => page.addEventListener("click", handleGooglePageChange));
+
+
+// Lets user view 10 pages of search results from google books, containing 40 books each
+function handleGooglePageChange(event) {
+    let clickedPage = Number(event.target.textContent);
+
+    startIndex = 0;
+    currentPage = clickedPage;
+    
+    if (clickedPage !== 1) startIndex = 40;
+    if (clickedPage !== 2 && clickedPage !== 1) startIndex = startIndex * clickedPage - 40;
+
+    // Convert from childNodes to array because of a bug(?)
+    let booksDisplayArray = Array.from(booksDisplay.childNodes)
+
+    // Remove all currently displayed books
+    booksDisplayArray.forEach(book => {
+        book.remove()
     })
-    .catch(error => {
-        alert(`You ran into.. ${error}`)
-        console.log(`You ran into.. ${error}`)
-    })
 
-
-
+    // Get new books from chosen page
+    getGoogleBooks();
+}
 
 
 /** Functions */
@@ -347,4 +383,4 @@ function handleAddBookAnimation() {
 
 /** Run at start */
 
-//displayBooks();
+getGoogleBooks();
