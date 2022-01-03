@@ -4,6 +4,7 @@ let myLibrary = [];
 let currentPage = 1;
 let googleBooks;
 let startIndex = 0;
+let googleSearch = "sports";
 
 /** Elements */
 
@@ -23,6 +24,8 @@ const bookRead = document.querySelector("#read")
 let bookCards = document.querySelectorAll(".card");
 const pages = document.querySelector("#pages");
 const pageNumbers = document.querySelector("#pages").childNodes;
+const google = document.querySelector("#google");
+const googleButton = document.querySelector("#googleButton");
 
 
 
@@ -60,7 +63,7 @@ saveToLocalStorage();
 
 
 function getGoogleBooks() {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=programming&maxResults=40&startIndex=${startIndex}&key=AIzaSyBXm_TNm0HaOpDailF2fTkIMThUKnaVVpc`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&key=AIzaSyBXm_TNm0HaOpDailF2fTkIMThUKnaVVpc`)
         .then(response => {
             googleBooks = response.data["items"];
             //console.log(googleBooks);
@@ -71,6 +74,22 @@ function getGoogleBooks() {
             console.log(`You ran into.. ${error}`)
         })
 }
+
+googleButton.addEventListener("click", () => {
+    googleSearch = google.value;
+    console.log(googleSearch)
+
+    // Convert from childNodes to array because of a bug(?)
+    let booksDisplayArray = Array.from(booksDisplay.childNodes)
+
+    // Remove all currently displayed books
+    booksDisplayArray.forEach(book => {
+        book.remove()
+    })
+
+    getGoogleBooks();
+})
+
 
 // Creates page numbers
 for (let i = 1; i < 11; i++) {
