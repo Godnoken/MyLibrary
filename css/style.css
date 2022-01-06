@@ -37,6 +37,7 @@ img {
     align-items: center;
     color: white;
     cursor: pointer;
+    font-size: 3.2rem;
 }
 
 #menu {
@@ -52,6 +53,7 @@ img {
     clip: rect(auto, auto, 0, auto);
     transition-property: clip;
     transition-duration: 1s;
+    font-size: 2.6rem;
 }
 
 #bookForm {
@@ -79,7 +81,7 @@ img {
 }
 
 #pages {
-    height: 50%;
+    height: 75rem;
     width: 5rem;
     position: fixed;
     top: 25%;
@@ -87,7 +89,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     font-size: 2.6rem;
     color: white;
     user-select: none;
