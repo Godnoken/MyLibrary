@@ -5,7 +5,7 @@ import { saveToLocalStorage } from "./saveToLocalStorage.js";
 import { } from "./cardsVisibility.js";
 import { addBook } from "./addBook.js";
 import { showMyLibrary } from "./showMyLibrary.js";
-import { displayBooks, googleBooksArray } from "./displayBooks.js";
+import { googleBooksArray } from "./displayBooks.js";
 import { createDummyData } from "./dummyData.js";
 
 
@@ -44,4 +44,4 @@ if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary",
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibraryArray = JSON.parse(window.localStorage.getItem("userLibrary"));
 saveToLocalStorage();
 
-displayBooks();
+showMyLibrary();

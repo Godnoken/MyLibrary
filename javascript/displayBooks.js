@@ -19,13 +19,12 @@ export function displayBooks(retrievedGoogleBooks) {
         for (let i = global.startIndex; i < global.startIndex + 40; i++) {
             if (googleBooksArray[i]) createCard(googleBooksArray[i])
         }
-        createPageNumbers(googleBooksArray.length);
     }
     else {
         for (let i = global.startIndex; i < global.startIndex + 40; i++) {
             if (myLibraryArray[i]) createCard(myLibraryArray[i])
         }
-        createPageNumbers(myLibraryArray.length);
+        //createPageNumbers(myLibraryArray.length);
     }
 
     // Sets the current page back to first page

@@ -19,7 +19,7 @@ img {
 #header {
     position: fixed;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.349);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 1;
 }
 
@@ -49,7 +49,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.349);
+    background-color: rgba(0, 0, 0, 0.8);
     clip: rect(auto, auto, 0, auto);
     transition-property: clip;
     transition-duration: 1s;
@@ -84,7 +84,8 @@ img {
     height: 75rem;
     width: 5rem;
     position: fixed;
-    top: 25%;
+    top: 50%;
+    margin-top: -38.5rem;
     right: 0rem;
     display: flex;
     flex-direction: column;
@@ -93,11 +94,28 @@ img {
     font-size: 2.6rem;
     color: white;
     user-select: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 40px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-right: 1.75rem;
+}
+
+#pages:hover {
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 #pages p {
     cursor: pointer;
     margin: 0;
+}
+
+#nextPageList {
+    transform: rotate(90deg);
+}
+
+#previousPageList {
+    transform: rotate(90deg);
 }
 
 #booksDisplay {
@@ -107,6 +125,8 @@ img {
     justify-content: center;
     justify-items: center;
     padding-top: 8rem;
+    padding-bottom: 8rem;
+    padding-right: 5rem;
 }
 
 .card {
@@ -164,6 +184,12 @@ img {
     color: red;
     right: 0.5rem;
     top: 0.5rem;
+}
+
+.activePage {
+    color: khaki;
+    transform: scale(1.2);
+    transition: all 0.1s;
 }
 
 .activeMenu {

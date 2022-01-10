@@ -30,12 +30,22 @@ export function createPageNumbers(amountOfBooks) {
         }
     }
 
-    pageNumbers.forEach(page => page.addEventListener("click", handlePageChange));
+    pageNumbers[0].classList.toggle("activePage");
+
+    pageNumbers.forEach(page => page.addEventListener("click", (event) => {
+        handlePageChange(event);
+        pageNumbers.forEach(page => {
+            if (page.className === "activePage") page.classList.toggle("activePage");
+        })
+        page.classList.toggle("activePage");
+    }));
 
     const nextListOfPagesButton = document.createElement("p");
     const previousListOfPagesButton = document.createElement("p");
     nextListOfPagesButton.textContent = ">";
     previousListOfPagesButton.textContent = "<";
+    nextListOfPagesButton.id = "nextPageList";
+    previousListOfPagesButton.id = "previousPageList";
     //nextListOfPagesButton.addEventListener("click", () => handleListOfPagesChange("next", pagesToCreate));
     //previousListOfPagesButton.addEventListener("click", () => handleListOfPagesChange("previous", pagesToCreate));
     pages.appendChild(nextListOfPagesButton);

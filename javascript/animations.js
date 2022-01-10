@@ -1,4 +1,6 @@
+const menu = document.querySelector("#menu");
 const menuButton = document.querySelector("#menuButton");
+const bookForm = document.querySelector("#bookForm");
 const addBookButton = document.querySelector("#addBookButton");
 const exitAddBookFormButton = document.querySelector("#exitAddBook");
 
