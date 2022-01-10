@@ -1,5 +1,4 @@
 import { global, myLibraryArray } from "./main.js";
-import { handleMenuAnimation } from "./animations.js";
 import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { createPageNumbers } from "./handlePages.js";
 
@@ -11,6 +10,6 @@ export function showMyLibrary() {
     addBookButton.style.visibility = "visible";
 
     createPageNumbers(myLibraryArray.length);
-    if (document.querySelector("#menu").className === "activeMenu") handleMenuAnimation();
+    //if (document.querySelector("#menu").className === "activeMenu") handleMenuAnimation();
     displayBooks();
 }

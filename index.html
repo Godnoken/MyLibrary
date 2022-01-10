@@ -13,14 +13,30 @@
         <main id="myLibraryContainer">
             <header id="header">
                 <nav id="navigation">
-                    <div id="menuButton">Menu</div>
+                    <div id="googleMenuButton" class="menus">
+                        <p>Google</p>
+                        <section class="hoverMenu">
+                            <input id="google" name="google" placeholder="Search..">
+                            <div id="googleButton" class="button">Search</div>
+                        </section>
+                    </div>
+                    <div id="myLibraryMenuButton" class="menus">
+                        <p>|</p>
+                        <p>My Library</p>
+                        <p>|</p>
+                        <section id="myLibraryMenu" class="hoverMenu">
+                            <div id="myLibrary" class="button">My Library</div>
+                            <div id="addBookButton" class="button">Add Book</div>
+                        </section>
+                    </div>
+                    <div id="optionsMenuButton" class="menus">
+                        <p>Options</p>
+                        <section class="hoverMenu">
+
+                        </section>
+                    </div>
                 </nav>
-                <section id="menu">
-                    <button id="addBookButton">Add Book</button>
-                    <button id="myLibrary">My Library</button>
-                    <input id="google" name="google" placeholder="Search..">
-                    <button id="googleButton">Search</button>
-                </section>
+                
             </header>
             <form id="bookForm">
                 <input id="title" name="title" type="text" placeholder="Title..">

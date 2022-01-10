@@ -1,5 +1,4 @@
 import { displayBooks } from "./displayBooks.js";
-import { handleMenuAnimation } from "./animations.js";
 import { createPageNumbers } from "./handlePages.js";
 
 let previousGoogleSearch;
@@ -27,9 +26,6 @@ export function handleGoogleSearch(startIndex, googleBooksArray) {
         setTimeout(() => {
             createPageNumbers(googleBooksArray.length);
         }, 1500)
-
-        addBookButton.style.visibility = "hidden";
-        handleMenuAnimation();
     }
     else {
         displayBooks();
