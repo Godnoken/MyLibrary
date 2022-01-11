@@ -35,14 +35,13 @@ export function handleGoogleSearch(startIndex, googleBooksArray) {
 }
 
 export function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&key=AIzaSyBZQlasiygfXSG7iKMwkpanVK8F_D4hDzQ`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&fields=items/volumeInfo(title,authors,pageCount,imageLinks)&key=AIzaSyBZQlasiygfXSG7iKMwkpanVK8F_D4hDzQ`)
         .then(response => {
             if (response.data.items !== "undefined") {
                 for (let i = 0; i < response.data.items.length; i++) {
                     googleBooksArray.push(response.data.items[i].volumeInfo)
                 }
-                //googleBooksArray.push(...response.data.items);
-                console.log(googleBooksArray)
+                console.log(response)
             }
         })
         .catch(error => {

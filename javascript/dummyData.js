@@ -25,8 +25,6 @@ export function createDummyData() {
             myLibraryArray.push(new Book(title, authors, pageCount, backgroundImage));
         }
 
-        console.log(googleBooksDummyData)
-
         saveToLocalStorage();
     }, 1200);
 }
