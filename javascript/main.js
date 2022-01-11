@@ -35,13 +35,16 @@ bookFormSubmit.addEventListener("click", addBook);
 
 
 /** Run at start */
-createDummyData();
 
 // Resets dummy data if user removes all books and reloads page. Used for testing only
-if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary", JSON.stringify([]))
+if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary", JSON.stringify([]));
 
 // Makes sure myLibraryArray stays updated with local storage on load
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibraryArray = JSON.parse(window.localStorage.getItem("userLibrary"));
-saveToLocalStorage();
 
-showMyLibrary();
+if (JSON.parse(window.localStorage.getItem("userLibrary")).length === 0) createDummyData(), setTimeout(() => {
+    showMyLibrary();
+}, 1200);
+else showMyLibrary();
+
+saveToLocalStorage();
