@@ -1,7 +1,7 @@
-export function Book(title = "", author = "", pages = "", backgroundImage = "", read = false) {
+export function Book(title = "", authors = "", pageCount = "", backgroundImage = "", read = false) {
     this.title = title
-    this.author = author
-    this.pages = pages
+    this.authors = authors
+    this.pageCount = pageCount
     this.backgroundImage = backgroundImage
     this.read = read
 }

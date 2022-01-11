@@ -40,8 +40,14 @@ export function addBook(event) {
 
 export function addGoogleBookToLibrary(event) {
     const googleBook = event.target.parentElement;
+    const title = googleBook.childNodes[0].textContent.slice(7);
+    const authors = googleBook.childNodes[1].textContent.slice(8);
+    const pageCount = googleBook.childNodes[2].textContent.slice(7);
+
     const googleBookBackgroundImage = googleBook.previousElementSibling.style.backgroundImage.slice(5, -2);
-    const bookToAdd = new Book(googleBook.childNodes[0].textContent, googleBook.childNodes[1].textContent, googleBook.childNodes[2].textContent, googleBookBackgroundImage, googleBook.childNodes[3].checked);
+
+    const bookToAdd = new Book(title, authors, pageCount, googleBookBackgroundImage, googleBook.childNodes[3].checked);
+
     myLibraryArray.push(bookToAdd);
 
     saveToLocalStorage();

@@ -21,6 +21,7 @@ export function handleGoogleSearch(startIndex, googleBooksArray) {
         setTimeout(() => {
             startIndex = 0;
             displayBooks(googleBooksArray);
+            console.log(googleBooksArray)
         }, 1200)
 
         setTimeout(() => {
@@ -37,7 +38,11 @@ export function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&key=AIzaSyBZQlasiygfXSG7iKMwkpanVK8F_D4hDzQ`)
         .then(response => {
             if (response.data.items !== "undefined") {
-                googleBooksArray.push(...response.data.items);
+                for (let i = 0; i < response.data.items.length; i++) {
+                    googleBooksArray.push(response.data.items[i].volumeInfo)
+                }
+                //googleBooksArray.push(...response.data.items);
+                console.log(googleBooksArray)
             }
         })
         .catch(error => {

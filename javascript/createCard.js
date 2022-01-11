@@ -22,21 +22,26 @@ export function createCard(book) {
     card.setAttribute("data-bookindex", myLibraryArray.indexOf(book));
     isReadCheckbox.type = "checkbox";
 
+    const title = document.createElement("p");
+    const authors = document.createElement("p");
+    const pageCount = document.createElement("p");
+
+    flipCardBack.appendChild(title);
+    flipCardBack.appendChild(authors);
+    flipCardBack.appendChild(pageCount);
+    flipCardBack.appendChild(isReadCheckbox);
+
+    
+    
     // If user made a google search
     if (googleBooksArray.length !== 0) {
-
-        const title = document.createElement("p");
-        const authors = document.createElement("p");
-        const pageCount = document.createElement("p");
-
-        title.textContent = `Title: ${book["volumeInfo"].title}`
-        authors.textContent = `Author: ${book["volumeInfo"].authors}`
-        pageCount.textContent = `Pages : ${book["volumeInfo"].pageCount}`
-
-        flipCardBack.appendChild(title);
-        flipCardBack.appendChild(authors);
-        flipCardBack.appendChild(pageCount);
-        flipCardBack.appendChild(isReadCheckbox);
+        if (book.hasOwnProperty("imageLinks")) {
+            flipCardFront.style.backgroundImage = `url(${book["imageLinks"]["thumbnail"]})`;
+        }
+        
+        title.textContent = book.title === undefined ? `Title: Unknown` : `Title: ${book.title}`;
+        authors.textContent = book.authors === undefined ? `Author: Unknown` : `Author: ${book.authors}`;
+        pageCount.textContent = book.pageCount === undefined ? `Pages: Unknown` : `Pages: ${book.pageCount}`;
 
         const addGoogleBook = document.createElement("button");
         addGoogleBook.textContent = "Add Book";
@@ -44,23 +49,15 @@ export function createCard(book) {
 
         flipCardBack.appendChild(addGoogleBook);
 
-        if (book["volumeInfo"].hasOwnProperty("imageLinks")) {
-            flipCardFront.style.backgroundImage = `url(${book["volumeInfo"]["imageLinks"]["thumbnail"]})`;
-        }
     }
 
     // If user clicked on "My Library"
     else {
-        // Adds content to the book card only if user input something
-        for (let i = 0; i < Object.values(book).length - 2; i++) {
-            if (Object.values(book)[i] !== "") {
-                const paragraph = document.createElement("p");
-                paragraph.textContent = Object.values(book)[i];
-                flipCardBack.appendChild(paragraph);
-                flipCardBack.appendChild(isReadCheckbox);
-            }
-        }
         if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
+
+        title.textContent = `Title: ${book.title}`;
+        authors.textContent = `Author: ${book.authors}`;
+        pageCount.textContent = `Pages: ${book.pageCount}`;
 
         const removeBook = document.createElement("div");
         removeBook.textContent = "X";
@@ -68,6 +65,7 @@ export function createCard(book) {
         removeBook.addEventListener("click", handleDeleteBook);
         flipCardBack.appendChild(removeBook);
     }
+
 
     booksDisplay.appendChild(card);
     card.appendChild(flipCardInner);
