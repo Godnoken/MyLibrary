@@ -44,6 +44,7 @@ export function createCard(book) {
         pageCount.textContent = book.pageCount === undefined ? `Pages: Unknown` : `Pages: ${book.pageCount}`;
 
         const addGoogleBook = document.createElement("button");
+        addGoogleBook.classList.add("button");
         addGoogleBook.textContent = "Add Book";
         addGoogleBook.addEventListener("click", addGoogleBookToLibrary);
 
