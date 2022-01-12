@@ -29,7 +29,7 @@ export function createCard(book) {
     flipCardBack.appendChild(title);
     flipCardBack.appendChild(authors);
     flipCardBack.appendChild(pageCount);
-    flipCardBack.appendChild(isReadCheckbox);
+    //flipCardBack.appendChild(isReadCheckbox);
 
     
     
@@ -53,6 +53,16 @@ export function createCard(book) {
 
     // If user clicked on "My Library"
     else {
+        const flipCardBackImg = document.createElement("img");
+
+        flipCardBackImg.src = book.backgroundImage;
+
+        flipCardBack.appendChild(flipCardBackImg);
+
+        const bookDetails = document.createElement("div");
+        bookDetails.classList.add("bookDetails");
+        flipCardBack.appendChild(bookDetails);
+
         if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
 
         title.textContent = `Title: ${book.title}`;

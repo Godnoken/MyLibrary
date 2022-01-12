@@ -1,5 +1,3 @@
-const myLibraryMenu = document.querySelector("#myLibraryMenu");
-const myLibraryMenuButton = document.querySelector("#myLibraryMenuButton");
 const bookForm = document.querySelector("#bookForm");
 const addBookButton = document.querySelector("#addBookButton");
 const exitAddBookFormButton = document.querySelector("#exitAddBook");
