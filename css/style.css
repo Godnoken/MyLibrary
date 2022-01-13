@@ -6,7 +6,8 @@ html {
 
 body {
     font-size: 1.6rem;
-    background: linear-gradient(to right, rgb(112, 142, 172), lightslategray, rgb(102, 129, 156));
+    background-image: url("https://wallpaperbat.com/img/309969-black-wood-abstract-samsung-galaxy-note-9-8-s9-s8-s.jpg");
+    background-size: contain;
 }
 
 img {
@@ -286,9 +287,11 @@ p {
 .removeBook {
     position: absolute;
     cursor: pointer;
-    color: red;
-    right: 0.5rem;
+    color: #3c5892;
+    right: 0.7rem;
     top: 0.5rem;
+    font-size: 2.4rem;
+    user-select: none;
 }
 
 .activePage {
