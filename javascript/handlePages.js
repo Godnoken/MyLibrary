@@ -34,6 +34,7 @@ export function createPageNumbers(amountOfBooks) {
 
     pageNumbers.forEach(page => page.addEventListener("click", (event) => {
         handlePageChange(event);
+        displayBooks();
         pageNumbers.forEach(page => {
             if (page.className === "activePage") page.classList.toggle("activePage");
         })
@@ -56,16 +57,13 @@ export function createPageNumbers(amountOfBooks) {
 
 export function handlePageChange(event) {
     // Clicked page
-    global.currentPage = Number(event.target.textContent);
+    if (event !== undefined) global.currentPage = Number(event.target.textContent);
 
     // Default index to read books from
     global.startIndex = 0;
 
     if (global.currentPage !== 1) global.startIndex = 40;
     if (global.currentPage !== 2 && global.currentPage !== 1) global.startIndex = global.startIndex * global.currentPage - 40;
-
-    // Get new books from chosen page
-    displayBooks();
 }
 
 

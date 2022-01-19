@@ -1,17 +1,18 @@
-import { global, myLibraryArray } from "./main.js";
+import { global } from "./main.js";
 import { createCard } from "./createCard.js";
-import { createPageNumbers } from "./handlePages.js";
 import { removeAllBooksFromDisplay } from "./removeAllFromDisplay.js";
 import { isInViewport } from "./isInViewport.js";
 
 let bookCards = document.querySelectorAll(".card");
 
 export let googleBooksArray = [];
+let myLibraryArray = [];
 
 // Creates card for all the books stored in the myLibraryArray array and renders them to the page
-export function displayBooks(retrievedGoogleBooks) {
+export function displayBooks(retrievedGoogleBooks, retrievedLibraryBooks) {
 
     if (retrievedGoogleBooks !== undefined) googleBooksArray = Array.from(retrievedGoogleBooks);
+    if (retrievedLibraryBooks !== undefined) myLibraryArray = Array.from(retrievedLibraryBooks);
 
     removeAllBooksFromDisplay(bookCards);
 
@@ -24,7 +25,6 @@ export function displayBooks(retrievedGoogleBooks) {
         for (let i = global.startIndex; i < global.startIndex + 40; i++) {
             if (myLibraryArray[i]) createCard(myLibraryArray[i])
         }
-        //createPageNumbers(myLibraryArray.length);
     }
 
     // Sets the current page back to first page

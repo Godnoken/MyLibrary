@@ -1,19 +1,20 @@
 import { displayBooks } from "./displayBooks.js";
 import { createPageNumbers } from "./handlePages.js";
+import { handleSort } from "./handleSort.js";
 
 let previousGoogleSearch;
 let googleSearch;
 
 export function handleGoogleSearch(startIndex, googleBooksArray) {
-
+    
     if (googleBooksArray.length === 0) googleSearch = "";
     startIndex = 0;
     previousGoogleSearch = googleSearch;
-
+    
     if (previousGoogleSearch !== google.value) {
         googleBooksArray = [];
         googleSearch = google.value;
-
+        
         for (let i = 0; i < 10; i++) {
             getGoogleBooks(googleSearch, startIndex, googleBooksArray);
             startIndex += 40;
@@ -21,7 +22,7 @@ export function handleGoogleSearch(startIndex, googleBooksArray) {
         setTimeout(() => {
             startIndex = 0;
             displayBooks(googleBooksArray);
-            console.log(googleBooksArray)
+            handleSort(googleBooksArray);
         }, 1200)
 
         setTimeout(() => {
@@ -41,7 +42,6 @@ export function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
                 for (let i = 0; i < response.data.items.length; i++) {
                     googleBooksArray.push(response.data.items[i].volumeInfo)
                 }
-                console.log(response)
             }
         })
         .catch(error => {

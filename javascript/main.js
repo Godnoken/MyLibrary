@@ -1,12 +1,12 @@
 /** Imports */
 
 import { handleGoogleSearch } from "./google.js";
-import { saveToLocalStorage } from "./saveToLocalStorage.js";
 import { } from "./cardsVisibility.js";
 import { addBook } from "./addBook.js";
 import { showMyLibrary } from "./showMyLibrary.js";
 import { googleBooksArray } from "./displayBooks.js";
 import { createDummyData } from "./dummyData.js";
+import { handleSort } from "./handleSort.js";
 
 
 /** Global Variables */

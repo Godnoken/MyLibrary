@@ -3,6 +3,7 @@ import { handleDeleteBook } from "./handleDeletionOfBook.js";
 import { addGoogleBookToLibrary } from "./addBook.js";
 import { handleIsReadCheckbox } from "./handleIsReadCheckBox.js";
 import { googleBooksArray } from "./displayBooks.js";
+import { handleHiddenCardText, handleCopiedTextbox } from "./animations.js";
 
 export function createCard(book) {
     const card = document.createElement("div");
@@ -11,32 +12,33 @@ export function createCard(book) {
     const flipCardBack = document.createElement("div");
     const flipCardBackImg = document.createElement("img");
     const isReadCheckbox = document.createElement("input");
-    const title = document.createElement("p");
-    const authors = document.createElement("p");
+    let title = document.createElement("p");
+    let authors = document.createElement("p");
     const pageCount = document.createElement("p");
-    const bookDetails = document.createElement("div");
+    const flipCardBackColouredBackground = document.createElement("div");
 
     card.classList.add("card");
     flipCardInner.classList.add("flipCardInner");
     flipCardFront.classList.add("flipCardFront");
     flipCardBack.classList.add("flipCardBack");
-    bookDetails.classList.add("bookDetails");
     isReadCheckbox.classList.add("isReadCheckbox");
+    flipCardBackColouredBackground.classList.add("flipCardBackColouredBackground");
+    title.classList.add("cardParagraphs");
+    authors.classList.add("cardParagraphs");
 
     isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
+    card.addEventListener("mouseover", handleHiddenCardText);
+    title.addEventListener("click", handleCopiedTextbox);
+    authors.addEventListener("click", handleCopiedTextbox);
 
     card.setAttribute("data-bookindex", myLibraryArray.indexOf(book));
     isReadCheckbox.type = "checkbox";
 
-
-    flipCardBack.appendChild(bookDetails);
+    flipCardBack.appendChild(flipCardBackColouredBackground);
     flipCardBack.appendChild(title);
     flipCardBack.appendChild(authors);
     flipCardBack.appendChild(pageCount);
     //flipCardBack.appendChild(isReadCheckbox);
-
-
-    
     
     // If user made a google search
     if (googleBooksArray.length !== 0) {
@@ -48,6 +50,8 @@ export function createCard(book) {
         title.textContent = book.title === undefined ? `Title: Unknown` : `Title: ${book.title}`;
         authors.textContent = book.authors === undefined ? `Author: Unknown` : `Author: ${book.authors}`;
         pageCount.textContent = book.pageCount === undefined ? `Pages: Unknown` : `Pages: ${book.pageCount}`;
+
+        
 
         const addGoogleBook = document.createElement("button");
         addGoogleBook.classList.add("button");
@@ -75,7 +79,14 @@ export function createCard(book) {
         removeBook.addEventListener("click", handleDeleteBook);
         flipCardBack.appendChild(removeBook);
     }
-    
+
+    let hiddenTitleText = title.textContent.slice(35);
+    title.textContent = title.textContent.slice(0, 35);
+    let hiddenAuthorsText = authors.textContent.slice(35);
+    authors.textContent = authors.textContent.slice(0, 35);
+
+    title.innerHTML = `${title.textContent}<span>${hiddenTitleText}</span>`;
+    authors.innerHTML = `${authors.textContent}<span>${hiddenAuthorsText}</span>`
     
     booksDisplay.appendChild(card);
     card.appendChild(flipCardInner);
