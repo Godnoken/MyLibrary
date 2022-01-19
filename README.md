@@ -2,7 +2,29 @@
 
 
 
+
+
+
+
+
+
+## Known bugs
+
+1. When a new book is added through the add book form, its card gets created on several pages, somehow, until page is refreshed
+
+2. The list of pages is currently not functional as planned when pages exceed 10
+
+3. Sometimes when a google search is made, the amount of pages cretated exceed the amount of pages needed for the collection of books retrieved. Result is an empty page or two at the end.
+
+4. When entering website for the first time (retrieving dummy data from google) or making google searches on mobile (sometimes slower computers/internet too), the search is completed but no books displayed until user changes page. This is because I have used setTimeout instead of async await.
+
+
+
 ## Performance Issues
+
+1. Local storage. Currently the entire array is updated on book deletion, user checking read button etc.. I'll have to rewrite this and make sure only the affected book gets updated/deleted in the local storage.
+
+**Text below is no longer of concern, website now has pages and a limit of 40 books per page**
 
 When having over 500 books, performance goes bonkers.
 
@@ -16,4 +38,3 @@ When having over 500 books, performance goes bonkers.
 
 2. Smooth animations on deletion. One easy solution now is to just inactivate the function when user reaches a certain amount of books. However I will try to somehow only animate the books in the viewport, OR just animate the next 50/100 books or so.
 
-3. Local storage. Currently the entire array is updated on book deletion, user checking read button etc.. I'll have to rewrite this and make sure only the affected book gets updated/deleted in the local storage.
