@@ -10,6 +10,7 @@
 
 ## Known bugs
 
+**Fixed. Bug appeared due to bookIndexes not being updated**
 1. When a new book is added through the add book form, its card gets created on several pages, somehow, until page is refreshed
 
 2. The list of pages is currently not functional as planned when pages exceed 10

@@ -1,6 +1,7 @@
 import { myLibraryArray, global } from "./main.js";
 import { createCard } from "./createCard.js";
 import { saveToLocalStorage } from "./saveToLocalStorage.js";
+import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 
 let bookCards;
 
@@ -67,16 +68,4 @@ function smoothBookDeletion(selectedBook) {
             handleRefreshOfBookIndex(selectedBooksArrayIndex, currentBookToUpdate, lastDisplayedBook + 1);
         }
     }, 650)
-}
-
-// Refreshes each book's index so it corresponds to the correct element in the array
-// Starts from previously removed book's index so it doesn't have to loop through the entire array
-function handleRefreshOfBookIndex(removedBookIndex, currentBookToUpdate, lastDisplayedBook) {
-
-    bookCards = window.document.querySelectorAll(".card");
-
-    for (let i = removedBookIndex; i < lastDisplayedBook; i++) {
-        bookCards[currentBookToUpdate].setAttribute("data-bookindex", i);
-        currentBookToUpdate++;
-    }
 }

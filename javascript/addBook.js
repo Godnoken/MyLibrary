@@ -1,8 +1,10 @@
 import { myLibraryArray } from "./main.js";
-import { createCard } from "./createCard.js";
 import { handleAddBookAnimation } from "./animations.js";
 import { saveToLocalStorage } from "./saveToLocalStorage.js";
 import { Book } from "./constructors.js";
+import { displayBooks } from "./displayBooks.js";
+import { handlePageChange } from "./handlePages.js";
+import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 
 const bookForm = window.document.querySelector("#bookForm");
 const bookTitle = document.querySelector("#title");
@@ -16,26 +18,21 @@ export function addBook(event) {
     // Prevents reloading of the page
     event.preventDefault();
 
-    for (let i = 0; i < bookForm.length - 2; i++) {
-        if (bookForm.children[i].value !== "") {
+    // Adds new book to array
+    const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
+    myLibraryArray.push(bookToAdd);
 
-            // Adds new book to array
-            const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
-            myLibraryArray.push(bookToAdd);
-
-            // Creates card for the new book and renders it on the page
-            let book = myLibraryArray[myLibraryArray.length - 1];
-            createCard(book);
-
-            // Removes bookForm from screen
-            handleAddBookAnimation();
-
-            saveToLocalStorage();
-            return;
-        }
-    }
-
-    alert("Need user input!")
+    // Creates card for the new book and renders it on the page
+    let book = myLibraryArray[myLibraryArray.length - 1];
+    
+    handleRefreshOfBookIndex(book, book, book);
+    handlePageChange();
+    displayBooks(undefined, myLibraryArray);
+    
+    // Removes bookForm from screen
+    handleAddBookAnimation();
+    
+    saveToLocalStorage();
 }
 
 export function addGoogleBookToLibrary(event) {
