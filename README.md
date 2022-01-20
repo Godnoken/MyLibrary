@@ -19,6 +19,8 @@
 
 4. When entering website for the first time (retrieving dummy data from google) or making google searches on mobile (sometimes slower computers/internet too), the search is completed but no books displayed until user changes page. This is because I have used setTimeout instead of async await.
 
+5. If you delete a book from page 1 and a book from page 2 "transfers" over to page 1 and then switch page to page 2, there's all of a sudden two copies of the "transferred" book on page 2. I think it has something to do with the indexes.
+
 
 
 ## Performance Issues
