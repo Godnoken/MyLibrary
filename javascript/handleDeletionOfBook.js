@@ -1,7 +1,8 @@
 import { myLibraryArray, global } from "./main.js";
-import { createCard } from "./createCard.js";
 import { saveToLocalStorage } from "./saveToLocalStorage.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
+import { displayBooks } from "./displayBooks.js";
+import { handlePageChange } from "./handlePages.js";
 
 let bookCards;
 
@@ -61,12 +62,15 @@ function smoothBookDeletion(selectedBook) {
             currentBookToUpdate++;
         }
 
-        if (40 * global.currentPage - 1 < myLibraryArray.length) {
-            currentBookToUpdate = selectedBooksElementIndex;
+        handlePageChange();
+        displayBooks(undefined, myLibraryArray);
 
-            createCard(myLibraryArray[lastDisplayedBook])
-
-            handleRefreshOfBookIndex(selectedBooksArrayIndex, currentBookToUpdate, lastDisplayedBook + 1);
-        }
+        // Above handlePageChange and displayBooks are ineffecient but they eliminate several bugs
+        // If I find a way to only delete one card without having to recreate all cards, the if statement below will be used
+        // Note, bugs only appeared due to page changes back and forth after deletion. Test previous commits to recreate bugs
+        /**
+         if (40 * global.currentPage - 1 < myLibraryArray.length) {
+         }
+         */
     }, 650)
 }

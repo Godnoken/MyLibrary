@@ -7,7 +7,7 @@ html {
 body {
     font-size: 1.6rem;
     background-image: url("https://wallpaperbat.com/img/309969-black-wood-abstract-samsung-galaxy-note-9-8-s9-s8-s.jpg");
-    background-size: contain;
+    background-size: cover;
 }
 
 img {
