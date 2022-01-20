@@ -51,6 +51,7 @@ function smoothBookDeletion(selectedBook) {
         selectedBook.remove()
         currentBookToUpdate = selectedBooksElementIndex;
         handleRefreshOfBookIndex(selectedBooksArrayIndex, currentBookToUpdate, lastDisplayedBook);
+        bookCards = window.document.querySelectorAll(".card");
 
         // Hack to create the illusion that the cards don't move after animmation because of grid layout
         for (let i = selectedBooksArrayIndex; i < lastDisplayedBook; i++) {
