@@ -10,6 +10,8 @@ let bookCards;
 export function handleDeleteBook() {
     let selectedBook = this.parentElement.parentElement.parentElement;
 
+
+
     // Updates variable tracking cards of displayed books
     bookCards = window.document.querySelectorAll(".card");
 
@@ -53,14 +55,6 @@ function smoothBookDeletion(selectedBook) {
         currentBookToUpdate = selectedBooksElementIndex;
         handleRefreshOfBookIndex(selectedBooksArrayIndex, currentBookToUpdate, lastDisplayedBook);
         bookCards = window.document.querySelectorAll(".card");
-
-        // Hack to create the illusion that the cards don't move after animmation because of grid layout
-        for (let i = selectedBooksArrayIndex; i < lastDisplayedBook; i++) {
-            bookCards[currentBookToUpdate].style.transitionDuration = "0.00000001s";
-            bookCards[currentBookToUpdate].style.transform = "none";
-            bookCards[currentBookToUpdate].style.visibility = "visible"
-            currentBookToUpdate++;
-        }
 
         handlePageChange();
         displayBooks(undefined, myLibraryArray);

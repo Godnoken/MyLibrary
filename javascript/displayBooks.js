@@ -31,8 +31,4 @@ export function displayBooks(retrievedGoogleBooks, retrievedLibraryBooks) {
     global.startIndex = 0;
 
     bookCards = document.querySelectorAll(".card");
-
-    bookCards.forEach(book => {
-        if (isInViewport(book) === false) book.style.visibility = "hidden";
-    })
 }
