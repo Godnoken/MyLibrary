@@ -4,10 +4,20 @@ let scheduledAnimationFrame;
 
 let bookCards = window.document.querySelectorAll(".card");
 
-window.document.addEventListener("scroll", () => onScroll())
-window.document.addEventListener("resize", handleVisibleCards());
+window.document.addEventListener("scroll", () => restrictListener(handleVisibleCards))
 
-function onScroll() {
+window.addEventListener("resize", () => {
+
+// setTimeout exists here due to some cards (sometimes) turning invisible rather than visible on resize of window
+// Likely because the left hand side and bottom side are slightly outside the window at the beginning of a resize
+setTimeout(() => {
+    restrictListener(handleVisibleCards)
+}, 50)
+
+});
+
+
+function restrictListener(functionToExecute) {
 
     // Prevent multiple rAF callbacks.
     if (scheduledAnimationFrame) {
@@ -16,8 +26,8 @@ function onScroll() {
 
     scheduledAnimationFrame = true;
 
-    // Decides how often to listen to the scroll animations
-    setTimeout(handleVisibleCards, 250);
+    // Decides how often to enable function execution
+    setTimeout(functionToExecute, 250);
 }
 
 
