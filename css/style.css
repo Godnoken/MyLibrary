@@ -45,7 +45,7 @@ p {
 }
 
 #google {
-    width: 11.6rem;
+    width: 11.8rem;
     height: 2.8rem;
     font-size: 1.4rem;
     background-color: black;
@@ -91,6 +91,8 @@ p {
 }
 
 .menusText {
+    font-size: 2.8rem;
+    font-weight: normal;
     color: white;
     overflow: hidden;
     background: linear-gradient(to bottom, #5d93ff 50%, white 50%);
@@ -102,7 +104,7 @@ p {
     transition: background-position 0.75s;
 }
 
-#navigation div:hover .menusText {
+.menus:hover .menusText {
     background-position: 0% 0%;
 }
 
@@ -125,7 +127,7 @@ p {
     border-bottom-right-radius: 12px;
 }
 
-#navigation div:hover .hoverMenu {
+.menus:hover .hoverMenu {
     clip: rect(auto, auto, 15rem, auto);
 }
 
@@ -143,14 +145,6 @@ p {
     margin-top: -10rem;
     background-color: rgba(0, 0, 0, 0.829);
     z-index: 1;
-}
-
-#exitAddBook {
-    position: absolute;
-    cursor: pointer;
-    color: red;
-    right: 0.5rem;
-    top: 0.5rem;
 }
 
 #pages {
@@ -199,7 +193,7 @@ p {
     justify-content: center;
     justify-items: center;
     padding-top: 12rem;
-    padding-bottom: 8rem;
+    padding-bottom: 4rem;
     padding-right: 7rem;
 }
 
@@ -352,6 +346,39 @@ p {
     padding: 0;
 }
 
+#codeWriter {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 2.8rem;
+    width: 15rem;
+    margin: auto;
+    color: white;
+    font-size: 1rem;
+    text-shadow: 1px 1px 4px #474747;
+}
+
+#codeWriter:hover {
+    transform: scale(1.2);
+}
+
+#githubLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 5.4rem;
+}
+
+#githubIcon {
+    width: 1rem;
+    height: 1rem;
+    box-shadow: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 @keyframes showAllParagraphTextAnimation {
     0% {

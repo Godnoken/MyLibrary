@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <title>MyLibrary</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <link href="css/normalize.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script type="module" src="javascript/main.js" defer></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <main id="myLibraryContainer">
-            <header id="header">
-                <nav id="navigation">
-                    <div id="googleMenuButton" class="menus">
-                        <p class="menusText">Google</p>
-                        <section class="hoverMenu">
-                            <input id="google" name="google" placeholder="Book..">
-                            <div id="googleButton" class="button">Search</div>
-                        </section>
-                    </div>
-                    <div id="myLibraryMenuButton" class="menus">
-                        <p class="menusText">My Library</p>
-                        <section id="myLibraryMenu" class="hoverMenu">
-                            <div id="myLibrary" class="button">My Library</div>
-                            <div id="addBookButton" class="button">Add Book</div>
-                            <div id="sort" class="button">Sort A-Z</div>
-                        </section>
-                    </div>
-                    <div id="optionsMenuButton" class="menus">
-                        <p class="menusText">Options</p>
-                        <section class="hoverMenu">
+<html lang="en">
 
-                        </section>
-                    </div>
-                </nav>
-                
-            </header>
-            <form id="bookForm">
-                <input id="title" name="title" type="text" placeholder="Title..">
-                <input id="author" type="text" placeholder="Author..">
-                <input id="formPages" type="text" placeholder="Pages..">
-                <input id="bookCover" type="text" placeholder="Book cover..">
-                <input id="read" type="checkbox" placeholder="Read..">
-                <input class="button" id="bookFormSubmit" type="submit">
-                <div id="exitAddBook">X</div>
-            </form>
-            <section id="booksDisplay">
-                
+<head>
+    <title>MyLibrary</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+    <script src="javascript/main.js" type="module"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <nav id="navigation">
+            <section class="menus">
+                <h2 class="menusText">Google</h2>
+                <div class="hoverMenu">
+                    <input id="google" name="google" placeholder="Book..">
+                    <button id="googleButton" class="button">Search</button>
+                </div>
             </section>
-            <section id="pages"></section>
-        </main>
-    </body>
+            <section class="menus">
+                <h1 class="menusText">My Library</h1>
+                <div class="hoverMenu">
+                    <button id="myLibrary" class="button">My Library</button>
+                    <button id="addBookButton" class="button">Add Book</button>
+                    <button id="sort" class="button">Sort A-Z</button>
+                </div>
+            </section>
+            <section class="menus">
+                <h2 class="menusText">Options</h2>
+                <div class="hoverMenu">
+
+                </div>
+            </section>
+        </nav>
+    </header>
+    <main id="myLibraryContainer">
+        <form id="bookForm">
+            <input id="title" type="text" name="title" placeholder="Title..">
+            <input id="author" type="text" placeholder="Author..">
+            <input id="formPages" type="text" placeholder="Pages..">
+            <input id="bookCover" type="text" placeholder="Book cover..">
+            <input id="read" type="checkbox">
+            <button class="button" id="bookFormSubmit" type="submit">Confirm</button>
+            <div class="removeBook" id="exitAddBook">X</div>
+        </form>
+        <section id="booksDisplay">
+
+        </section>
+        <aside id="pages"></aside>
+    </main>
+
+    <footer id="codeWriter">
+        <p>Code written by:</p>
+        <a id="githubLink" href="https://github.com/Godnoken" target="_blank">Godnoken
+            <svg id="githubIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.7444 14C5.13962 13 5.64768 8.5 7.67987 7C7.27882 6.39155 6.66375 4 7.1718 3.00001C8.18792 3.5 9.55173 4.23944 10.2202 5C12.2524 4 15.3007 4 16.8249 5C17.226 4.18873 18.6968 3.42254 19.3652 3C19.9668 3.60845 19.5323 5.98592 19.3652 7C20.3678 9.19718 20.8894 12.5 15.3007 14C16.1273 14.6688 17.4571 16.2652 18.3819 18.0893C19.0373 19.3821 17.7844 20.5701 16.3571 20.3176C15.3606 20.1413 14.2545 20 13.2685 20C12.0745 20 10.494 20.2071 9.12617 20.4329C7.71155 20.6663 6.56735 19.4472 7.29296 18.2106C7.81974 17.3128 8.48393 16.4725 9.20408 16C8.95342 15.662 7.9605 14.6887 6.15574 15.5C3.89979 16.5141 2.60607 14.2676 3.10739 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </footer>
+</body>
+
 </html>
