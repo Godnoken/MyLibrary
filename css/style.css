@@ -10,10 +10,6 @@ body {
     background-size: cover;
 }
 
-img {
-    object-fit: fill;
-}
-
 p {
     margin: 0px;
 }
@@ -201,7 +197,6 @@ p {
     width: 19.2rem;
     height: 27.15rem;
     position: relative;
-    background-size: cover;
     background-color: transparent;
     perspective: 750px;
     transition: all 0.65s ease-in-out;
@@ -269,7 +264,7 @@ p {
 .showAllParagraphText {
     position: absolute;
     width: 23.5rem;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     border-radius: 6px;
     padding: 1rem;
@@ -295,7 +290,7 @@ p {
     height: 100%;
     position: absolute;
     z-index: -2;
-    opacity: 25%;
+    opacity: 50%;
 }
 
 .flipCardBackColouredBackground {

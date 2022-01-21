@@ -45,13 +45,12 @@ export function createCard(book) {
         if (book.hasOwnProperty("imageLinks")) {
             flipCardFront.style.backgroundImage = `url(${book["imageLinks"]["thumbnail"]})`;
             flipCardBackImg.src = book["imageLinks"]["thumbnail"];
+            flipCardBackImg.setAttribute("alt", "Book cover");
         }
         
         title.textContent = book.title === undefined ? `Title: Unknown` : `Title: ${book.title}`;
         authors.textContent = book.authors === undefined ? `Author: Unknown` : `Author: ${book.authors}`;
         pageCount.textContent = book.pageCount === undefined ? `Pages: Unknown` : `Pages: ${book.pageCount}`;
-
-        
 
         const addGoogleBook = document.createElement("button");
         addGoogleBook.classList.add("button");
@@ -65,10 +64,14 @@ export function createCard(book) {
     // If user clicked on "My Library"
     else {
 
-        flipCardBackImg.src = book.backgroundImage;
-        
-        if (Object.values(book)[3] !== "") flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
-        
+        if (Object.values(book)[3] !== "") {
+            flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
+            flipCardFront.setAttribute("title", "Book cover");
+
+            flipCardBackImg.src = book.backgroundImage;
+            flipCardBackImg.setAttribute("alt", "Book cover");
+        }
+
         title.textContent = `Title: ${book.title}`;
         authors.textContent = `Author: ${book.authors}`;
         pageCount.textContent = `Pages: ${book.pageCount}`;
@@ -93,6 +96,7 @@ export function createCard(book) {
     flipCardInner.appendChild(flipCardFront);
     flipCardInner.appendChild(flipCardBack);
     flipCardBack.appendChild(flipCardBackImg);
+    
     
     book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
 }
