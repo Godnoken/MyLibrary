@@ -28,15 +28,16 @@ function smoothBookDeletion(selectedBook) {
     selectedBook.classList.toggle("hide");
 
     // Finding the "element index" by searching through the nodelist of currently displayed books
+    // And making all card uninteractive when books are animating after book deletion
     for (let i = 0; i < bookCards.length; i++) {
         if (bookCards[i] === selectedBook) selectedBooksElementIndex = i;
+        bookCards[i].style.pointerEvents = "none";
     }
 
     // Variable that lets us update and animate only the books following after the deleted book
     let currentBookToUpdate = selectedBooksElementIndex + 1;
 
     for (let i = selectedBooksArrayIndex; i < lastDisplayedBook; i++) {
-        bookCards[currentBookToUpdate].style.transitionDuration = "0.65s";
 
         // Reading book position and animating it
         let cardPosition = bookCards[currentBookToUpdate].getBoundingClientRect();
