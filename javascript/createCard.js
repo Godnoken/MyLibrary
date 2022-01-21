@@ -25,6 +25,7 @@ export function createCard(book) {
     flipCardBackColouredBackground.classList.add("flipCardBackColouredBackground");
     title.classList.add("cardParagraphs");
     authors.classList.add("cardParagraphs");
+    pageCount.classList.add("cardParagraphs");
 
     isReadCheckbox.addEventListener("click", handleIsReadCheckbox);
     card.addEventListener("mouseover", handleHiddenCardText);

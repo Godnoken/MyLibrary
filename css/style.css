@@ -195,7 +195,7 @@ p {
 
 .card {
     width: 19.2rem;
-    height: 27.15rem;
+    height: 26.15rem;
     position: relative;
     background-color: transparent;
     perspective: 750px;
@@ -247,7 +247,7 @@ p {
     background-color: #bbb;
 }
 
-.flipCardBack p {
+.cardParagraphs {
     position: relative;
     display: inline-block;
     font-size: 1.4rem;
@@ -417,10 +417,18 @@ a {
     html {
         font-size: 30%;
     }
+
+    .cardParagraphs {
+        font-size: 1.2rem;
+    }
 }
 
 @media screen and (max-width: 300px) {
     html {
         font-size: 25%;
+    }
+
+    .cardParagraphs {
+        font-size: 1.1rem;
     }
 }
