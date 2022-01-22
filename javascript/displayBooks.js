@@ -1,7 +1,7 @@
 import { global } from "./main.js";
 import { createCard } from "./createCard.js";
 import { removeAllBooksFromDisplay } from "./removeAllFromDisplay.js";
-import { isInViewport } from "./isInViewport.js";
+import { createObserver } from "./isInViewport.js";
 
 let bookCards = document.querySelectorAll(".card");
 
@@ -31,4 +31,5 @@ export function displayBooks(retrievedGoogleBooks, retrievedLibraryBooks) {
     global.startIndex = 0;
 
     bookCards = document.querySelectorAll(".card");
+    createObserver(bookCards);
 }

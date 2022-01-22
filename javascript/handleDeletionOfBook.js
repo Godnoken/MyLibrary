@@ -13,7 +13,7 @@ export function handleDeleteBook() {
 
 
     // Updates variable tracking cards of displayed books
-    bookCards = window.document.querySelectorAll(".card");
+    bookCards = document.querySelectorAll(".card");
 
     smoothBookDeletion(selectedBook);
 
