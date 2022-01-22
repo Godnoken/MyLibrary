@@ -115,16 +115,16 @@ p {
     max-height: 40rem;
     width: 28rem;
     background-color: black;
-    clip: rect(auto, auto, 0, auto);
-    transition-property: clip;
-    transition-duration: 0.75s;
+    clip-path: inset(0 0 15rem 0);
+    transition:  1s;
+    
     font-size: 2.6rem;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
 
 .menus:hover .hoverMenu {
-    clip: rect(auto, auto, 15rem, auto);
+    clip-path: inset(0 0 0 0);
 }
 
 #bookForm {
@@ -319,14 +319,6 @@ p {
     transition: all 0.1s ease-in-out;
 }
 
-.activeMenu {
-    clip: rect(auto, auto, 15rem, auto) !important;
-}
-
-.inactiveMenu {
-    clip: rect(auto, auto, 0rem, auto) !important;
-}
-
 .activeAddBook {
     display: flex !important;
 }
@@ -337,8 +329,6 @@ p {
 
 .hide {
     opacity: 0;
-    margin: 0;
-    padding: 0;
 }
 
 #codeWriter {

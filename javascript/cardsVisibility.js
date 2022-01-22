@@ -27,18 +27,18 @@ function restrictListener(functionToExecute) {
     scheduledAnimationFrame = true;
 
     // Decides how often to enable function execution
-    setTimeout(functionToExecute, 250);
+    setTimeout(functionToExecute, 350);
 }
 
 
 
-function handleVisibleCards() {
+export function handleVisibleCards() {
     scheduledAnimationFrame = false;
 
     bookCards = window.document.querySelectorAll(".card")
 
     bookCards.forEach(book => {
-        if (isInViewport(book) === false) book.style.visibility = "hidden";
-        else book.style.visibility = "visible";
+       if (isInViewport(book) === false) book.classList.add("hide");
+       else book.classList.remove("hide");
     })
 }

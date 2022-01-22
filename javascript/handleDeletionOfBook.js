@@ -55,7 +55,6 @@ function smoothBookDeletion(selectedBook) {
         selectedBook.remove()
         currentBookToUpdate = selectedBooksElementIndex;
         handleRefreshOfBookIndex(selectedBooksArrayIndex, currentBookToUpdate, lastDisplayedBook);
-        bookCards = window.document.querySelectorAll(".card");
 
         handlePageChange();
         displayBooks(undefined, myLibraryArray);
