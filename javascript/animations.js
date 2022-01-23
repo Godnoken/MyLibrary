@@ -1,6 +1,6 @@
-const bookForm = document.querySelector("#bookForm");
+const bookForm = document.querySelector("#addBookForm");
 const addBookButton = document.querySelector("#addBookButton");
-const exitAddBookFormButton = document.querySelector("#exitAddBook");
+const exitAddBookFormButton = document.querySelector("#addBookExit");
 
 addBookButton.addEventListener("click", handleAddBookAnimation);
 exitAddBookFormButton.addEventListener("click", handleAddBookAnimation);

@@ -42,14 +42,30 @@
         </nav>
     </header>
     <main id="myLibraryContainer">
-        <form id="bookForm">
-            <input id="title" type="text" name="title" placeholder="Title..">
-            <input id="author" type="text" placeholder="Author..">
-            <input id="formPages" type="text" placeholder="Pages..">
-            <input id="bookCover" type="text" placeholder="Book cover..">
-            <input id="read" type="checkbox">
-            <button class="button" id="bookFormSubmit" type="submit">Confirm</button>
-            <div class="removeBook" id="exitAddBook">X</div>
+        <form id="addBookForm">
+            <div class="removeBook" id="addBookExit">X</div>
+            <fieldset>
+                <legend>Title</legend>
+                <input class="addBookInput" id="addBookTitle" type="text">
+            </fieldset>
+            <fieldset>
+                <legend>Author</legend>
+                <input class="addBookInput" id="addBookAuthor" type="text">
+            </fieldset>
+            <fieldset>
+                <legend>Pages</legend>
+                <input class="addBookInput" id="addBookPages" type="number">
+            </fieldset>
+            <fieldset>
+                <legend>Book Cover</legend>
+                <input class="addBookInput" id="addBookCover" type="text">
+            </fieldset>
+            <label for="addBookRead" id="checkboxContainer">
+                Read
+                <input class="checkbox" id="addBookRead" type="checkbox">
+                <span class="customCheckbox"></span>
+            </label>
+            <button class="button" id="bookFormSubmit">Confirm</button>
         </form>
         <section id="booksDisplay">
 

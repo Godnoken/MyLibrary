@@ -6,12 +6,12 @@ import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 
-const bookForm = window.document.querySelector("#bookForm");
-const bookTitle = document.querySelector("#title");
-const bookAuthor = document.querySelector("#author");
-const bookPages = document.querySelector("#formPages");
-const bookCover = document.querySelector("#bookCover");
-const bookRead = document.querySelector("#read");
+const bookForm = window.document.querySelector("#addBookForm");
+const bookTitle = document.querySelector("#addBookTitle");
+const bookAuthor = document.querySelector("#addBookAuthor");
+const bookPages = document.querySelector("#addBookPages");
+const bookCover = document.querySelector("#addBookCover");
+const bookRead = document.querySelector("#addBookRead");
 
 export function addBook(event) {
 
