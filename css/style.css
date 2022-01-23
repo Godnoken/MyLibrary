@@ -11,7 +11,7 @@ body {
 }
 
 p {
-    margin: 0px;
+    margin: 0;
 }
 
 .button {
@@ -20,9 +20,9 @@ p {
     align-items: center;
     height: 3rem;
     width: 12rem;
-    border: solid 1px white;
+    border: solid 0.1rem white;
     color: white;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     cursor: pointer;
     font-size: 1.4rem;
     overflow: hidden;
@@ -46,8 +46,8 @@ p {
     height: 2.8rem;
     font-size: 1.4rem;
     background-color: black;
-    border: solid white 1px;
-    border-radius: 8px;
+    border: solid white 0.1rem;
+    border-radius: 0.8rem;
     color: white;
     text-align: center;
 }
@@ -69,11 +69,10 @@ p {
     align-items: center;
     color: white;
     height: 7rem;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-radius: 0 0 1.2rem 1.2rem;
     background-color: black;
     filter: drop-shadow(
-    0px 2px 4px rgba(0, 0, 0, 0.4)
+    0 0.2rem 0.4rem rgba(0, 0, 0, 0.4)
   );
 }
 
@@ -118,10 +117,8 @@ p {
     background-color: black;
     clip-path: inset(0 0 15rem 0);
     transition:  1s;
-    
     font-size: 2.6rem;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-radius: 0 0 1.2rem 1.2rem;
 }
 
 .menus:hover .hoverMenu {
@@ -143,19 +140,19 @@ p {
     background-color: rgba(0, 0, 0, 0.95);
     z-index: 1;
     color: white;
-    border-radius: 12px;
+    border-radius: 1.2rem;
 }
 
 fieldset {
     text-align: center;
-    border-radius: 12px;
+    border-radius: 1.2rem;
     background-color: black;
     user-select: none;
-    border: 2px solid rgba(255, 255, 255, 0.568);
+    border: 0.2rem solid rgba(255, 255, 255, 0.568);
 }
 
 legend {
-    padding: 0 6px 0 6px;
+    padding: 0 1.2rem 0 1.2rem;
     z-index: 1;
 }
 
@@ -187,9 +184,9 @@ legend {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.568);
-  border-radius: 6px;
-  margin-top: 4px;
+  border: 0.2rem solid rgba(255, 255, 255, 0.568);
+  border-radius: 0.6rem;
+  margin-top: 0.4rem;
 }
 
 #checkboxContainer input:checked ~ .customCheckbox {
@@ -207,10 +204,10 @@ legend {
   }
 
   #checkboxContainer .customCheckbox:after {
-    width: 5px;
-    height: 10px;
+    width: 0.5rem;
+    height: 1rem;
     border: solid white;
-    border-width: 0 3px 3px 0;
+    border-width: 0 0.3rem 0.3rem 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -231,11 +228,11 @@ legend {
     color: white;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 40px;
+    border-radius: 4rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     margin-right: 1.75rem;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.25);
 }
 
 #pages:hover {
@@ -281,8 +278,8 @@ legend {
     height: 100%;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-    box-shadow: 0px 10px 13px -7px #000000, 0px 11px 50px 7px rgba(0,0,0,0.12), 0 5px 20px 3px rgba(0, 0, 0, 0.6);
-    border-radius: 12px;
+    box-shadow: 0 1rem 1.3rem -0.7rem #000000, 0 1.1rem 5rem 0.7rem rgba(0,0,0,0.12), 0 0.5rem 2rem 0.3rem rgba(0, 0, 0, 0.6);
+    border-radius: 1.2rem;
 }
 
 .card:hover .flipCardInner {
@@ -295,7 +292,7 @@ legend {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    border-radius: 12px 4px 4px 12px;
+    border-radius: 1.2rem 0.4rem 0.4rem 1.2rem;
 }
 
 .flipCardFront {
@@ -318,7 +315,7 @@ legend {
     position: relative;
     display: inline-block;
     font-size: 1.4rem;
-    padding: 0 12px 6px 12px;
+    padding: 0 1.2rem 0.6rem 1.2rem;
     color: white;
     text-align: left;
     z-index: 1;
@@ -333,7 +330,7 @@ legend {
     width: 23.5rem;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    border-radius: 6px;
+    border-radius: 0.6rem;
     padding: 1rem;
     z-index: 1;
     animation: forwards 0.5s showAllParagraphTextAnimation;
@@ -346,7 +343,7 @@ legend {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.75);
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 0.6rem;
     color: white;
     z-index: 1;
     pointer-events: none;
@@ -407,7 +404,7 @@ legend {
     margin: auto;
     color: white;
     font-size: 1rem;
-    text-shadow: 1px 1px 4px #474747;
+    text-shadow: 0.1rem 0.1rem 0.4rem #474747;
 }
 
 #codeWriter:hover {
