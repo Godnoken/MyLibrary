@@ -77,11 +77,14 @@ export function createCard(book) {
         authors.textContent = `Author: ${book.authors}`;
         pageCount.textContent = `Pages: ${book.pageCount}`;
         
-        const removeBook = document.createElement("div");
-        removeBook.textContent = "X";
+        const removeBookContainer = document.createElement("div");
+        const removeBook = document.createElement("p");
+        removeBook.textContent = "x";
+        removeBookContainer.classList.add("removeBookContainer");
         removeBook.classList.add("removeBook");
-        removeBook.addEventListener("click", handleDeleteBook);
-        flipCardBack.appendChild(removeBook);
+        removeBookContainer.addEventListener("click", handleDeleteBook);
+        flipCardBack.appendChild(removeBookContainer);
+        removeBookContainer.appendChild(removeBook);
     }
 
     let hiddenTitleText = title.textContent.slice(35);

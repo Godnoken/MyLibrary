@@ -22,6 +22,12 @@ export function addBook(event) {
     const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookCover.value, bookRead.checked);
     myLibraryArray.push(bookToAdd);
 
+    bookTitle.value = "";
+    bookAuthor.value = "";
+    bookPages.value = "";
+    bookCover.value = "";
+    bookRead.checked = false;
+
     // Creates card for the new book and renders it on the page
     let book = myLibraryArray[myLibraryArray.length - 1];
     
