@@ -70,10 +70,12 @@ function createBackgroundOptions(container, header) {
         if (changeType.textContent === "Fixed") {
             changeType.textContent = "Repeating";
             mainBackground.style.position = "absolute";
+            mainBackground.style.backgroundSize = "100%";
         }
         else {
             changeType.textContent = "Fixed";
             mainBackground.style.position = "fixed";
+            mainBackground.style.backgroundSize = "cover";
         }
     })
 
