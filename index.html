@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <div id="mainBackgroundImage"></div>
     <header id="header">
         <nav id="navigation">
             <section class="menus">
@@ -36,14 +37,15 @@
             <section class="menus">
                 <h2 class="menusText">Options</h2>
                 <div class="hoverMenu">
-
+                    <button id="uiOptionsButton" class="button">UI Styling</button>
+                    <button id="backgroundOptionsButton" class="button">Background</button>
                 </div>
             </section>
         </nav>
     </header>
     <main id="myLibraryContainer">
-        <form id="addBookForm">
-            <div id="addBookExit">x</div>
+        <form id="addBookForm" class="activeOptionsMenu">
+            <div id="addBookExit" class="exitOptionsButton">x</div>
             <fieldset>
                 <legend>Title</legend>
                 <input class="addBookInput" id="addBookTitle" type="text">

@@ -6,7 +6,6 @@ import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 
-const bookForm = window.document.querySelector("#addBookForm");
 const bookTitle = document.querySelector("#addBookTitle");
 const bookAuthor = document.querySelector("#addBookAuthor");
 const bookPages = document.querySelector("#addBookPages");
