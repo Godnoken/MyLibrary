@@ -1,5 +1,5 @@
-import { myLibraryArray, global } from "./main.js";
-import { saveToLocalStorage } from "./saveToLocalStorage.js";
+import { myLibraryArray } from "./main.js";
+import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
@@ -17,7 +17,7 @@ export function handleDeleteBook() {
 
     smoothBookDeletion(selectedBook);
 
-    saveToLocalStorage();
+    saveLibraryToLocalStorage();
 }
 
 function smoothBookDeletion(selectedBook) {

@@ -1,9 +1,13 @@
+import { saveSettingstoLocalStorage } from "./saveToLocalStorage.js";
+import { userSettings } from "./loadUserSettings.js";
+
 const body = document.querySelector("body");
 const backgroundOptionsButton = document.querySelector("#backgroundOptionsButton");
 const uiOptionsButton = document.querySelector("#uiOptionsButton");
 
 backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
 uiOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIOptions, ".uiOptionsContainer"));
+
 
 // Makes sure only one options menu can be active at one time
 function handleOptionsMenu(createOptions, optionsContainerClass) {
@@ -60,10 +64,14 @@ function createBackgroundOptions(container, header) {
 
     uploadBackground.addEventListener("input", () => {
         mainBackground.style.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackground.value.slice(12)})`;
+        userSettings.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackground.value.slice(12)})`;
+        saveSettingstoLocalStorage();
     })
 
     linkBackground.addEventListener("input", () => {
         mainBackground.style.backgroundImage = `url(${linkBackground.value})`;
+        userSettings.backgroundImage = `url(${linkBackground.value})`;
+        saveSettingstoLocalStorage();
     })
 
     changeType.addEventListener("click", () => {
@@ -71,11 +79,17 @@ function createBackgroundOptions(container, header) {
             changeType.textContent = "Repeating";
             mainBackground.style.position = "absolute";
             mainBackground.style.backgroundSize = "100%";
+            userSettings.backgroundPosition = "absolute";
+            userSettings.backgroundSize = "100%";
+            saveSettingstoLocalStorage();
         }
         else {
             changeType.textContent = "Fixed";
             mainBackground.style.position = "fixed";
             mainBackground.style.backgroundSize = "cover";
+            userSettings.backgroundPosition = "fixed";
+            userSettings.backgroundSize = "cover";
+            saveSettingstoLocalStorage();
         }
     })
 
@@ -86,13 +100,6 @@ function createBackgroundOptions(container, header) {
     container.appendChild(changeType);
 }
 
-function createFixedBackground() {
-    const fixedBackground = document.createElement("div");
-
-    fixedBackground.classList.add("fixedBackground");
-
-    body.appendChild(fixedBackground);
-}
 
 function createUIOptions(container, header) {
     const root = getComputedStyle(document.documentElement);
@@ -127,7 +134,6 @@ function createUIOptions(container, header) {
     secondaryTextColorLabel.textContent = "Secondary text";
     exitButtonColorLabel.textContent = "Exit button";
 
-
     uiBackgroundColorInput.type = "color";
     mainTextColorInput.type = "color";
     secondaryTextColorInput.type = "color";
@@ -140,18 +146,26 @@ function createUIOptions(container, header) {
 
     uiBackgroundColorInput.addEventListener("input", () => {
         rootDocument.style.setProperty("--ui-background-color", uiBackgroundColorInput.value);
+        userSettings.uiBackground = uiBackgroundColorInput.value;
+        saveSettingstoLocalStorage();
     })
 
     mainTextColorInput.addEventListener("input", () => {
         rootDocument.style.setProperty(`--main-text-color`, mainTextColorInput.value)
+        userSettings.mainText = mainTextColorInput.value;
+        saveSettingstoLocalStorage();
     })
     
     secondaryTextColorInput.addEventListener("input", () => {
         rootDocument.style.setProperty(`--secondary-text-color`, secondaryTextColorInput.value)
+        userSettings.secondaryText = secondaryTextColorInput.value;
+        saveSettingstoLocalStorage();
     })
     
     exitButtonColorInput.addEventListener("input", () => {
         rootDocument.style.setProperty(`--exit-button-color`, exitButtonColorInput.value)
+        userSettings.exitButton = exitButtonColorInput.value;
+        saveSettingstoLocalStorage();
     })
 
     container.appendChild(uiColorContainer);

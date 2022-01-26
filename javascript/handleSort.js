@@ -1,6 +1,6 @@
 import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
-import { saveToLocalStorage } from "./saveToLocalStorage.js";
+import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 
 const sortButton = document.querySelector("#sort");
 sortButton.addEventListener("click", sortArray);
@@ -23,7 +23,7 @@ function sortArray() {
     });
 
     handlePageChange();
-    saveToLocalStorage();
+    saveLibraryToLocalStorage();
 
     if (googleBooksArray.length !== 0) displayBooks(array, undefined)
     else displayBooks(undefined, array);

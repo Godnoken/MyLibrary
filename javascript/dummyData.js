@@ -1,7 +1,7 @@
 import { myLibraryArray } from "./main.js";
 import { Book } from "./constructors.js";
 import { getGoogleBooks } from "./google.js";
-import { saveToLocalStorage } from "./saveToLocalStorage.js";
+import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 
 // Dummy data
 const LOTR = new Book("Lord Of The Rings", "J.R.R. Tolkien", "421", "https://pictures.abebooks.com/isbn/9780618129010-es.jpg", false)
@@ -25,6 +25,6 @@ export function createDummyData() {
             myLibraryArray.push(new Book(title, authors, pageCount, backgroundImage));
         }
 
-        saveToLocalStorage();
+        saveLibraryToLocalStorage();
     }, 1200);
 }

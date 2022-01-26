@@ -5,7 +5,7 @@ import { addBook } from "./addBook.js";
 import { showMyLibrary } from "./showMyLibrary.js";
 import { googleBooksArray } from "./displayBooks.js";
 import { createDummyData } from "./dummyData.js";
-import { } from "./options.js"
+import {  } from "./options.js";
 
 /** Global Variables */
 
@@ -35,7 +35,7 @@ bookFormSubmit.addEventListener("click", addBook);
 /** Run at start */
 
 // Creates local storage library if user enters website for the first time
-if (window.localStorage.length === 0) window.localStorage.setItem("userLibrary", JSON.stringify([]));
+if (JSON.parse(window.localStorage.getItem("userLibrary")) === null) window.localStorage.setItem("userLibrary", JSON.stringify([]));
 
 // Makes sure myLibraryArray stays updated with local storage on load
 if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) myLibraryArray = JSON.parse(window.localStorage.getItem("userLibrary"));
@@ -48,3 +48,4 @@ if (JSON.parse(window.localStorage.getItem("userLibrary")).length === 0) {
     }, 1200);
 }
 else showMyLibrary();
+

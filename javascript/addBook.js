@@ -1,6 +1,6 @@
 import { myLibraryArray } from "./main.js";
 import { handleAddBookAnimation } from "./animations.js";
-import { saveToLocalStorage } from "./saveToLocalStorage.js";
+import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 import { Book } from "./constructors.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
@@ -37,7 +37,7 @@ export function addBook(event) {
     // Removes bookForm from screen
     handleAddBookAnimation();
     
-    saveToLocalStorage();
+    saveLibraryToLocalStorage();
 }
 
 export function addGoogleBookToLibrary(event) {
@@ -52,5 +52,5 @@ export function addGoogleBookToLibrary(event) {
 
     myLibraryArray.push(bookToAdd);
 
-    saveToLocalStorage();
+    saveLibraryToLocalStorage();
 }
