@@ -55,7 +55,8 @@ function createBackgroundOptions(container, header) {
     header.textContent = "Background Options";
     paragraph.textContent = "Change background by either uploading the image or linking to the URL. SVG format and repeating patterns highly recommended if you want to have a scrollable background.";
     links.innerHTML = "Try <span>Haikei!</span>";
-    changeType.textContent = "Fixed";
+    if (userSettings.backgroundPosition === "fixed") changeType.textContent = "Fixed";
+    else changeType.textContent = "Repeating";
 
     links.href = "https://haikei.app/";
     links.target = "_blank";
