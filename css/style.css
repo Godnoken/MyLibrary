@@ -57,6 +57,10 @@ p {
     outline: none;
 }
 
+#google::placeholder {
+    color: var(--main-text-color);
+}
+
 #header {
     display: flex;
     justify-content: center;
@@ -444,7 +448,7 @@ legend {
     display: flex;
     align-items: center;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: var(--ui-background-color);
     padding: 1rem;
     border-radius: 0.6rem;
     color: var(--main-text-color);
