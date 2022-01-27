@@ -1,18 +1,17 @@
 import { myLibraryArray } from "./main.js";
-import { handleAddBookAnimation } from "./animations.js";
 import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 import { Book } from "./constructors.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 
-const bookTitle = document.querySelector("#addBookTitle");
-const bookAuthor = document.querySelector("#addBookAuthor");
-const bookPages = document.querySelector("#addBookPages");
-const bookCover = document.querySelector("#addBookCover");
-const bookRead = document.querySelector("#addBookRead");
 
 export function addBook(event) {
+    const bookTitle = document.querySelector("#addBookTitle");
+    const bookAuthor = document.querySelector("#addBookAuthor");
+    const bookPages = document.querySelector("#addBookPages");
+    const bookCover = document.querySelector("#addBookCover");
+    const bookRead = document.querySelector("#addBookRead");
 
     // Prevents reloading of the page
     event.preventDefault();
@@ -33,9 +32,6 @@ export function addBook(event) {
     handleRefreshOfBookIndex(book, book, book);
     handlePageChange();
     displayBooks(undefined, myLibraryArray);
-    
-    // Removes bookForm from screen
-    handleAddBookAnimation();
     
     saveLibraryToLocalStorage();
 }

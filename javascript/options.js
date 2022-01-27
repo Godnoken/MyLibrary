@@ -1,12 +1,15 @@
 import { saveSettingstoLocalStorage } from "./saveToLocalStorage.js";
 import { userSettings } from "./loadUserSettings.js";
+import { addBook } from "./addBook.js";
 
 const body = document.querySelector("body");
 const backgroundOptionsButton = document.querySelector("#backgroundOptionsButton");
 const uiOptionsButton = document.querySelector("#uiOptionsButton");
+const addBookFormButton = document.querySelector("#addBookButton");
 
 backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
 uiOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIOptions, ".uiOptionsContainer"));
+addBookFormButton.addEventListener("click", () => handleOptionsMenu(createAddBookForm, ".addBookFormContainer"));
 
 
 // Makes sure only one options menu can be active at one time
@@ -57,6 +60,7 @@ function createBackgroundOptions(container, header) {
     links.innerHTML = "Try <span>Haikei!</span>";
     if (userSettings.backgroundPosition === "fixed") changeType.textContent = "Fixed";
     else changeType.textContent = "Repeating";
+    linkBackground.setAttribute("placeholder", "URL..")
 
     links.href = "https://haikei.app/";
     links.target = "_blank";
@@ -180,3 +184,60 @@ function createUIOptions(container, header) {
     exitButtonColorLabel.appendChild(exitButtonColorInput);
 }
 
+function createAddBookForm(container, header) {
+    container.classList.add("addBookFormContainer");
+    header.textContent = "Add book";
+
+    const fieldset = ["titleFieldset", "authorFieldset", "pagesFieldset", "coverFieldset"];
+    const legend = ["titleLegend", "authorLegend", "pagesLegend", "coverLegend"];
+    const input = ["titleInput", "authorInput", "pagesInput", "coverInput"];
+    const legendText = ["Title", "Author", "Pages", "Book Cover"];
+    const form = {};
+    
+    const formContainer = document.createElement("form");
+    const checkboxLabel = document.createElement("label");
+    const checkboxInput = document.createElement("input");
+    const customCheckbox = document.createElement("span");
+    const confirmButton = document.createElement("button");
+
+    for (let i = 0; i < 4; i++) {
+        form[fieldset[i]] = document.createElement("fieldset");
+        form[legend[i]] = document.createElement("legend");
+        form[input[i]] = document.createElement("input");
+        
+        form[input[i]].classList.add("addBookInput");
+
+        form[input[i]].type = "text";
+
+        form[legend[i]].textContent = legendText[i];
+        
+        formContainer.appendChild(form[fieldset[i]]);
+        form[fieldset[i]].appendChild(form[legend[i]]);
+        form[fieldset[i]].appendChild(form[input[i]]);
+    }
+    form.pagesInput.type = "number";
+    checkboxInput.type = "checkbox";
+
+    formContainer.id = "form";
+    form.titleInput.id = "addBookTitle";
+    form.authorInput.id = "addBookAuthor";
+    form.pagesInput.id = "addBookPages";
+    form.coverInput.id = "addBookCover";
+    checkboxLabel.id = "checkboxContainer";
+    checkboxInput.id = "addBookRead";
+    confirmButton.id = "bookFormSubmit";
+
+    customCheckbox.classList.add("customCheckbox");
+    checkboxInput.classList.add("checkbox");
+    confirmButton.classList.add("button");
+
+    confirmButton.textContent = "Confirm";
+
+    confirmButton.addEventListener("click", addBook);
+    
+    container.appendChild(formContainer);
+    formContainer.appendChild(checkboxLabel);
+    formContainer.appendChild(confirmButton);
+    checkboxLabel.appendChild(checkboxInput);
+    checkboxLabel.appendChild(customCheckbox);
+}

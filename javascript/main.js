@@ -19,7 +19,6 @@ export let myLibraryArray = [];
 
 /** Elements */
 
-const bookFormSubmit = document.querySelector("#bookFormSubmit")
 const google = document.querySelector("#google");
 const googleButton = document.querySelector("#googleButton");
 const myLibraryButton = document.querySelector("#myLibrary");
@@ -29,7 +28,6 @@ const myLibraryButton = document.querySelector("#myLibrary");
 
 googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(global.startIndex, googleBooksArray) });
 myLibraryButton.addEventListener("click", showMyLibrary);
-bookFormSubmit.addEventListener("click", addBook);
 
 
 /** Run at start */

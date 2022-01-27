@@ -37,7 +37,7 @@
             </section>
             <section class="menus">
                 <h2 class="menusText">Options</h2>
-                <div class="hoverMenu">
+                <div class="hoverMenu" id="optionsHoverMenu">
                     <button id="uiOptionsButton" class="button">UI Styling</button>
                     <button id="backgroundOptionsButton" class="button">Background</button>
                 </div>
@@ -45,31 +45,6 @@
         </nav>
     </header>
     <main id="myLibraryContainer">
-        <form id="addBookForm" class="activeOptionsMenu">
-            <div id="addBookExit" class="exitOptionsButton">x</div>
-            <fieldset>
-                <legend>Title</legend>
-                <input class="addBookInput" id="addBookTitle" type="text">
-            </fieldset>
-            <fieldset>
-                <legend>Author</legend>
-                <input class="addBookInput" id="addBookAuthor" type="text">
-            </fieldset>
-            <fieldset>
-                <legend>Pages</legend>
-                <input class="addBookInput" id="addBookPages" type="number">
-            </fieldset>
-            <fieldset>
-                <legend>Book Cover</legend>
-                <input class="addBookInput" id="addBookCover" type="text">
-            </fieldset>
-            <label for="addBookRead" id="checkboxContainer">
-                Read
-                <input class="checkbox" id="addBookRead" type="checkbox">
-                <span class="customCheckbox"></span>
-            </label>
-            <button class="button" id="bookFormSubmit">Confirm</button>
-        </form>
         <section id="booksDisplay">
 
         </section>
