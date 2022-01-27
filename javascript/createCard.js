@@ -87,20 +87,22 @@ export function createCard(book) {
         removeBookContainer.appendChild(removeBook);
     }
 
+    authors.textContent = authors.textContent.replace(/,(?=[^\s])/g, ", ");
+
     let hiddenTitleText = title.textContent.slice(35);
     title.textContent = title.textContent.slice(0, 35);
     let hiddenAuthorsText = authors.textContent.slice(35);
     authors.textContent = authors.textContent.slice(0, 35);
 
+
     title.innerHTML = `${title.textContent}<span>${hiddenTitleText}</span>`;
-    authors.innerHTML = `${authors.textContent}<span>${hiddenAuthorsText}</span>`
+    authors.innerHTML = `${authors.textContent}<span>${hiddenAuthorsText}</span>`;
     
     booksDisplay.appendChild(card);
     card.appendChild(flipCardInner);
     flipCardInner.appendChild(flipCardFront);
     flipCardInner.appendChild(flipCardBack);
     flipCardBack.appendChild(flipCardBackImg);
-    
     
     book.read === true ? isReadCheckbox.checked = true : isReadCheckbox.checked = false;
 }

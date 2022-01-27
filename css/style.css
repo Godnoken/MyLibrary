@@ -215,7 +215,7 @@ input[type='color']::-webkit-color-swatch-wrapper{
     color: var(--exit-button-color);
     cursor: pointer;
     user-select: none;
-    opacity: 0.8;
+    opacity: 0.55;
 }
 
 .exitOptionsButton:hover {
