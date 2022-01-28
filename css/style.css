@@ -557,7 +557,7 @@ legend {
     position: absolute;
     bottom: 0;
     left: 50%;
-    margin-left: -7.5rem;
+    margin-left: -10rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
