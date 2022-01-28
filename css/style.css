@@ -2,8 +2,8 @@ html {
     font-size: 62.5%;
     font-family: 'Inconsolata', monospace;
     overflow-y: scroll;
-    --ui-background-color:#000000;
-    --main-text-color:#FFFFFF;
+    --ui-background-color:#FFFFFF;
+    --main-text-color:#000000;
     --secondary-text-color:#5d93ff;
     --exit-button-color:#ff5757;
 }
@@ -406,6 +406,8 @@ legend {
 }
 
 .flipCardBack {
+    content-visibility: hidden;
+    visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -452,7 +454,7 @@ legend {
     pointer-events: none;
 }
 
-.flipCardBack img {
+.flipCardBackImg{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -470,7 +472,40 @@ legend {
     transform: skew(15deg, -10deg);
 }
 
-.removeBookContainer {
+.topLeftBookContainer {
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--ui-background-color);
+    left: -3.2rem;
+    top: -3.2rem;
+    border-radius: 4rem;
+    user-select: none;
+    width: 6rem;
+    height: 6rem;
+}
+
+.topLeftBookSymbol {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    transform: translate(3.7rem, 3.7rem);
+    transition-duration: 0.3s;
+    color: var(--main-text-color);
+}
+
+.topLeftBookContainer:hover .topLeftBookSymbol {
+    color: var(--secondary-text-color);
+}
+
+.topLeftBookContainer:active .topLeftBookSymbol {
+    
+}
+
+.topRightBookContainer {
     position: absolute;
     cursor: pointer;
     background-color: var(--ui-background-color);
@@ -483,15 +518,21 @@ legend {
     height: 6rem;
 }
 
-.removeBook {
-    opacity: 0;
-    transform: translate(1.2rem, 3rem);
+.topRightBookSymbol {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    transform: rotate(-45deg) translate(-1.8rem, 3.3rem);
     transition-duration: 0.3s;
-    color: var(--exit-button-color);
+    color: var(--main-text-color);
 }
 
-.removeBookContainer:hover .removeBook {
-    opacity: 1;
+.topRightBookContainer:hover .topRightBookSymbol {
+    color: var(--exit-button-color);
 }
 
 .activePage {

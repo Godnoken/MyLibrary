@@ -21,6 +21,7 @@ export function createCard(book) {
     flipCardInner.classList.add("flipCardInner");
     flipCardFront.classList.add("flipCardFront");
     flipCardBack.classList.add("flipCardBack");
+    flipCardBackImg.classList.add("flipCardBackImg");
     isReadCheckbox.classList.add("isReadCheckbox");
     flipCardBackColouredBackground.classList.add("flipCardBackColouredBackground");
     title.classList.add("cardParagraphs");
@@ -31,6 +32,23 @@ export function createCard(book) {
     card.addEventListener("mouseover", handleHiddenCardText);
     title.addEventListener("click", handleCopiedTextbox);
     authors.addEventListener("click", handleCopiedTextbox);
+
+    // Listeners for improving rendering performance
+    let doNotRender;
+
+    card.addEventListener("mouseenter", () => {
+        // Makes sure setTimeout doesn't override the mouseenter style changes
+        clearTimeout(doNotRender);
+        flipCardBack.style.contentVisibility = "visible";
+        flipCardBack.style.visibility = "visible";
+    })
+
+    card.addEventListener("mouseleave", () => {
+        doNotRender = setTimeout(() => {
+        flipCardBack.style.contentVisibility = "hidden";
+        flipCardBack.style.visibility = "hidden";
+        }, 650);
+    })
 
     card.setAttribute("data-bookindex", myLibraryArray.indexOf(book));
     isReadCheckbox.type = "checkbox";
@@ -53,13 +71,14 @@ export function createCard(book) {
         authors.textContent = book.authors === undefined ? `Author: Unknown` : `Author: ${book.authors}`;
         pageCount.textContent = book.pageCount === undefined ? `Pages: Unknown` : `Pages: ${book.pageCount}`;
 
-        const addGoogleBook = document.createElement("button");
-        addGoogleBook.classList.add("button");
-        addGoogleBook.textContent = "Add Book";
-        addGoogleBook.addEventListener("click", addGoogleBookToLibrary);
-
-        flipCardBack.appendChild(addGoogleBook);
-
+        const addBookContainer = document.createElement("div");
+        const addBook = document.createElement("div");
+        addBook.textContent = "+";
+        addBookContainer.classList.add("topLeftBookContainer");
+        addBook.classList.add("topLeftBookSymbol");
+        addBookContainer.addEventListener("click", addGoogleBookToLibrary);
+        flipCardBack.appendChild(addBookContainer);
+        addBookContainer.appendChild(addBook);
     }
 
     // If user clicked on "My Library"
@@ -78,13 +97,34 @@ export function createCard(book) {
         pageCount.textContent = `Pages: ${book.pageCount}`;
         
         const removeBookContainer = document.createElement("div");
-        const removeBook = document.createElement("p");
-        removeBook.textContent = "x";
-        removeBookContainer.classList.add("removeBookContainer");
-        removeBook.classList.add("removeBook");
+        const removeBook = document.createElement("div");
+        removeBook.textContent = "+";
+        removeBookContainer.classList.add("topRightBookContainer");
+        removeBook.classList.add("topRightBookSymbol");
         removeBookContainer.addEventListener("click", handleDeleteBook);
         flipCardBack.appendChild(removeBookContainer);
         removeBookContainer.appendChild(removeBook);
+
+        const editBookContainer = document.createElement("div");
+        //const editBook = document.createElement("svg");
+        editBookContainer.classList.add("topLeftBookContainer");
+        //editBook.classList.add("topLeftBookSymbol");
+        flipCardBack.appendChild(editBookContainer);
+        //editBookContainer.appendChild(editBook);
+        editBookContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 217.9 217.9"><path d="M216 54 164 2a8 8 0 0 0-10 0L4 152c-2 1-2 3-2 5l-2 53a8 8 0 0 0 8 8l53-2 5-2L216 64c3-3 3-8 0-10zM57 201l-42 2 2-42 91-92 40 41-91 91zm102-101-41-41 41-41 41 41-41 41z"/></svg>';
+        const editBook = editBookContainer.childNodes[0];
+        editBook.classList.add("topLeftBookSymbol");
+
+        const color = getComputedStyle(document.documentElement);
+        editBookContainer.addEventListener("mouseenter", () => {
+            editBook.style.cursor = "pointer";
+            editBook.style.fill = color.getPropertyValue('--secondary-text-color');
+        })
+
+        editBookContainer.addEventListener("mouseleave", () => {
+            editBook.style.fill = color.getPropertyValue('--main-text-color');
+        })
+        
     }
 
     authors.textContent = authors.textContent.replace(/,(?=[^\s])/g, ", ");

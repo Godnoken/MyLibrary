@@ -1,6 +1,6 @@
 export let userSettings = {
-    uiBackground: "#000000",
-    mainText: "#FFFFFF",
+    uiBackground: "#FFFFFF",
+    mainText: "#000000",
     secondaryText: "#5d93ff",
     exitButton: "#ff5757",
     backgroundImage: "url(https://127.0.0.1:8887/images/stacked-peaks-haikei.svg)",
