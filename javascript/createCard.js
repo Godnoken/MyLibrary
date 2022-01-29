@@ -9,6 +9,7 @@ export function createCard(book) {
     const card = document.createElement("div");
     const flipCardInner = document.createElement("div");
     const flipCardFront = document.createElement("div");
+    const flipCardFrontImg = document.createElement("img");
     const flipCardBack = document.createElement("div");
     const flipCardBackImg = document.createElement("img");
     const isReadCheckbox = document.createElement("input");
@@ -20,6 +21,7 @@ export function createCard(book) {
     card.classList.add("card");
     flipCardInner.classList.add("flipCardInner");
     flipCardFront.classList.add("flipCardFront");
+    flipCardFrontImg.classList.add("flipCardFrontImg");
     flipCardBack.classList.add("flipCardBack");
     flipCardBackImg.classList.add("flipCardBackImg");
     isReadCheckbox.classList.add("isReadCheckbox");
@@ -51,8 +53,13 @@ export function createCard(book) {
     })
 
     card.setAttribute("data-bookindex", myLibraryArray.indexOf(book));
+    flipCardFrontImg.setAttribute("loading", "lazy");
+    flipCardFrontImg.setAttribute("alt", "Book cover");
+    flipCardBackImg.setAttribute("loading", "lazy");
+    flipCardBackImg.setAttribute("alt", "Book cover");
     isReadCheckbox.type = "checkbox";
 
+    flipCardFront.appendChild(flipCardFrontImg);
     flipCardBack.appendChild(flipCardBackColouredBackground);
     flipCardBack.appendChild(title);
     flipCardBack.appendChild(authors);
@@ -62,9 +69,8 @@ export function createCard(book) {
     // If user made a google search
     if (googleBooksArray.length !== 0) {
         if (book.hasOwnProperty("imageLinks")) {
-            flipCardFront.style.backgroundImage = `url(${book["imageLinks"]["thumbnail"]})`;
-            flipCardBackImg.src = book["imageLinks"]["thumbnail"];
-            flipCardBackImg.setAttribute("alt", "Book cover");
+            flipCardFrontImg.src = book.imageLinks.thumbnail;
+            flipCardBackImg.src = book.imageLinks.thumbnail;
         }
         
         title.textContent = book.title === undefined ? `Title: Unknown` : `Title: ${book.title}`;
@@ -85,11 +91,8 @@ export function createCard(book) {
     else {
 
         if (Object.values(book)[3] !== "") {
-            flipCardFront.style.backgroundImage = `url(${book.backgroundImage})`;
-            flipCardFront.setAttribute("title", "Book cover");
-
+            flipCardFrontImg.src = book.backgroundImage;
             flipCardBackImg.src = book.backgroundImage;
-            flipCardBackImg.setAttribute("alt", "Book cover");
         }
 
         title.textContent = `Title: ${book.title}`;

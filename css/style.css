@@ -405,6 +405,11 @@ legend {
     background-position: center;
 }
 
+.flipCardFrontImg {
+    width: 100%;
+    height: 100%;
+}
+
 .flipCardBack {
     content-visibility: hidden;
     visibility: hidden;
@@ -414,6 +419,14 @@ legend {
     transform: rotateY(180deg);
     overflow: hidden;
     background-color: #bbb;
+}
+
+.flipCardBackImg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -2;
+    opacity: 50%;
 }
 
 .cardParagraphs {
@@ -452,14 +465,6 @@ legend {
     color: var(--ui-background-color);
     z-index: 1;
     pointer-events: none;
-}
-
-.flipCardBackImg{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -2;
-    opacity: 50%;
 }
 
 .flipCardBackColouredBackground {
