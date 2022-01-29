@@ -579,9 +579,8 @@ legend {
 
 #githubLink {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 5.4rem;
+    width: 5.6rem;
 }
 
 #githubIcon {
