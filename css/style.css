@@ -1,17 +1,28 @@
 html {
     font-size: 62.5%;
     font-family: 'Inconsolata', monospace;
-    overflow-y: scroll;
     --ui-background-color:#FFFFFF;
     --main-text-color:#000000;
     --secondary-text-color:#5d93ff;
     --exit-button-color:#ff5757;
+    overflow: hidden;
+    height: 100%;
 }
 
 body {
     min-height: 100vh;
     position: relative;
     font-size: 1.6rem;
+    height: 100%;
+}
+
+#myLibraryContainer {
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    box-sizing: border-box;
+    height: CALC(100% + 1px);
 }
 
 p {

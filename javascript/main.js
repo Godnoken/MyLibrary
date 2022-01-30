@@ -28,8 +28,6 @@ const myLibraryButton = document.querySelector("#myLibrary");
 
 googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(global.startIndex, googleBooksArray) });
 myLibraryButton.addEventListener("click", showMyLibrary);
-window.addEventListener("load", () => { window. scrollTo(0, 0); });
-document.addEventListener("touchmove", (event) => { event.preventDefault() });
 
 /** Run at start */
 
