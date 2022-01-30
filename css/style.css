@@ -6,23 +6,20 @@ html {
     --secondary-text-color:#5d93ff;
     --exit-button-color:#ff5757;
     overflow: hidden;
-    height: 100%;
 }
 
 body {
     min-height: 100vh;
-    position: relative;
     font-size: 1.6rem;
-    height: 100%;
 }
 
 #myLibraryContainer {
-    position: absolute;
+    position: fixed;
+    height: CALC(100% + 1px);
+    width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 100%;
     box-sizing: border-box;
-    height: CALC(100% + 1px);
 }
 
 p {
@@ -367,6 +364,7 @@ legend {
 }
 
 #booksDisplay {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fill, 26rem);
     row-gap: 4rem;
