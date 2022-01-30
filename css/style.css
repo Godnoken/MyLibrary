@@ -91,7 +91,7 @@ p {
     justify-content: center;
     position: fixed;
     width: 100%;
-    left: -3.5rem;
+    left: -4rem;
     z-index: 1;
     user-select: none;
 }
@@ -354,8 +354,9 @@ legend {
     border-radius: 4rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    margin-right: 3rem;
+    margin-right: 2rem;
     box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.25);
+    transition: opacity 0.5s;
 }
 
 #pages:hover {
@@ -365,6 +366,7 @@ legend {
 #pages p {
     cursor: pointer;
     margin: 0;
+    transition-duration: 0.25s;
 }
 
 #nextPageList {
@@ -564,7 +566,7 @@ legend {
 .activePage {
     color: var(--secondary-text-color);
     transform: scale(1.2);
-    transition: all 0.1s ease-in-out;
+
 }
 
 .activeAddBook {
@@ -582,20 +584,23 @@ legend {
 #codeWriter {
     position: absolute;
     bottom: 0;
-    left: 50%;
-    margin-left: -10.2rem;
+    right: 0;
+    margin-right: 3rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     height: 2.8rem;
     width: 15rem;
-    color: white;
+    color: var(--ui-background-color);
     font-size: 1rem;
-    text-shadow: 0.1rem 0.1rem 0.4rem #474747;
+    text-shadow: 0.1rem 0.1rem 0.4rem var(--ui-background-color);
+    opacity: 0.4;
+    transition-duration: 0.4s;
 }
 
 #codeWriter:hover {
-    transform: scale(1.2);
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 #githubLink {
