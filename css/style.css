@@ -5,7 +5,6 @@ html {
     --main-text-color:#000000;
     --secondary-text-color:#5d93ff;
     --exit-button-color:#ff5757;
-    overflow: hidden;
 }
 
 body {
@@ -20,18 +19,7 @@ body {
 }
 
 #myLibraryContainer::-webkit-scrollbar {
-    width: 1rem;
-    background-color: transparent;
-}
-
-#myLibraryContainer::-webkit-scrollbar-thumb {
-    background: var(--ui-background-color);
-    height: 3rem;
-}
-
-#myLibraryContainer::-webkit-scrollbar-track-piece
-{
-    display:none;
+    width: 0;
 }
 
 p {
@@ -187,14 +175,6 @@ p {
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-}
-
-#mainBackgroundImage {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background-size: cover;
 }
 
 input[type="color"]::-webkit-color-swatch,
@@ -392,10 +372,17 @@ legend {
     row-gap: 4rem;
     justify-content: center;
     justify-items: center;
-    padding-top: 12rem;
-    padding-bottom: 4rem;
-    padding-right: 17rem;
-    padding-left: 10rem;
+    padding: 12rem 17rem 4rem 10rem;
+}
+
+#mainBackgroundImage {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-size: cover;
+    top: 0;
+    left: 0;
 }
 
 .card {
@@ -593,7 +580,7 @@ legend {
     position: absolute;
     bottom: 1rem;
     right: 0;
-    margin-right: 3rem;
+    margin-right: 2rem;
     color: var(--ui-background-color);
     font-size: 1rem;
     text-shadow: 0.1rem 0.1rem 0.4rem var(--ui-background-color);
