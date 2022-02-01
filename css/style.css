@@ -17,6 +17,7 @@ body {
     height: CALC(100% + 1px);
     width: 100%;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 #myLibraryContainer::-webkit-scrollbar {
