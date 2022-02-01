@@ -62,7 +62,7 @@ function createBackgroundOptions(container, header) {
     changeType.classList.add("button");
 
     header.textContent = "Background Options";
-    paragraph.textContent = "Change background by either uploading the image or linking to the URL. SVG format and repeating patterns highly recommended if you want to have a scrollable background.";
+    paragraph.textContent = "Change background by either uploading the image or linking to the URL. SVG format and/or repeating patterns highly recommended.";
     links.innerHTML = "Try <span>Haikei!</span>";
     uploadBackgroundLabel.textContent = "Upload";
     linkBackgroundLegend.textContent = "URL";
