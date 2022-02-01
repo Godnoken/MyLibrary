@@ -349,11 +349,11 @@ legend {
   }
 
 #pages {
-    height: 75rem;
+    height: 55rem;
     width: 5rem;
     position: fixed;
     top: 50%;
-    margin-top: -38.5rem;
+    margin-top: -27.5rem;
     right: 0;
     display: flex;
     flex-direction: column;
