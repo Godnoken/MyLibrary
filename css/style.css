@@ -410,6 +410,7 @@ legend {
     background-color: transparent;
     perspective: 750px;
     transition: all 0.65s ease-in-out;
+    user-select: none;
 }
 
 .flipCardInner {
@@ -474,6 +475,7 @@ legend {
     color: var(--main-text-color);
     text-align: left;
     z-index: 1;
+    user-select: text;
 }
 
 .flipCardBack p span {
@@ -605,6 +607,7 @@ legend {
     text-shadow: 0.1rem 0.1rem 0.4rem var(--ui-background-color);
     opacity: 0.4;
     transition-duration: 0.4s;
+    user-select: none;
 }
 
 #codeWriter:hover {
