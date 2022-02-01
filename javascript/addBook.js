@@ -38,11 +38,12 @@ export function addBook(event) {
 
 export function addGoogleBookToLibrary(event) {
     const googleBook = event.target.parentElement.parentElement;
+    console.log(googleBook.previousElementSibling.childNodes[0].src)
     const title = googleBook.childNodes[1].textContent.slice(7);
     const authors = googleBook.childNodes[2].textContent.slice(8);
     const pageCount = googleBook.childNodes[3].textContent.slice(7);
 
-    const googleBookBackgroundImage = googleBook.previousElementSibling.style.backgroundImage.slice(5, -2);
+    const googleBookBackgroundImage = googleBook.previousElementSibling.childNodes[0].src;
 
     const bookToAdd = new Book(title, authors, pageCount, googleBookBackgroundImage, googleBook.childNodes[4].checked);
 

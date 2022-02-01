@@ -293,6 +293,10 @@ legend {
     opacity: 0.5;
 }
 
+.inputTypeText:focus::placeholder {
+    color: transparent;
+}
+
 #checkboxContainer {
     cursor: pointer;
     display: flex;
