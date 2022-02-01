@@ -322,6 +322,7 @@ legend {
   border: 0.2rem solid var(--secondary-text-color);
   border-radius: 0.6rem;
   margin-top: 0.4rem;
+  transition-duration: 0.5s;
 }
 
 #checkboxContainer input:checked ~ .customCheckbox {
