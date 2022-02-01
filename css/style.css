@@ -172,6 +172,10 @@ p {
     opacity: 0.75;
 }
 
+.uploadBackgroundInput {
+    display: none;
+}
+
 .uiColorContainer {
     display: flex;
     flex-direction: column;
@@ -264,7 +268,7 @@ legend {
     z-index: 1;
 }
 
-.addBookInput {
+.inputTypeText {
     background-color: var(--ui-background-color);
     color: var(--main-text-color);
     border: none;
@@ -272,16 +276,20 @@ legend {
     text-align: center;
 }
 
-.addBookInput:hover {
+.inputTypeText:hover {
     opacity: 0.35;
     outline: 0.2rem var(--main-text-color) solid;
     border-radius: 0.2rem;
 }
 
-.addBookInput:focus {
+.inputTypeText:focus {
     opacity: 1;
     outline: 0.2rem var(--main-text-color) solid;
     border-radius: 0.2rem;
+}
+
+.inputTypeText::placeholder {
+    opacity: 0.5;
 }
 
 #checkboxContainer {

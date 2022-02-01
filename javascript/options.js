@@ -47,35 +47,44 @@ function createBackgroundOptions(container, header) {
 
     const paragraph = document.createElement("p");
     const links = document.createElement("a");
-    const uploadBackground = document.createElement("input");
-    const linkBackground = document.createElement("input");
+    const uploadBackgroundLabel = document.createElement("label");
+    const uploadBackgroundInput = document.createElement("input");
+    const linkBackgroundFieldset = document.createElement("fieldset");
+    const linkBackgroundLegend = document.createElement("legend");
+    const linkBackgroundInput = document.createElement("input");
     const changeType = document.createElement("button");
 
     container.classList.add("backgroundOptionsContainer");
     links.classList.add("optionsLinks");
+    uploadBackgroundInput.classList.add("uploadBackgroundInput");
+    uploadBackgroundLabel.classList.add("button");
+    linkBackgroundInput.classList.add("inputTypeText");
     changeType.classList.add("button");
 
     header.textContent = "Background Options";
     paragraph.textContent = "Change background by either uploading the image or linking to the URL. SVG format and repeating patterns highly recommended if you want to have a scrollable background.";
     links.innerHTML = "Try <span>Haikei!</span>";
+    uploadBackgroundLabel.textContent = "Upload";
+    linkBackgroundLegend.textContent = "URL";
     if (userSettings.backgroundPosition === "fixed") changeType.textContent = "Fixed";
     else changeType.textContent = "Repeating";
-    linkBackground.setAttribute("placeholder", "URL..")
-
+    
+    linkBackgroundInput.setAttribute("placeholder", "https://backgroundImage.com");
     links.href = "https://haikei.app/";
     links.target = "_blank";
-    uploadBackground.type = "file";
-    uploadBackground.accept = "image/*";
+    uploadBackgroundInput.type = "file";
+    uploadBackgroundInput.accept = "image/*";
+    linkBackgroundInput.type = "url";
 
-    uploadBackground.addEventListener("input", () => {
-        mainBackground.style.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackground.value.slice(12)})`;
-        userSettings.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackground.value.slice(12)})`;
+    uploadBackgroundInput.addEventListener("change", () => {
+        mainBackground.style.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackgroundInput.value.slice(12)})`;
+        userSettings.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackgroundInput.value.slice(12)})`;
         saveSettingstoLocalStorage();
     })
 
-    linkBackground.addEventListener("input", () => {
-        mainBackground.style.backgroundImage = `url(${linkBackground.value})`;
-        userSettings.backgroundImage = `url(${linkBackground.value})`;
+    linkBackgroundInput.addEventListener("change", () => {
+        mainBackground.style.backgroundImage = `url(${linkBackgroundInput.value})`;
+        userSettings.backgroundImage = `url(${linkBackgroundInput.value})`;
         saveSettingstoLocalStorage();
     })
 
@@ -100,9 +109,12 @@ function createBackgroundOptions(container, header) {
 
     container.appendChild(paragraph);
     container.appendChild(links);
-    container.appendChild(uploadBackground);
-    container.appendChild(linkBackground);
+    container.appendChild(uploadBackgroundLabel);
+    container.appendChild(linkBackgroundFieldset);
     container.appendChild(changeType);
+    uploadBackgroundLabel.appendChild(uploadBackgroundInput);
+    linkBackgroundFieldset.appendChild(linkBackgroundLegend);
+    linkBackgroundFieldset.appendChild(linkBackgroundInput);
 }
 
 
@@ -205,7 +217,7 @@ function createAddBookForm(container, header) {
         form[legend[i]] = document.createElement("legend");
         form[input[i]] = document.createElement("input");
         
-        form[input[i]].classList.add("addBookInput");
+        form[input[i]].classList.add("inputTypeText");
 
         form[input[i]].type = "text";
 
