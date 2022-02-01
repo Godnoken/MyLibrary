@@ -517,11 +517,10 @@ legend {
     transform: skew(15deg, -10deg);
 }
 
-.topLeftBookContainer {
+.topLeftBookContainer, .topRightBookContainer {
     position: absolute;
     cursor: pointer;
     background-color: var(--ui-background-color);
-    left: -3.2rem;
     top: -3.2rem;
     border-radius: 4rem;
     user-select: none;
@@ -529,7 +528,15 @@ legend {
     height: 6rem;
 }
 
-.topLeftBookSymbol {
+.topRightBookContainer {
+    right: -3.2rem;
+}
+
+.topLeftBookContainer {
+    left: -3.2rem;
+}
+
+.topLeftBookSymbol, .topRightBookSymbol {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -537,9 +544,18 @@ legend {
     font-size: 3rem;
     width: 1.4rem;
     height: 1.4rem;
-    transform: translate(3.7rem, 3.7rem);
+    top: 3.5rem;
     transition-duration: 0.3s;
     color: var(--main-text-color);
+}
+
+.topLeftBookSymbol {
+    left: 3.7rem;
+}
+
+.topRightBookSymbol {
+    transform: rotate(-45deg);
+    right: 3.7rem;
 }
 
 .topLeftBookContainer:hover .topLeftBookSymbol {
@@ -547,37 +563,17 @@ legend {
 }
 
 .topLeftBookContainer:active .topLeftBookSymbol {
-    
-}
-
-.topRightBookContainer {
-    position: absolute;
-    cursor: pointer;
-    background-color: var(--ui-background-color);
-    right: -3.2rem;
-    top: -3.2rem;
-    border-radius: 4rem;
-    font-size: 2.4rem;
-    user-select: none;
-    width: 6rem;
-    height: 6rem;
-}
-
-.topRightBookSymbol {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    width: 1.4rem;
-    height: 1.4rem;
-    transform: rotate(-45deg) translate(-1.8rem, 3.3rem);
-    transition-duration: 0.3s;
-    color: var(--main-text-color);
+    transition-duration: 0.01s;
+    transform: scale(1.2);
 }
 
 .topRightBookContainer:hover .topRightBookSymbol {
     color: var(--exit-button-color);
+}
+
+.topRightBookContainer:active .topRightBookSymbol  {
+    transition-duration: 0.01s;
+    transform: scale(1.2) rotate(-45deg);
 }
 
 .activePage {
