@@ -509,6 +509,7 @@ legend {
     z-index: 1;
     animation: forwards 0.5s showAllParagraphTextAnimation;
     pointer-events: none;
+    word-break: break-all;
 }
 
 .copied {
