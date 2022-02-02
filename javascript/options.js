@@ -19,7 +19,10 @@ export function handleOptionsMenu(createOptions, optionsContainerClass) {
     const selectedMenu = document.querySelector(optionsContainerClass);
     const otherMenu = document.querySelector(".activeOptionsMenu");
     
-    if (selectedMenu !== null) selectedMenu.remove();
+    if (selectedMenu !== null) {
+        selectedMenu.remove();
+        if (selectedMenu.classList.contains("editBookFormContainer")) createOptionsMenu(createOptions, optionsContainerClass);
+    } 
     else if (otherMenu !== null) otherMenu.remove(), createOptionsMenu(createOptions, optionsContainerClass);
     else createOptionsMenu(createOptions, optionsContainerClass);
 }
