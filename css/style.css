@@ -223,6 +223,7 @@ input[type='color']::-webkit-color-swatch-wrapper{
     z-index: 1;
     color: var(--main-text-color);
     border-radius: 1.2rem;
+    animation: forwards 0.3s createSizeAndOpacityAnimation;
 }
 
 #form {
@@ -507,7 +508,7 @@ legend {
     border-radius: 0.6rem;
     padding: 1rem;
     z-index: 1;
-    animation: forwards 0.5s showAllParagraphTextAnimation;
+    animation: forwards 0.5s createSizeAndOpacityAnimation;
     pointer-events: none;
     overflow-wrap: break-word;
 }
@@ -648,7 +649,7 @@ a {
     color: inherit;
 }
 
-@keyframes showAllParagraphTextAnimation {
+@keyframes createSizeAndOpacityAnimation {
     0% {
         opacity: 0;
         transform: scale(0);
