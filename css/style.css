@@ -55,15 +55,14 @@ p {
     background-size: 200% 100%;
     background-position: 100% 0%;
     user-select: none;
+    transition: background-position 0.25s ease-in-out, scale 0.05s;
 }
 
 .button:hover {
-    transition: 0.25s ease-in-out;
     background-position: 0% 0%;
 }
 
 .button:active {
-    transition: 0.05s;
     transform: scale(1.05);
 }
 
