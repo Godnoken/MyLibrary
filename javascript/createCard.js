@@ -4,6 +4,7 @@ import { addGoogleBookToLibrary } from "./addBook.js";
 import { handleIsReadCheckbox } from "./handleIsReadCheckBox.js";
 import { googleBooksArray } from "./displayBooks.js";
 import { handleHiddenCardText, handleCopiedTextbox } from "./animations.js";
+import { createBookForm, handleOptionsMenu } from "./options.js";
 
 export function createCard(book) {
     const card = document.createElement("div");
@@ -109,11 +110,8 @@ export function createCard(book) {
         removeBookContainer.appendChild(removeBook);
 
         const editBookContainer = document.createElement("div");
-        //const editBook = document.createElement("svg");
-        editBookContainer.classList.add("topLeftBookContainer");
-        //editBook.classList.add("topLeftBookSymbol");
+        editBookContainer.classList.add("topLeftBookContainer", "editBookButton");
         flipCardBack.appendChild(editBookContainer);
-        //editBookContainer.appendChild(editBook);
         editBookContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 217.9 217.9"><path d="M216 54 164 2a8 8 0 0 0-10 0L4 152c-2 1-2 3-2 5l-2 53a8 8 0 0 0 8 8l53-2 5-2L216 64c3-3 3-8 0-10zM57 201l-42 2 2-42 91-92 40 41-91 91zm102-101-41-41 41-41 41 41-41 41z"/></svg>';
         const editBook = editBookContainer.childNodes[0];
         editBook.classList.add("topLeftBookSymbol");
@@ -127,7 +125,10 @@ export function createCard(book) {
         editBookContainer.addEventListener("mouseleave", () => {
             editBook.style.fill = color.getPropertyValue('--main-text-color');
         })
-        
+
+        editBookContainer.addEventListener("click", () => {
+            handleOptionsMenu(createBookForm, ".editBookFormContainer");
+        })
     }
 
     authors.textContent = authors.textContent.replace(/,(?=[^\s])/g, ", ");

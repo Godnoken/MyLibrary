@@ -1,6 +1,9 @@
 import { saveSettingstoLocalStorage } from "./saveToLocalStorage.js";
 import { userSettings } from "./loadUserSettings.js";
 import { addBook } from "./addBook.js";
+import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
+import { displayBooks } from "./displayBooks.js";
+import { myLibraryArray } from "./main.js";
 
 const body = document.querySelector("body");
 const backgroundOptionsButton = document.querySelector("#backgroundOptionsButton");
@@ -9,20 +12,19 @@ const addBookFormButton = document.querySelector("#addBookButton");
 
 backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
 uiOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIOptions, ".uiOptionsContainer"));
-addBookFormButton.addEventListener("click", () => handleOptionsMenu(createAddBookForm, ".addBookFormContainer"));
-
+addBookFormButton.addEventListener("click", () => handleOptionsMenu(createBookForm, ".addBookFormContainer"));
 
 // Makes sure only one options menu can be active at one time
-function handleOptionsMenu(createOptions, optionsContainerClass) {
+export function handleOptionsMenu(createOptions, optionsContainerClass) {
     const selectedMenu = document.querySelector(optionsContainerClass);
     const otherMenu = document.querySelector(".activeOptionsMenu");
     
     if (selectedMenu !== null) selectedMenu.remove();
-    else if (otherMenu !== null) otherMenu.remove(), createOptionsMenu(createOptions);
-    else createOptionsMenu(createOptions);
+    else if (otherMenu !== null) otherMenu.remove(), createOptionsMenu(createOptions, optionsContainerClass);
+    else createOptionsMenu(createOptions, optionsContainerClass);
 }
 
-function createOptionsMenu(createOptions) {
+function createOptionsMenu(createOptions, optionsContainerClass) {
     const container = document.createElement("div");
     const exitButton = document.createElement("div");
     const header = document.createElement("h3");
@@ -39,7 +41,7 @@ function createOptionsMenu(createOptions) {
     container.appendChild(exitButton);
     container.appendChild(header);
     
-    createOptions(container, header);
+    createOptions(container, header, optionsContainerClass);
 }
 
 function createBackgroundOptions(container, header) {
@@ -196,9 +198,8 @@ function createUIOptions(container, header) {
     exitButtonColorLabel.appendChild(exitButtonColorInput);
 }
 
-function createAddBookForm(container, header) {
-    container.classList.add("addBookFormContainer");
-    header.textContent = "Add book";
+
+export function createBookForm(container, header, optionsContainerClass) {
 
     const fieldset = ["titleFieldset", "authorFieldset", "pagesFieldset", "coverFieldset"];
     const legend = ["titleLegend", "authorLegend", "pagesLegend", "coverLegend"];
@@ -245,11 +246,46 @@ function createAddBookForm(container, header) {
 
     confirmButton.textContent = "Confirm";
 
-    confirmButton.addEventListener("click", addBook);
+
     
     container.appendChild(formContainer);
     formContainer.appendChild(checkboxLabel);
     formContainer.appendChild(confirmButton);
     checkboxLabel.appendChild(checkboxInput);
     checkboxLabel.appendChild(customCheckbox);
+
+    if (optionsContainerClass === ".addBookFormContainer") {
+        container.classList.add("addBookFormContainer");
+        header.textContent = "Add book";
+        confirmButton.addEventListener("click", addBook);
+    } else {
+        container.classList.add("editBookFormContainer");
+        header.textContent = "Edit book";
+        
+        let selectedBook = event.target.parentElement.parentElement.parentElement;
+
+        selectedBook = myLibraryArray[selectedBook.dataset.bookindex];
+        
+        form.titleInput.value = selectedBook.title;
+        form.authorInput.value = selectedBook.authors;
+        form.pagesInput.value = selectedBook.pageCount;
+        form.coverInput.value = selectedBook.backgroundImage;
+        checkboxInput.checked = selectedBook.read;
+        
+        confirmButton.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            selectedBook.title = form.titleInput.value;
+            selectedBook.authors = form.authorInput.value;
+            selectedBook.pageCount = form.pagesInput.value;
+            selectedBook.backgroundImage = form.coverInput.value;
+            if (checkboxInput.checked === true) selectedBook.read = true;
+            else selectedBook.read = false;
+
+            container.remove();
+            
+            saveLibraryToLocalStorage();
+            displayBooks(undefined, myLibraryArray);
+        });
+    }
 }
