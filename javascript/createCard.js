@@ -117,8 +117,9 @@ export function createCard(book) {
         editBook.classList.add("topLeftBookSymbol");
 
         const color = getComputedStyle(document.documentElement);
+        editBook.style.fill = color.getPropertyValue('--main-text-color');
+
         editBookContainer.addEventListener("mouseenter", () => {
-            editBook.style.cursor = "pointer";
             editBook.style.fill = color.getPropertyValue('--secondary-text-color');
         })
 
