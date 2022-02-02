@@ -46,7 +46,5 @@ export function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
         })
         .catch(error => {
             return;
-            console.log(`You ran into.. ${error}`)
-            alert(`You ran into.. ${error}`)
         })
 }
