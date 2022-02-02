@@ -58,12 +58,12 @@ p {
 }
 
 .button:hover {
-    transition: background-position 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
     background-position: 0% 0%;
 }
 
 .button:active {
-    transition: transform 0.05s;
+    transition: 0.05s;
     transform: scale(1.05);
 }
 
@@ -509,7 +509,7 @@ legend {
     z-index: 1;
     animation: forwards 0.5s showAllParagraphTextAnimation;
     pointer-events: none;
-    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .copied {
