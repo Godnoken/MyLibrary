@@ -201,7 +201,7 @@ p {
 input[type="color"]::-webkit-color-swatch,
 input[type='color']::-webkit-color-swatch-wrapper{
     border: none;
-    box-shadow: rgba(0, 0, 0, 0.28) 0px 2px 8px;
+    box-shadow: rgba(0, 0, 0, 0.28) 0 0.2rem 0.8rem;
     padding: 0;
 }
 
@@ -411,7 +411,7 @@ legend {
     height: 26.15rem;
     position: relative;
     background-color: transparent;
-    perspective: 750px;
+    perspective: 1000px;
     transition: all 0.65s ease-in-out;
     user-select: none;
 }
@@ -424,6 +424,21 @@ legend {
     transform-style: preserve-3d;
     box-shadow: 0 1rem 1.3rem -0.7rem #000000, 0 1.1rem 5rem 0.7rem rgba(0,0,0,0.12), 0 0.5rem 2rem 0.3rem rgba(0, 0, 0, 0.3);
     border-radius: 1.2rem;
+    transform: perspective(1000px) rotateX(7deg);
+    border-radius: 1rem 1rem 1rem 1.4rem;
+}
+
+.flipCardInner::after {
+    content: '';
+  position: fixed;
+  bottom: 0.2rem;
+  left: 0.3rem;
+  width: 98%;
+  height: 10%;
+  background: white;
+  border-radius: 1.2rem 0.4rem 1rem 1.2rem;
+  box-shadow: inset 0.2rem 0.3rem 0 0 #d4d2c4;
+  background-image: linear-gradient(to bottom, transparent 0.6rem, #E4E0CE 0.8rem, transparent 0.8rem, transparent 1.2rem, #E4E0CE 1.2rem, transparent 1.4rem, transparent 1.8rem,#E4E0CE 1.8rem, transparent 2rem, transparent 2.4rem, #E4E0CE 2.4rem, transparent 2.6rem, transparent 3rem, #E4E0CE 3rem, transparent 3.2rem, transparent 3.6rem, #E4E0CE 3.6rem, transparent 3.8rem, transparent 4.2rem, #E4E0CE 4.2rem, transparent 4.4rem, transparent 4.8rem, #E4E0CE 4.8rem, transparent 5rem);
 }
 
 .card:hover .flipCardInner {
@@ -436,7 +451,6 @@ legend {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    border-radius: 1.2rem 0.4rem 0.4rem 1.2rem;
 }
 
 .flipCardFront {
@@ -445,6 +459,7 @@ legend {
     background-position: center;
     /* Has to be fixed, otherwise half of the flipCardBack is unclickable because of ::after. No idea why.*/
     position: fixed;
+    border-radius: 1.4rem;
 }
 
 .flipCardFront::after
@@ -455,7 +470,7 @@ legend {
   left: 0;
   width: 100%;
   height: 100%;
-  box-shadow: inset 12px 0 8px -6px rgba(0,0,0,0.45);
+  box-shadow: inset 2.2rem 0 1.8rem -0.8rem rgba(0,0,0,0.45);
   border-radius: 1.2rem 0.4rem 0.4rem 1.2rem;
 }
 
@@ -463,7 +478,7 @@ legend {
 .flipCardFrontImg {
     width: 100%;
     height: 100%;
-    border-radius: 1.2rem 0.4rem 0.4rem 1.2rem;
+    border-radius: 1.2rem 0.4rem 0.4rem 1.4rem;
 }
 
 .flipCardBack {
@@ -474,7 +489,7 @@ legend {
     justify-content: flex-end;
     transform: rotateY(180deg);
     overflow: hidden;
-    background-color: #bbb;
+    border-radius: 0.6rem;
 }
 
 .flipCardBackImg{
