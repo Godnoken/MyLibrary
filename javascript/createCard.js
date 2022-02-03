@@ -116,17 +116,6 @@ export function createCard(book) {
         const editBook = editBookContainer.childNodes[0];
         editBook.classList.add("topLeftBookSymbol");
 
-        const color = getComputedStyle(document.documentElement);
-        editBook.style.fill = color.getPropertyValue('--main-text-color');
-
-        editBookContainer.addEventListener("mouseenter", () => {
-            editBook.style.fill = color.getPropertyValue('--secondary-text-color');
-        })
-
-        editBookContainer.addEventListener("mouseleave", () => {
-            editBook.style.fill = color.getPropertyValue('--main-text-color');
-        })
-
         editBookContainer.addEventListener("click", () => {
             handleOptionsMenu(createBookForm, ".editBookFormContainer");
         })
