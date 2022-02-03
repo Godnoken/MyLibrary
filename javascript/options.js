@@ -4,6 +4,7 @@ import { addBook } from "./addBook.js";
 import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 import { displayBooks } from "./displayBooks.js";
 import { myLibraryArray } from "./main.js";
+import { handlePageChange } from "./handlePages.js";
 
 const body = document.querySelector("body");
 const backgroundOptionsButton = document.querySelector("#backgroundOptionsButton");
@@ -288,6 +289,7 @@ export function createBookForm(container, header, optionsContainerClass) {
             container.remove();
             
             saveLibraryToLocalStorage();
+            handlePageChange();
             displayBooks(undefined, myLibraryArray);
         });
     }
