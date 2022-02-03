@@ -41,10 +41,10 @@ export function addGoogleBookToLibrary(event) {
     const title = googleBook.childNodes[1].textContent.slice(7);
     const authors = googleBook.childNodes[2].textContent.slice(8);
     const pageCount = googleBook.childNodes[3].textContent.slice(7);
-
     const googleBookBackgroundImage = googleBook.previousElementSibling.childNodes[0].src;
+    const read = googleBook.childNodes[4].childNodes[1].checked;
 
-    const bookToAdd = new Book(title, authors, pageCount, googleBookBackgroundImage, googleBook.childNodes[4].checked);
+    const bookToAdd = new Book(title, authors, pageCount, googleBookBackgroundImage, read);
 
     myLibraryArray.push(bookToAdd);
 

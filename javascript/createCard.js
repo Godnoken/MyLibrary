@@ -13,6 +13,7 @@ export function createCard(book) {
     const flipCardFrontImg = document.createElement("img");
     const flipCardBack = document.createElement("div");
     const flipCardBackImg = document.createElement("img");
+    const isReadCheckboxLabel = document.createElement("label");
     const isReadCheckbox = document.createElement("input");
     let title = document.createElement("p");
     let authors = document.createElement("p");
@@ -25,6 +26,7 @@ export function createCard(book) {
     flipCardFrontImg.classList.add("flipCardFrontImg");
     flipCardBack.classList.add("flipCardBack");
     flipCardBackImg.classList.add("flipCardBackImg");
+    isReadCheckboxLabel.classList.add("isReadCheckboxLabel");
     isReadCheckbox.classList.add("isReadCheckbox");
     flipCardBackColouredBackground.classList.add("flipCardBackColouredBackground");
     title.classList.add("cardParagraphs");
@@ -59,13 +61,16 @@ export function createCard(book) {
     flipCardBackImg.setAttribute("loading", "lazy");
     flipCardBackImg.setAttribute("alt", "Book cover");
     isReadCheckbox.type = "checkbox";
+    if (book.read === true) isReadCheckboxLabel.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 2.5c.9-.7 2.1-.7 3 0l6.7 5.7c.5.5.8 1 .8 1.8v9.7c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V10c0-.7.3-1.3.8-1.8l6.7-5.7Zm2 1.2a.8.8 0 0 0-1 0L4.8 9.4c-.2.1-.3.3-.3.6v9.7c0 .2.1.3.3.3h14.4c.2 0 .3-.1.3-.3V10c0-.3-.1-.5-.3-.6l-6.7-5.7Z"/><path d="M15.8 10.7c.3.3.3.8 0 1l-4.5 4.6a.8.8 0 0 1-1 0l-2-2a.8.8 0 0 1 1-1l1.4 1.4 4-4c.3-.3.8-.3 1 0Z"/></svg>';
+    else isReadCheckboxLabel.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 2.5c.9-.7 2.1-.7 3 0l6.7 5.7c.5.5.8 1 .8 1.8v9.7c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V10c0-.7.3-1.3.8-1.8l6.7-5.7Zm2 1.2a.8.8 0 0 0-1 0L4.8 9.4c-.2.1-.3.3-.3.6v9.7c0 .2.1.3.3.3h14.4c.2 0 .3-.1.3-.3V10c0-.3-.1-.5-.3-.6l-6.7-5.7Z"/></svg>';
 
     flipCardFront.appendChild(flipCardFrontImg);
     flipCardBack.appendChild(flipCardBackColouredBackground);
     flipCardBack.appendChild(title);
     flipCardBack.appendChild(authors);
     flipCardBack.appendChild(pageCount);
-    //flipCardBack.appendChild(isReadCheckbox);
+    flipCardBack.appendChild(isReadCheckboxLabel);
+    isReadCheckboxLabel.appendChild(isReadCheckbox);
     
     // If user made a google search
     if (googleBooksArray.length !== 0) {
@@ -127,7 +132,6 @@ export function createCard(book) {
     title.textContent = title.textContent.slice(0, 35);
     let hiddenAuthorsText = authors.textContent.slice(35);
     authors.textContent = authors.textContent.slice(0, 35);
-
 
     title.innerHTML = `${title.textContent}<span>${hiddenTitleText}</span>`;
     authors.innerHTML = `${authors.textContent}<span>${hiddenAuthorsText}</span>`;
