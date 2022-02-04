@@ -458,6 +458,8 @@ legend {
     /* Has to be fixed, otherwise half of the flipCardBack is unclickable because of ::after. No idea why.*/
     position: fixed;
     border-radius: 1.2rem;
+    /* Removes jagged edges that shows up on mobile after rotating and applying perspective */
+    outline: 1px solid transparent;
 }
 
 .flipCardFront::after
