@@ -465,7 +465,8 @@ legend {
 .flipCardFront::after
 {
   content: '';
-  position: fixed;
+  /* Has to be absolute because some shadows disappear on mobile if set to fixed */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
