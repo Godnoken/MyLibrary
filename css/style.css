@@ -439,6 +439,7 @@ legend {
   border-radius: 1.2rem 0.4rem 0.2rem 1.2rem;
   box-shadow: inset 0.2rem 0.3rem 0 0 #d4d2c4;
   background-image: linear-gradient(to bottom, transparent 0.5rem, #E4E0CE 0.6rem, transparent 0.7rem, transparent 0.9rem, #E4E0CE 1.1rem, transparent 1.2rem, transparent 1.5rem, #E4E0CE 1.6rem, transparent 1.7rem, transparent 1.9rem, #E4E0CE 2.1rem, transparent 2.2rem, transparent 2.5rem, #E4E0CE 2.6rem, transparent 2.7rem);
+  backface-visibility: hidden;
 }
 
 .card:hover .flipCardInner {
