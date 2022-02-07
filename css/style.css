@@ -509,7 +509,7 @@ legend {
     height: 100%;
     position: absolute;
     z-index: -3;
-    opacity: 40%;
+    opacity: 20%;
 }
 
 .isReadCheckbox {
