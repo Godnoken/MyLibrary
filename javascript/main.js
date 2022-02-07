@@ -26,7 +26,7 @@ const myLibraryButton = document.querySelector("#myLibrary");
 
 /** Event Listeners */
 
-googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(global.startIndex, googleBooksArray) });
+googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(googleBooksArray) });
 myLibraryButton.addEventListener("click", showMyLibrary);
 
 /** Run at start */

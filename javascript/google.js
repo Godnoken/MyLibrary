@@ -5,38 +5,44 @@ import { handleSort } from "./handleSort.js";
 let previousGoogleSearch;
 let googleSearch;
 
-export function handleGoogleSearch(startIndex, googleBooksArray) {
-    
+export function handleGoogleSearch(googleBooksArray) {
+
     if (googleBooksArray.length === 0) googleSearch = "";
-    startIndex = 0;
+    let startIndex = 0;
     previousGoogleSearch = googleSearch;
-    
+
     if (previousGoogleSearch !== google.value) {
         googleBooksArray = [];
         googleSearch = google.value;
         
-        for (let i = 0; i < 10; i++) {
-            getGoogleBooks(googleSearch, startIndex, googleBooksArray);
-            startIndex += 40;
-        }
-        setTimeout(() => {
-            startIndex = 0;
-            displayBooks(googleBooksArray);
-            handleSort(googleBooksArray);
-        }, 1200)
+        async function waitForSearchResults() {
+            const axiosRequests = [];
+            
+            for (let i = 0; i < 10; i++) {
+                axiosRequests.push(getGoogleBooks(googleSearch, startIndex, googleBooksArray))
+                startIndex += 40;
+            }
+            
+            // Waits for all axios requests to finish
+            await Promise.all(axiosRequests)
 
-        setTimeout(() => {
-            createPageNumbers(googleBooksArray.length);
-        }, 1500)
+            if (googleBooksArray.length !== 0) {
+                createPageNumbers(googleBooksArray.length);
+                displayBooks(googleBooksArray);
+                handleSort(googleBooksArray);
+            }
+            // Should be changed later for better UX.
+            else alert("No books found. Refine your search.");
+        }
+        
+        waitForSearchResults();
     }
-    else {
-        displayBooks();
-        createPageNumbers(googleBooksArray.length)
-    }
+    // Should be changed later for better UX.
+    else alert("Input a new search term.");
 }
 
-export function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&fields=items/volumeInfo(title,authors,pageCount,imageLinks)&key=AIzaSyBZQlasiygfXSG7iKMwkpanVK8F_D4hDzQ`)
+export async function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
+    await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&fields=items/volumeInfo(title,authors,pageCount,imageLinks)&key=AIzaSyBZQlasiygfXSG7iKMwkpanVK8F_D4hDzQ`)
         .then(response => {
             if (response.data.items !== "undefined") {
                 for (let i = 0; i < response.data.items.length; i++) {
@@ -45,6 +51,6 @@ export function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
             }
         })
         .catch(error => {
-            return;
+            return console.log("Probably reached the API call limit..", error);
         })
 }
