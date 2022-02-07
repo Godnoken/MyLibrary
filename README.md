@@ -6,7 +6,25 @@
 
 
 
+## Features To Be Added
 
+1. More filtering functions.
+
+2. Delete all data (usersettings, books etcetera)
+
+## Features That Might Be Considered
+
+1. Adding cloud support
+
+## Things That Need To Be Looked Over
+
+1. Mobile styling adjustments
+
+2. Documenting code
+
+3. Structuring code
+
+4. Refactoring code
 
 ## Known bugs
 
