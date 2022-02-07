@@ -15,8 +15,10 @@
 
 2. The list of pages is currently not functional as planned when pages exceed 10
 
+**Most likely fixed. Haven't been able to reproduce it again after introducing async/wait to API calls**
 3. Sometimes when a google search is made, the amount of pages cretated exceed the amount of pages needed for the collection of books retrieved. Result is an empty page or two at the end.
 
+**Fixed. API calls now utilize async/await**
 4. When entering website for the first time (retrieving dummy data from google) or making google searches on mobile (sometimes slower computers/internet too), the search is completed but no books displayed until user changes page. This is because I have used setTimeout instead of async await.
 
 **Partly fixed. This was due to utilizing createCard instead of displayBooks. Using displayBooks fixes the bug, but it is ineffecient. Will look for a better way to fix this in the future.**
