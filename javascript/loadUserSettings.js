@@ -1,9 +1,9 @@
 export let userSettings = {
-    uiBackground: "#FFFFFF",
-    mainText: "#000000",
-    secondaryText: "#5d93ff",
-    exitButton: "#ff5757",
-    backgroundImage: "url(https://127.0.0.1:8887/images/stacked-peaks-haikei.svg)",
+    exitButton: "#ff6161",
+    mainText: "#ffffff",
+    secondaryText: "#101b47",
+    uiBackground: "#6d66cf",
+    backgroundImage: "url(images/layered-waves-haikei.svg)",
     backgroundPosition: "fixed",
     backgroundSize: "cover",
 };
