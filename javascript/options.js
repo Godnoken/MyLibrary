@@ -81,11 +81,21 @@ function createBackgroundOptions(container, header) {
     uploadBackgroundInput.type = "file";
     uploadBackgroundInput.accept = "image/*";
     linkBackgroundInput.type = "url";
-
+    
     uploadBackgroundInput.addEventListener("change", () => {
-        mainBackground.style.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackgroundInput.value.slice(12)})`;
-        userSettings.backgroundImage = `url(https://127.0.0.1:8887/images/${uploadBackgroundInput.value.slice(12)})`;
-        saveSettingstoLocalStorage();
+        const file = document.querySelector('.uploadBackgroundInput').files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+          // convert image file to base64 string
+          mainBackground.style.backgroundImage = `url(${reader.result})`;
+          userSettings.backgroundImage = `url(${reader.result})`;
+          saveSettingstoLocalStorage();
+        }, false);
+      
+        if (file) {
+          reader.readAsDataURL(file);
+        }
     })
 
     linkBackgroundInput.addEventListener("change", () => {
