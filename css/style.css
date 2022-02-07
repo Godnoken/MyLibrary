@@ -424,7 +424,7 @@ legend {
     transform-style: preserve-3d;
     box-shadow: 0 1rem 1.3rem -0.7rem #000000, 0 1.1rem 5rem 0.7rem rgba(0,0,0,0.12), 0 0.5rem 2rem 0.3rem rgba(0, 0, 0, 0.3);
     transform: perspective(1000px) rotateX(15deg);
-    border-radius: 1.8rem 1rem 1rem 1.1rem;
+    border-radius: 1.8rem 1rem 1rem 1rem;
 }
 
 .flipCardInner::after {
@@ -436,8 +436,8 @@ legend {
   height: 5%;
   background: white;
   border-radius: 2.8rem 0.4rem 0.2rem 2.8rem;
-  box-shadow: inset 0.2rem 0.5rem 0 0 #d4d2c4c4;
-  background-image: linear-gradient(to bottom, transparent 0.5rem, #E4E0CE 0.6rem, transparent 0.7rem, transparent 0.9rem, #E4E0CE 1.1rem, transparent 1.2rem, transparent 1.5rem, #E4E0CE 1.6rem, transparent 1.7rem, transparent 1.9rem, #E4E0CE 2.1rem, transparent 2.2rem, transparent 2.5rem, #E4E0CE 2.6rem, transparent 2.7rem);
+  box-shadow: inset 0.2rem 0.3rem 0 0 #72716ac4, inset 0.3rem 0.5rem 0 0 #9b998fc4, inset 0.4rem 0.7rem 0 0 #bbb9afc4, inset 0.5rem 0.9rem 0 0 #dbd9cec4;
+  background-image: linear-gradient(to bottom, transparent 0.2rem, #E4E0CE 0.2rem, transparent 0.3rem, transparent 0.4rem, #E4E0CE 0.4rem, transparent 0.5rem, transparent 0.6rem, #E4E0CE 0.6rem, transparent 0.7rem, transparent 0.8rem, #E4E0CE 0.8rem, transparent 0.9rem, transparent 1rem, #E4E0CE 1rem, transparent 1.1rem);
   backface-visibility: hidden;
 }
 
@@ -463,7 +463,7 @@ legend {
     position: fixed;
     /* Removes jagged edges that shows up on mobile after rotating and applying perspective */
     outline: 1px solid transparent;
-    border-radius: 1.8rem 0.6rem 0.6rem 1.1rem;
+    border-radius: 1.8rem 0.6rem 0.6rem 1rem;
     font-size: 2rem;
     text-align: center;
 }
@@ -483,14 +483,14 @@ legend {
   width: 100%;
   height: 100%;
   box-shadow: inset 1.6rem 0 1.4rem -1rem rgb(0 0 0 / 95%);
-  border-radius: 1.8rem 0.4rem 0.4rem 1.1rem;
+  border-radius: 1.8rem 0.4rem 0.4rem 1rem;
 }
 
 
 .flipCardFrontImg {
     width: 100%;
     height: 100%;
-    border-radius: 1.8rem 0.6rem 0.6rem 1.1rem;
+    border-radius: 1.8rem 0.6rem 0.6rem 1rem;
 }
 
 .flipCardBack {
