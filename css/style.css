@@ -92,7 +92,6 @@ p {
     justify-content: center;
     position: fixed;
     width: 100%;
-    left: -4rem;
     z-index: 1;
     user-select: none;
 }
@@ -352,25 +351,24 @@ legend {
   }
 
 #pages {
-    height: 55rem;
-    width: 5rem;
+    --pagesWidth: 55rem;
     position: fixed;
-    top: 50%;
-    margin-top: -27.5rem;
-    right: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    width: var(--pagesWidth);
+    height: 5rem;
+    bottom: 0;
+    left: 50%;
+    margin-left: calc(var(--pagesWidth) / 2 - var(--pagesWidth) - 2rem);
+    margin-bottom: 1rem;
+    padding: 0 2rem 0 2rem;
     font-size: 2.6rem;
     color: var(--main-text-color);
     user-select: none;
     background-color: var(--ui-background-color);
     opacity: 0.7;
     border-radius: 4rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-right: 2rem;
     box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.25);
     transition: opacity 0.5s;
 }
@@ -385,14 +383,6 @@ legend {
     transition-duration: 0.25s;
 }
 
-#nextPageList {
-    transform: rotate(90deg);
-}
-
-#previousPageList {
-    transform: rotate(90deg);
-}
-
 #booksDisplay {
     position: relative;
     display: grid;
@@ -401,9 +391,9 @@ legend {
     justify-content: center;
     justify-items: center;
     padding-top: 12rem;
-    padding-bottom: 4rem;
-    padding-right: 17rem;
-    padding-left: 10rem;
+    padding-bottom: 8rem;
+    padding-right: 10rem;
+    padding-left: 11rem;
 }
 
 .card {
@@ -721,7 +711,6 @@ a {
         transform: scale(1);
     }
 }
-
 
 @media only screen and (max-width: 1050px) {
     #navigation {
