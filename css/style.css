@@ -236,18 +236,20 @@ input[type='color']::-webkit-color-swatch-wrapper{
 }
 
 .activeOptionsMenu {
+    --activeOptionsWidth: 30rem;
+    --activeOptionsHeight: 50rem;
     position: fixed;
+    top: 50%;
+    left: 50%;
+    width: var(--activeOptionsWidth);
+    height: var(--activeOptionsHeight);
+    margin-left: calc(var(--activeOptionsWidth) / 2 - var(--activeOptionsWidth));
+    margin-top: calc(var(--activeOptionsHeight) / 2 - var(--activeOptionsHeight));
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     box-sizing: border-box;
-    width: 30rem;
-    height: 50rem;
-    top: 50%;
-    left: 50%;
-    margin-left: -15rem;
-    margin-top: -25rem;
     padding: 2rem;
     background-color: var(--ui-background-color);
     z-index: 1;
@@ -761,6 +763,10 @@ a {
 
 
 @media only screen and (max-width: 650px) {
+    #navigation {
+        width: 90%;
+    }
+
     .menusText {
         font-size: 2rem;
     }
@@ -782,6 +788,10 @@ a {
     .menusText {
         font-size: 1.6rem;
     }
+
+    .activeOptionsMenu {
+        --activeOptionsWidth: 80%;
+    }
 }
 
 @media only screen and (max-width: 350px) {
@@ -792,9 +802,14 @@ a {
     .menuButton {
         font-size: 0.8rem;
     }
+}
+
+@media only screen and (max-height: 700px) {
+    html {
+        font-size: 50%;
+    }
 
     .activeOptionsMenu {
-        width: 80%;
-        margin-left: -40%;
+        --activeOptionsHeight: 55rem;
     }
 }
