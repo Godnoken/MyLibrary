@@ -59,6 +59,7 @@ onAuthStateChanged(auth, (user) => {
                     loadSettings();
                 } else {
                     console.log("No data available");
+                    saveData();
                 }
             })
             .catch((error) => {
@@ -69,7 +70,7 @@ onAuthStateChanged(auth, (user) => {
         global.isLoggedIn = false;
 
         onLogout();
-        loadSettings(global.isLoggedIn);
+        loadSettings();
 
         // Creates local storage library if user enters website for the first time
         if (JSON.parse(window.localStorage.getItem("userLibrary")) === null) window.localStorage.setItem("userLibrary", JSON.stringify([]));

@@ -28,7 +28,6 @@ export async function createUser(email, password) {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         console.log("New user created");
-        saveDataOnCloud(userCredential.user.uid);
     }
     catch (error) {
         console.log(error);
@@ -48,8 +47,6 @@ export async function loginUser(email, password) {
 export function loginUserWithGoogle() {
     signInWithPopup(auth, provider)
         .then((result) => {
-            if (userSettingsOnCloud === undefined) saveDataOnCloud();
-            onLogin();
         })
         .catch((error) => {
             console.log(error)
