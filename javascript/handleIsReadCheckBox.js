@@ -1,6 +1,5 @@
-import { myLibraryArray, } from "./main.js";
+import { myLibraryArray, saveData } from "./main.js";
 import { googleBooksArray } from "./displayBooks.js";
-import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
 
 // Reads checkbox for checked or not checked and sets the book to read or not read in the myLibraryArray array
 export function handleIsReadCheckbox(book) {
@@ -18,5 +17,5 @@ export function handleIsReadCheckbox(book) {
         else  myLibraryArray[bookTarget.dataset.bookindex].read = true;
     }
 
-    saveLibraryToLocalStorage();
+    saveData("book", {read: checkbox.checked}, bookTarget.dataset.bookindex);
 }

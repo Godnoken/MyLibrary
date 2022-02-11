@@ -1,3 +1,5 @@
+import { userSettingsOnCloud, global } from "./main.js";
+
 export let userSettings = {
     exitButton: "#ff6161",
     mainText: "#ffffff",
@@ -8,23 +10,19 @@ export let userSettings = {
     backgroundSize: "cover",
 };
 
-function loadSettings() {
+export function loadSettings() {
 
-    if (JSON.parse(window.localStorage.getItem("userSettings")) !== null) userSettings = JSON.parse(window.localStorage.getItem("userSettings"));
+    if (global.isLoggedIn === false && JSON.parse(window.localStorage.getItem("userSettings")) !== null) userSettings = JSON.parse(window.localStorage.getItem("userSettings"));
+    else if (global.isLoggedIn === true && userSettingsOnCloud !== undefined) userSettings = userSettingsOnCloud;
 
     const rootDocument = document.querySelector(":root");
+    const mainBackground = document.querySelector("#mainBackgroundImage");
     rootDocument.style.setProperty("--ui-background-color", userSettings.uiBackground);
     rootDocument.style.setProperty(`--main-text-color`, userSettings.mainText);
     rootDocument.style.setProperty(`--secondary-text-color`, userSettings.secondaryText);
     rootDocument.style.setProperty(`--exit-button-color`, userSettings.exitButton);
-    
-    window.addEventListener("DOMContentLoaded", () => {
-        const mainBackground = document.querySelector("#mainBackgroundImage");
-        
-        mainBackground.style.backgroundImage = userSettings.backgroundImage;
-        mainBackground.style.backgroundSize = userSettings.backgroundSize;
-        mainBackground.style.position = userSettings.backgroundPosition;
-    })
-}
 
-loadSettings();
+    mainBackground.style.backgroundImage = userSettings.backgroundImage;
+    mainBackground.style.backgroundSize = userSettings.backgroundSize;
+    mainBackground.style.position = userSettings.backgroundPosition;
+}

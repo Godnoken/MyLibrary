@@ -44,7 +44,7 @@ p {
     justify-content: center;
     align-items: center;
     height: 3rem;
-    width: 12rem;
+    width: 80%;
     border: solid 0.1rem var(--secondary-text-color);
     color: var(--main-text-color);
     border-radius: 0.8rem;
@@ -66,8 +66,8 @@ p {
     transform: scale(1.05);
 }
 
-#google {
-    width: 11.8rem;
+.googleInput {
+    width: 80%;
     height: 2.8rem;
     font-size: 1.4rem;
     background-color: var(--ui-background-color);
@@ -78,12 +78,12 @@ p {
     outline: none;
 }
 
-#google::placeholder {
+.googleInput::placeholder {
     opacity: 0.75;
     color: var(--main-text-color);
 }
 
-#google:focus::placeholder {
+.googleInput:focus::placeholder {
     color: transparent;
 }
 
@@ -97,7 +97,7 @@ p {
 }
 
 #navigation {
-    width: 84rem;
+    width: 75%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -115,7 +115,6 @@ p {
     align-items: center;
     justify-content: center;
     height: 100%;
-    font-size: 2.8rem;
     width: 33.34%;
     white-space: nowrap;
 }
@@ -146,7 +145,7 @@ p {
     top: 5rem;
     height: 15rem;
     max-height: 40rem;
-    width: 28rem;
+    width: 33.34%;
     background-color: var(--ui-background-color);
     clip-path: inset(0 0 15rem 0);
     transition:  1s;
@@ -204,6 +203,38 @@ input[type='color']::-webkit-color-swatch-wrapper{
     padding: 0;
 }
 
+.authenticationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90%;
+    text-align: center;
+}
+
+.loginRegisterText span {
+    color: var(--secondary-text-color);
+}
+
+.loginWithGoogleButton {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem 1rem 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: white;
+    color: rgb(117, 117, 117);
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+    user-select: none;
+}
+
+.loginWithGoogleButton svg {
+    width: 2rem;
+    margin-right: 1.5rem;
+}
+
 .activeOptionsMenu {
     position: fixed;
     display: flex;
@@ -215,7 +246,7 @@ input[type='color']::-webkit-color-swatch-wrapper{
     height: 50rem;
     top: 50%;
     left: 50%;
-    margin-left: -17.75rem;
+    margin-left: -15rem;
     margin-top: -25rem;
     padding: 2rem;
     background-color: var(--ui-background-color);
@@ -256,6 +287,8 @@ input::-webkit-inner-spin-button, input:-webkit-autofill {
 }
 
 fieldset {
+    display: flex;
+    width: 70%;
     text-align: center;
     border-radius: 1.2rem;
     background-color: var(--ui-background-color);
@@ -270,6 +303,7 @@ legend {
 }
 
 .inputTypeText {
+    width: 100%;
     background-color: var(--ui-background-color);
     color: var(--main-text-color);
     border: none;
@@ -351,7 +385,7 @@ legend {
   }
 
 #pages {
-    --pagesWidth: 55rem;
+    --pagesWidth: 50%;
     position: fixed;
     display: flex;
     align-items: center;
@@ -367,14 +401,9 @@ legend {
     color: var(--main-text-color);
     user-select: none;
     background-color: var(--ui-background-color);
-    opacity: 0.7;
     border-radius: 4rem;
     box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.25);
     transition: opacity 0.5s;
-}
-
-#pages:hover {
-    opacity: 1;
 }
 
 #pages p {
@@ -668,9 +697,11 @@ legend {
 
 #codeWriter {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     bottom: 1rem;
     right: 0;
-    margin-right: 3rem;
+    margin-right: 2rem;
     color: var(--ui-background-color);
     font-size: 1rem;
     text-shadow: 0.1rem 0.1rem 0.4rem var(--secondary-text-color);
@@ -682,7 +713,8 @@ legend {
 #codeWriter:hover {
     opacity: 1;
     transform: scale(1.1);
-    background-color: var(--secondary-text-color);
+    background-color: var(--ui-background-color);
+    color: var(--main-text-color);
     padding: 0.35rem;
 }
 
@@ -699,6 +731,7 @@ legend {
 a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 @keyframes createSizeAndOpacityAnimation {
@@ -712,48 +745,56 @@ a {
     }
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (min-width: 900px) {
     #navigation {
-        width: 63rem;
+        width: 80rem;
     }
 
-    .hoverMenu {
-        width: 21rem;
+    .menuButton {
+        width: 50%;
+    }
+
+    #pages {
+        --pagesWidth: 60rem;
     }
 }
 
-@media only screen and (max-width: 800px) {
-    html {
-        font-size: 37.5%;
-    }
-}
 
-@media only screen and (max-width: 550px) {
-    #navigation {
-        width: 51rem;
+@media only screen and (max-width: 650px) {
+    .menusText {
+        font-size: 2rem;
     }
 
-    .hoverMenu {
-        width: 17rem;
+    .menuButton {
+        font-size: 1rem;
+    }
+
+    #pages {
+        --pagesWidth: 80%;
+    }
+
+    #codeWriter {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 450px) {
-    html {
-        font-size: 30%;
-    }
-
-    .cardParagraphs {
-        font-size: 1.2rem;
+    .menusText {
+        font-size: 1.6rem;
     }
 }
 
-@media screen and (max-width: 300px) {
-    html {
-        font-size: 25%;
+@media only screen and (max-width: 350px) {
+    .menusText {
+        font-size: 1.2rem;
     }
 
-    .cardParagraphs {
-        font-size: 1.1rem;
+    .menuButton {
+        font-size: 0.8rem;
+    }
+
+    .activeOptionsMenu {
+        width: 80%;
+        margin-left: -40%;
     }
 }

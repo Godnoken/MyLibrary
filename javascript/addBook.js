@@ -1,5 +1,4 @@
-import { myLibraryArray } from "./main.js";
-import { saveLibraryToLocalStorage } from "./saveToLocalStorage.js";
+import { myLibraryArray, saveData } from "./main.js";
 import { Book } from "./constructors.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
@@ -33,7 +32,7 @@ export function addBook(event) {
     handlePageChange();
     displayBooks(undefined, myLibraryArray);
     
-    saveLibraryToLocalStorage();
+    saveData("book", myLibraryArray[myLibraryArray.length - 1], myLibraryArray.length - 1);
 }
 
 export function addGoogleBookToLibrary(event) {
@@ -48,5 +47,5 @@ export function addGoogleBookToLibrary(event) {
 
     myLibraryArray.push(bookToAdd);
 
-    saveLibraryToLocalStorage();
+    saveData("book", myLibraryArray[myLibraryArray.length - 1], myLibraryArray.length - 1);
 }
