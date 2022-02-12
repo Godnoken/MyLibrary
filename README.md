@@ -8,6 +8,7 @@
 
 ## Features To Be Added
 
+**Added more sorting functions and a menu. Will likely not add filtering as it would require me to rewrite the whole indexing system.**
 1. More filtering functions.
 
 2. Delete all data (usersettings, books etcetera)

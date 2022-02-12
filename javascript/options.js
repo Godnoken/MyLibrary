@@ -4,15 +4,18 @@ import { displayBooks } from "./displayBooks.js";
 import { myLibraryArray, saveData } from "./main.js";
 import { handlePageChange } from "./handlePages.js";
 import { createUser, loginUser, loginUserWithGoogle } from "./firebase.js";
+import { sortArray } from "./handleSort.js";
 
 const body = document.querySelector("body");
 const backgroundOptionsButton = document.querySelector("#backgroundOptionsButton");
 const uiOptionsButton = document.querySelector("#uiOptionsButton");
+const sortingOptionsButton = document.querySelector("#sortingOptionsButton");
 const addBookFormButton = document.querySelector("#addBookButton");
 const authenticationFormButton = document.querySelector("#authenticationFormButton");
 
 backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
 uiOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIOptions, ".uiOptionsContainer"));
+sortingOptionsButton.addEventListener("click", () => handleOptionsMenu(createBookFilterOptions, ".bookFilterOptionsContainer"));
 addBookFormButton.addEventListener("click", () => handleOptionsMenu(createBookForm, ".addBookFormContainer"));
 authenticationFormButton.addEventListener("click", () => {
     if (authenticationFormButton.textContent === "Login") {
@@ -389,4 +392,50 @@ function createAuthenticationForm(container, header, optionsContainerClass) {
             createUser(emailInput.value, passwordInput.value);
         })
     }
+}
+
+
+function createBookFilterOptions(container, header) {
+    const ascendingDescendingContainer = document.createElement("div");
+    const ascending = document.createElement("button");
+    const descending = document.createElement("button");
+    const sortTitlesButton = document.createElement("button");
+    const sortAuthorsButton = document.createElement("button");
+    const sortPagesButton = document.createElement("button");
+
+    container.classList.add("bookFilterOptionsContainer");
+    ascendingDescendingContainer.classList.add("ascendingDescendingContainer");
+    ascending.classList.add("button");
+    descending.classList.add("button");
+    sortTitlesButton.classList.add("button");
+    sortAuthorsButton.classList.add("button");
+    sortPagesButton.classList.add("button");
+
+    sortTitlesButton.id = "sortTitles";
+    sortAuthorsButton.id = "sortAuthors";
+    sortPagesButton.id = "sortPages";
+
+    header.textContent = "Sorting";
+    ascending.textContent = "Ascending";
+    descending.textContent = "Descending";
+    sortTitlesButton.textContent = "Sort Titles";
+    sortAuthorsButton.textContent = "Sort Authors";
+    sortPagesButton.textContent = "Sort Pages";
+
+    let direction = "ascending";
+
+    ascending.addEventListener("click", () => direction = "ascending");
+    descending.addEventListener("click", () => direction = "descending");
+
+    sortTitlesButton.addEventListener("click", () => sortArray(direction, "title"));
+    sortAuthorsButton.addEventListener("click", () => sortArray(direction, "authors"));
+    sortPagesButton.addEventListener("click", () => sortArray(direction, "pages"));
+
+
+    container.appendChild(ascendingDescendingContainer);
+    container.appendChild(sortTitlesButton);
+    container.appendChild(sortAuthorsButton);
+    container.appendChild(sortPagesButton);
+    ascendingDescendingContainer.appendChild(ascending);
+    ascendingDescendingContainer.appendChild(descending);
 }

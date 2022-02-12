@@ -235,6 +235,12 @@ input[type='color']::-webkit-color-swatch-wrapper{
     margin-right: 1.5rem;
 }
 
+.ascendingDescendingContainer {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+}
+
 .activeOptionsMenu {
     --activeOptionsWidth: 30rem;
     --activeOptionsHeight: 50rem;
