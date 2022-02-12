@@ -14,6 +14,7 @@
 
 ## Features That Might Be Considered
 
+**Added cloud storage support with firebase**
 1. Adding cloud support
 
 ## Things That Need To Be Looked Over
