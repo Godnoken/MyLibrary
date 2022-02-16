@@ -46,6 +46,8 @@ onAuthStateChanged(auth, (user) => {
 
         onLogin();
         getUserDataFromCloud();
+
+
     }
     else {
         global.isLoggedIn = false;

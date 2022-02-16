@@ -110,7 +110,7 @@ export async function clearAllBooks() {
     const db = getDatabase();
 
     await update(ref(db, 'users/' + global.userID), { books: [] });
-    
+
     while (myLibraryArray.length !== 0) {
         myLibraryArray.pop();
     }
@@ -123,9 +123,9 @@ export async function clearSettings() {
     const db = getDatabase();
     const dbRef = ref(getDatabase());
 
-    
+
     await update(ref(db, 'users/' + global.userID + '/settings'), defaultUserSettings)
-    
+
     // I absolutely do not know why - but I couldn't set global.userSettingsOnCloud
     // to defaultUserSettings. Doing so, somehow, made the defaultUserSettings update its values
     // as if it was the current userSettings object. Solved it by fetching settings from the cloud
@@ -138,16 +138,20 @@ export async function clearSettings() {
 }
 
 
-export function getUserDataFromCloud() {
+export async function getUserDataFromCloud() {
 
     const dbRef = ref(getDatabase());
 
     get(child(dbRef, `users/${global.userID}`))
         .then((snapshot) => {
             if (snapshot.exists()) {
+                while (myLibraryArray.length !== 0) {
+                    myLibraryArray.pop();
+                }
+
                 if (snapshot.val().books !== undefined) myLibraryArray.push(...snapshot.val().books);
                 global.userSettingsOnCloud = snapshot.val().settings;
-            } 
+            }
             else saveData();
 
             loadSettings();
@@ -156,5 +160,4 @@ export function getUserDataFromCloud() {
         .catch((error) => {
             console.error(error);
         });
-
 }
