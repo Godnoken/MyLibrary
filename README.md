@@ -11,6 +11,7 @@
 **Added more sorting functions and a menu. Will likely not add filtering as it would require me to rewrite the whole indexing system.**
 1. More filtering functions.
 
+**Added. User can now delete all books or revert settings back to default with a few clicks. Works on cloud and local storage.**
 2. Delete all data (usersettings, books etcetera)
 
 ## Features That Might Be Considered

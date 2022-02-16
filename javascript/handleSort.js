@@ -14,8 +14,6 @@ export function sortArray(direction, sortThis) {
         let aa;
         let bb;
 
-        console.log(a, b)
-
         if (sortThis === "title") {
             aa = a.title.toLowerCase();
             bb = b.title.toLowerCase();

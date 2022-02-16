@@ -1,7 +1,7 @@
 import { userSettings } from "./loadUserSettings.js";
 import { addBook } from "./addBook.js";
 import { displayBooks } from "./displayBooks.js";
-import { myLibraryArray, saveData } from "./main.js";
+import { myLibraryArray, saveData, clearData } from "./main.js";
 import { handlePageChange } from "./handlePages.js";
 import { createUser, loginUser, loginUserWithGoogle } from "./firebase.js";
 import { sortArray } from "./handleSort.js";
@@ -12,10 +12,12 @@ const uiOptionsButton = document.querySelector("#uiOptionsButton");
 const sortingOptionsButton = document.querySelector("#sortingOptionsButton");
 const addBookFormButton = document.querySelector("#addBookButton");
 const authenticationFormButton = document.querySelector("#authenticationFormButton");
+const clearDataOptionsButton = document.querySelector("#clearDataOptionsButton");
 
 backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
 uiOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIOptions, ".uiOptionsContainer"));
 sortingOptionsButton.addEventListener("click", () => handleOptionsMenu(createBookFilterOptions, ".bookFilterOptionsContainer"));
+clearDataOptionsButton.addEventListener("click", () => handleOptionsMenu(createClearDataOptions, ".clearDataOptionsContainer"));
 addBookFormButton.addEventListener("click", () => handleOptionsMenu(createBookForm, ".addBookFormContainer"));
 authenticationFormButton.addEventListener("click", () => {
     if (authenticationFormButton.textContent === "Login") {
@@ -438,4 +440,66 @@ function createBookFilterOptions(container, header) {
     container.appendChild(sortPagesButton);
     ascendingDescendingContainer.appendChild(ascending);
     ascendingDescendingContainer.appendChild(descending);
+}
+
+function createClearDataOptions(container, header){
+    const clearBooksInfo = document.createElement("p");
+    const clearSettingsInfo = document.createElement("p");
+    const deleteAllBooksButton = document.createElement("button");
+    const revertSettingsToDefaultButton = document.createElement("button");
+
+    container.classList.add("clearDataOptionsContainer");
+    deleteAllBooksButton.classList.add("button");
+    revertSettingsToDefaultButton.classList.add("button");
+
+    header.textContent = "Clear Data";
+    clearBooksInfo.innerHTML = "'Clear Books' will delete ALL books in your very own library."
+    deleteAllBooksButton.textContent = "Clear Books";
+    clearSettingsInfo.textContent = "'Clear Settings' will set the UI colors and background back to the default.";
+    revertSettingsToDefaultButton.textContent = "Clear Settings";
+
+    deleteAllBooksButton.addEventListener("click", () => {
+        if (!document.querySelector(".confirmationWindow")) createConfirmationWindow(container, "books")
+    });
+    revertSettingsToDefaultButton.addEventListener("click", () => {
+        if (!document.querySelector(".confirmationWindow")) createConfirmationWindow(container, "settings")
+    });
+
+    container.appendChild(clearBooksInfo);
+    container.appendChild(deleteAllBooksButton);
+    container.appendChild(clearSettingsInfo);
+    container.appendChild(revertSettingsToDefaultButton);
+}
+
+function createConfirmationWindow(container, button) {
+    const confirmationWindow = document.createElement("div");
+    const yesButton = document.createElement("button");
+    const noButton = document.createElement("button");
+
+    confirmationWindow.classList.add("confirmationWindow");
+    yesButton.classList.add("button");
+    noButton.classList.add("button");
+
+    yesButton.textContent = "Yes";
+    noButton.textContent = "No";
+    
+    if (button === "books") {
+        confirmationWindow.textContent = "Are you sure you want to delete ALL books?";
+        yesButton.addEventListener("click", () => {
+            clearData("books");
+            confirmationWindow.remove();
+        });
+    }
+    else if (button === "settings") {
+        confirmationWindow.textContent = "Are you sure you want to clear ALL settings?";
+        yesButton.addEventListener("click", () => {
+            clearData("settings");
+            confirmationWindow.remove();
+        });
+    }
+    noButton.addEventListener("click", () => confirmationWindow.remove());
+
+    container.appendChild(confirmationWindow);
+    confirmationWindow.appendChild(yesButton);
+    confirmationWindow.appendChild(noButton);
 }

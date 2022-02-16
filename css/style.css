@@ -241,6 +241,22 @@ input[type='color']::-webkit-color-swatch-wrapper{
     gap: 2rem;
 }
 
+.confirmationWindow {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 75%;
+    height: 30%;
+    padding: 1rem 2rem;
+    background-color: var(--ui-background-color);
+    border: 0.4rem solid var(--secondary-text-color);
+    border-radius: 1.2rem;
+    text-align: center;
+    animation: forwards 0.5s createSizeAndOpacityAnimation;
+}
+
 .activeOptionsMenu {
     --activeOptionsWidth: 30rem;
     --activeOptionsHeight: 50rem;

@@ -1,6 +1,6 @@
-import { userSettingsOnCloud, global } from "./main.js";
+import { global } from "./main.js";
 
-export let userSettings = {
+export const defaultUserSettings = {
     exitButton: "#ff6161",
     mainText: "#ffffff",
     secondaryText: "#101b47",
@@ -10,10 +10,15 @@ export let userSettings = {
     backgroundSize: "cover",
 };
 
+export let userSettings = {
+    
+};
+
 export function loadSettings() {
 
     if (global.isLoggedIn === false && JSON.parse(window.localStorage.getItem("userSettings")) !== null) userSettings = JSON.parse(window.localStorage.getItem("userSettings"));
-    else if (global.isLoggedIn === true && userSettingsOnCloud !== undefined) userSettings = userSettingsOnCloud;
+    else if (global.isLoggedIn === true && global.userSettingsOnCloud !== undefined) userSettings = global.userSettingsOnCloud;
+
 
     const rootDocument = document.querySelector(":root");
     const mainBackground = document.querySelector("#mainBackgroundImage");

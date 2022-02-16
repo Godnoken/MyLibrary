@@ -5,15 +5,19 @@ import { removeAllPageNumbersFromDisplay } from "./removeAllFromDisplay.js";
 let pageNumbers = document.querySelector("#pages").childNodes;
 
 export function createPageNumbers(amountOfBooks) {
+    
     let pagesToCreate = 0;
     let pagesToCreateForGoogle = 0;
-
+    
     removeAllPageNumbersFromDisplay(pageNumbers);
-
+    
     for (let i = 0; i < amountOfBooks; i += 40) {
         pagesToCreate++;
         if (i < 400) pagesToCreateForGoogle++;
     }
+    
+    // Makes sure one page is always displayed even if user has 0 books
+    if (amountOfBooks === 0) pagesToCreate = 1;
 
     if (googleBooksArray.length !== 0) {
         for (let i = 1; i < pagesToCreateForGoogle + 1; i++) {

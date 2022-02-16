@@ -1,16 +1,14 @@
 /** Imports */
 
 import { handleGoogleSearch } from "./google.js";
-import { addBook } from "./addBook.js";
 import { showMyLibrary } from "./showMyLibrary.js";
 import { googleBooksArray } from "./displayBooks.js";
 import { createDummyData } from "./dummyData.js";
 import { } from "./options.js";
-import { auth, saveDataOnCloud, updateBook, updateAllBooks, updateSettings, onLogin, onLogout } from "./firebase.js";
+import { auth, saveDataOnCloud, updateBook, updateAllBooks, updateSettings, onLogin, onLogout, clearAllBooks, clearSettings, getUserDataFromCloud } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
-import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"
 import { saveDataOnLocalStorage } from "./saveDataOnLocalStorage.js";
-import { loadSettings } from "./loadUserSettings.js";
+import { loadSettings, defaultUserSettings } from "./loadUserSettings.js";
 
 /** Global Variables */
 
@@ -18,11 +16,11 @@ export let global = {
     currentPage: 1,
     startIndex: 0,
     isLoggedIn: false,
-    userID: ""
+    userID: "",
+    userSettingsOnCloud: {}
 }
 
 export let myLibraryArray = [];
-export let userSettingsOnCloud;
 
 
 /** Elements */
@@ -40,31 +38,14 @@ myLibraryButton.addEventListener("click", showMyLibrary);
 /** Run at start */
 
 onAuthStateChanged(auth, (user) => {
-    userSettingsOnCloud = undefined;
+    global.userSettingsOnCloud = undefined;
 
     if (user) {
         global.isLoggedIn = true;
         global.userID = user.uid;
 
         onLogin();
-
-        const dbRef = ref(getDatabase());
-
-        get(child(dbRef, `users/${user.uid}`))
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    myLibraryArray = snapshot.val().books;
-                    userSettingsOnCloud = snapshot.val().userSettings;
-                    showMyLibrary();
-                    loadSettings();
-                } else {
-                    console.log("No data available");
-                    saveData();
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        getUserDataFromCloud();
     }
     else {
         global.isLoggedIn = false;
@@ -99,7 +80,16 @@ export function saveData(update, edits, bookIndex) {
             else if (update === "settings") updateSettings(edits);
             else saveDataOnCloud(global.userID);
         }
-        else {
-            saveDataOnLocalStorage();
-        }
+        else saveDataOnLocalStorage();
+}
+
+export function clearData(clear) {
+    if (global.isLoggedIn === true) {
+        if (clear === "books") clearAllBooks();
+        else if (clear === "settings") clearSettings();
+    }
+    else if (global.isLoggedIn === false) {
+        if (clear === "books") window.localStorage.setItem("userLibrary", JSON.stringify([])), myLibraryArray = [], showMyLibrary();
+        else if (clear === "settings") window.localStorage.setItem("userSettings", JSON.stringify(defaultUserSettings)), loadSettings();
+    }
 }

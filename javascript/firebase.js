@@ -1,8 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
-import { getDatabase, ref, set, update, } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"
+import { getDatabase, get, child, ref, set, update } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
-import { myLibraryArray, global, userSettingsOnCloud } from "./main.js";
-import { userSettings } from "./loadUserSettings.js";
+import { myLibraryArray, global, saveData } from "./main.js";
+import { loadSettings, userSettings, defaultUserSettings } from "./loadUserSettings.js";
+import { showMyLibrary } from "./showMyLibrary.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -81,7 +82,7 @@ export function onLogout() {
 export function saveDataOnCloud() {
     const db = getDatabase();
     set(ref(db, 'users/' + global.userID), {
-        userSettings: userSettings,
+        settings: userSettings,
         books: myLibraryArray
     });
 }
@@ -101,5 +102,59 @@ export function updateAllBooks() {
 export function updateSettings(edits) {
     const db = getDatabase();
 
-    update(ref(db, 'users/' + global.userID + "/userSettings"), edits)
+    update(ref(db, 'users/' + global.userID + "/settings"), edits)
+}
+
+
+export async function clearAllBooks() {
+    const db = getDatabase();
+
+    await update(ref(db, 'users/' + global.userID), { books: [] });
+    
+    while (myLibraryArray.length !== 0) {
+        myLibraryArray.pop();
+    }
+
+    showMyLibrary();
+}
+
+
+export async function clearSettings() {
+    const db = getDatabase();
+    const dbRef = ref(getDatabase());
+
+    
+    await update(ref(db, 'users/' + global.userID + '/settings'), defaultUserSettings)
+    
+    // I absolutely do not know why - but I couldn't set global.userSettingsOnCloud
+    // to defaultUserSettings. Doing so, somehow, made the defaultUserSettings update its values
+    // as if it was the current userSettings object. Solved it by fetching settings from the cloud
+    // after it has been reverted to default. This bug cost me several hours (:
+    get(child(dbRef, `users/${global.userID}/settings`))
+        .then((snapshot) => {
+            global.userSettingsOnCloud = snapshot.val();
+            loadSettings();
+        })
+}
+
+
+export function getUserDataFromCloud() {
+
+    const dbRef = ref(getDatabase());
+
+    get(child(dbRef, `users/${global.userID}`))
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                if (snapshot.val().books !== undefined) myLibraryArray.push(...snapshot.val().books);
+                global.userSettingsOnCloud = snapshot.val().settings;
+            } 
+            else saveData();
+
+            loadSettings();
+            showMyLibrary();
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
 }
