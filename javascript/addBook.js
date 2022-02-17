@@ -1,9 +1,9 @@
-import { myLibraryArray, saveData } from "./main.js";
+import { myLibraryArray } from "./main.js";
 import { Book } from "./constructors.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
-
+import { saveData } from "./handleData.js";
 
 export function addBook(event) {
     const bookTitle = document.querySelector("#addBookTitle");

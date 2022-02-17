@@ -1,7 +1,8 @@
-import { myLibraryArray, saveData } from "./main.js";
+import { myLibraryArray } from "./main.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";
+import { saveData } from "./handleData.js";
 
 let bookCards;
 

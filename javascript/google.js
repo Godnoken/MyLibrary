@@ -1,6 +1,11 @@
-import { displayBooks } from "./displayBooks.js";
+import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { createPageNumbers } from "./handlePages.js";
 import { handleSort } from "./handleSort.js";
+
+const google = document.querySelector("#google");
+const googleButton = document.querySelector("#googleButton");
+
+googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(googleBooksArray) });
 
 let previousGoogleSearch;
 let googleSearch;

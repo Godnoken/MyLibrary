@@ -1,5 +1,6 @@
-import { myLibraryArray, saveData } from "./main.js";
+import { myLibraryArray } from "./main.js";
 import { googleBooksArray } from "./displayBooks.js";
+import { saveData } from "./handleData.js";
 
 // Reads checkbox for checked or not checked and sets the book to read or not read in the myLibraryArray array
 export function handleIsReadCheckbox(book) {

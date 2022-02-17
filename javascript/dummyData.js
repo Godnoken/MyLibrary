@@ -1,6 +1,8 @@
-import { myLibraryArray, saveData } from "./main.js";
+import { myLibraryArray } from "./main.js";
 import { Book } from "./constructors.js";
 import { getGoogleBooks } from "./google.js";
+import { saveData } from "./handleData.js";
+import { showMyLibrary } from "./showMyLibrary.js";
 
 // Dummy data
 const LOTR = new Book("Lord Of The Rings", "J.R.R. Tolkien", "421", "https://pictures.abebooks.com/isbn/9780618129010-es.jpg", false)
@@ -23,4 +25,19 @@ export async function createDummyData() {
     }
 
     saveData();
+}
+
+
+
+export function getDummyData() {
+    // Creates dummy data if no books exist in local storage
+    if (JSON.parse(window.localStorage.getItem("userLibrary")).length === 0) {
+        async function waitForData() {
+            await createDummyData();
+            showMyLibrary();
+        }
+
+        waitForData();
+    }
+    else showMyLibrary();
 }
