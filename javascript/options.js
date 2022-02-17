@@ -7,14 +7,12 @@ import { createUser, loginUser, loginUserWithGoogle } from "./firebase.js";
 import { sortArray } from "./handleSort.js";
 
 const body = document.querySelector("body");
-const backgroundOptionsButton = document.querySelector("#backgroundOptionsButton");
 const uiOptionsButton = document.querySelector("#uiOptionsButton");
 const sortingOptionsButton = document.querySelector("#sortingOptionsButton");
 const addBookFormButton = document.querySelector("#addBookButton");
 const authenticationFormButton = document.querySelector("#authenticationFormButton");
 const clearDataOptionsButton = document.querySelector("#clearDataOptionsButton");
 
-backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
 uiOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIOptions, ".uiOptionsContainer"));
 sortingOptionsButton.addEventListener("click", () => handleOptionsMenu(createBookFilterOptions, ".bookFilterOptionsContainer"));
 clearDataOptionsButton.addEventListener("click", () => handleOptionsMenu(createClearDataOptions, ".clearDataOptionsContainer"));
@@ -56,6 +54,25 @@ function createOptionsMenu(createOptions, optionsContainerClass) {
     container.appendChild(header);
 
     createOptions(container, header, optionsContainerClass);
+}
+
+function createUIOptions(container, header) {
+    const UIColorOptionsButton = document.createElement("button");
+    const backgroundOptionsButton = document.createElement("button");
+
+    container.classList.add("uiOptionsContainer");
+    UIColorOptionsButton.classList.add("button");
+    backgroundOptionsButton.classList.add("button");
+
+    header.textContent = "UI Styling";
+    UIColorOptionsButton.textContent = "UI Colors";
+    backgroundOptionsButton.textContent = "Background";
+
+    UIColorOptionsButton.addEventListener("click", () => handleOptionsMenu(createUIColorOptions, ".UIColorOptionsContainer"));
+    backgroundOptionsButton.addEventListener("click", () => handleOptionsMenu(createBackgroundOptions, ".backgroundOptionsContainer"));
+
+    container.appendChild(UIColorOptionsButton);
+    container.appendChild(backgroundOptionsButton);
 }
 
 function createBackgroundOptions(container, header) {
@@ -144,7 +161,7 @@ function createBackgroundOptions(container, header) {
 }
 
 
-function createUIOptions(container, header) {
+function createUIColorOptions(container, header) {
     const root = getComputedStyle(document.documentElement);
     const rootDocument = document.querySelector(":root");
 
@@ -163,14 +180,14 @@ function createUIOptions(container, header) {
     const exitButtonColorLabel = document.createElement("label");
     const exitButtonColorInput = document.createElement("input");
 
-    container.classList.add("uiOptionsContainer");
+    container.classList.add("UIColorOptionsContainer");
     uiColorContainer.classList.add("uiColorContainer");
     uiBackgroundColorLabel.classList.add("uiOptionsLabels");
     mainTextColorLabel.classList.add("uiOptionsLabels");
     secondaryTextColorLabel.classList.add("uiOptionsLabels");
     exitButtonColorLabel.classList.add("uiOptionsLabels");
 
-    header.textContent = "UI Styling";
+    header.textContent = "UI Colors";
 
     uiBackgroundColorLabel.textContent = "UI Background";
     mainTextColorLabel.textContent = "Main text";
