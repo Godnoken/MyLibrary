@@ -151,6 +151,7 @@ p {
     transition:  1s;
     font-size: 2.6rem;
     border-radius: 0 0 1.2rem 1.2rem;
+    padding-top: 1rem;
 }
 
 .menus:hover .hoverMenu {
