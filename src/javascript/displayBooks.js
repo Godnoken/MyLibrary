@@ -1,4 +1,4 @@
-import { global } from "./main.js";
+import { global } from "./index.js";
 import { createCard } from "./createCard.js";
 import { removeAllBooksFromDisplay } from "./removeAllFromDisplay.js";
 import { createObserver } from "./isInViewport.js";

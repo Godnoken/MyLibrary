@@ -1,4 +1,4 @@
-import { global, myLibraryArray } from "./main.js";
+import { global, myLibraryArray } from "./index.js";
 import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { createPageNumbers } from "./handlePages.js";
 import { handleSort } from "./handleSort.js";

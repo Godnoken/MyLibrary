@@ -1,7 +1,7 @@
 import { saveDataOnCloud, updateBook, updateAllBooks, updateSettings, clearAllBooks, clearSettings } from "./firebase.js";
 import { saveDataOnLocalStorage } from "./localStorage.js";
 import { loadSettings, defaultUserSettings } from "./loadUserSettings.js";
-import { global, myLibraryArray } from "./main.js";
+import { global, myLibraryArray } from "./index.js";
 import { showMyLibrary } from "./showMyLibrary.js";
 
 

@@ -1,4 +1,4 @@
-import { myLibraryArray } from "./main.js";
+import { myLibraryArray } from "./index.js";
 import { userSettings } from "./loadUserSettings.js";
 
 

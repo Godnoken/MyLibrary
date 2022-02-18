@@ -1,4 +1,4 @@
-import { myLibraryArray } from "./main.js";
+import { myLibraryArray } from "./index.js";
 import { handleDeleteBook } from "./handleDeletionOfBook.js";
 import { addGoogleBookToLibrary } from "./addBook.js";
 import { handleIsReadCheckbox } from "./handleIsReadCheckBox.js";

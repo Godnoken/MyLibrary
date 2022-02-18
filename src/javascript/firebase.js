@@ -1,7 +1,7 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
-import { getDatabase, get, child, ref, set, update } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
-import { myLibraryArray, global } from "./main.js";
+import { initializeApp } from "firebase/app";
+import { getDatabase, get, child, ref, set, update } from "firebase/database"
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { myLibraryArray, global } from "./index.js";
 import { loadSettings, userSettings, defaultUserSettings } from "./loadUserSettings.js";
 import { showMyLibrary } from "./showMyLibrary.js";
 import { saveData } from "./handleData.js";

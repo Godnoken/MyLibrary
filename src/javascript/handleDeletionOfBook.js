@@ -1,4 +1,4 @@
-import { myLibraryArray } from "./main.js";
+import { myLibraryArray } from "./index.js";
 import { handleRefreshOfBookIndex } from "./handleRefreshOfBookIndex.js";
 import { displayBooks } from "./displayBooks.js";
 import { handlePageChange } from "./handlePages.js";

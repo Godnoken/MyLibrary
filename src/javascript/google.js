@@ -1,17 +1,25 @@
 import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { createPageNumbers } from "./handlePages.js";
 import { handleSort } from "./handleSort.js";
+//import axios from "axios";
+
 
 const google = document.querySelector("#google");
 const googleButton = document.querySelector("#googleButton");
-
-googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(googleBooksArray) });
+let axios;
+googleButton.addEventListener("click", () => {
+    (async function() {
+        axios = (await import("axios")).default;
+        handleGoogleSearch(googleBooksArray)
+    })();
+})
+//googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(googleBooksArray) });
 
 let previousGoogleSearch;
 let googleSearch;
 
 export function handleGoogleSearch(googleBooksArray) {
-
+    
     if (googleBooksArray.length === 0) googleSearch = "";
     let startIndex = 0;
     previousGoogleSearch = googleSearch;
@@ -45,6 +53,7 @@ export function handleGoogleSearch(googleBooksArray) {
     // Should be changed later for better UX.
     else alert("Input a new search term.");
 }
+
 
 export async function getGoogleBooks(googleSearch, startIndex, googleBooksArray) {
     await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${googleSearch}&maxResults=40&startIndex=${startIndex}&fields=items/volumeInfo(title,authors,pageCount,imageLinks)&key=AIzaSyBZQlasiygfXSG7iKMwkpanVK8F_D4hDzQ`)

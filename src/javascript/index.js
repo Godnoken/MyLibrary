@@ -1,10 +1,12 @@
 /** Imports */
-import { getDummyData } from "./dummyData.js";
-import { } from "./options.js";
+//import { getDummyData } from "./dummyData.js";
+import(/* webpackPreload: true */ "./google.js");
 import { auth, onLogin, onLogout, getUserDataFromCloud } from "./firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js";
+import { onAuthStateChanged } from "firebase/auth";
 import { loadSettings } from "./loadUserSettings.js";
 import { getUserDataFromLocalStorage } from "./localStorage.js";
+import(/*webpackPreload: true */ "../css/normalize.css");
+import("../css/style.css");
 
 
 /** Global Variables */
@@ -38,6 +40,6 @@ onAuthStateChanged(auth, (user) => {
         onLogout();
         loadSettings();
         getUserDataFromLocalStorage();
-        getDummyData();
+        //getDummyData();
     }
 })

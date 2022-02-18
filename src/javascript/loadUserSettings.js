@@ -1,11 +1,11 @@
-import { global } from "./main.js";
+import { global } from "./index.js";
 
 export const defaultUserSettings = {
     exitButton: "#ff6161",
     mainText: "#ffffff",
     secondaryText: "#101b47",
     uiBackground: "#6d66cf",
-    backgroundImage: "url(images/layered-waves-haikei.svg)",
+    backgroundImage: "url(../src/images/layered-waves-haikei.svg)",
     backgroundPosition: "fixed",
     backgroundSize: "cover",
 };

@@ -1,4 +1,4 @@
-import { myLibraryArray } from "./main.js";
+import { myLibraryArray } from "./index.js";
 import { Book } from "./constructors.js";
 import { getGoogleBooks } from "./google.js";
 import { saveData } from "./handleData.js";

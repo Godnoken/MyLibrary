@@ -1,7 +1,7 @@
 import { userSettings } from "./loadUserSettings.js";
 import { addBook } from "./addBook.js";
 import { displayBooks } from "./displayBooks.js";
-import { myLibraryArray } from "./main.js";
+import { myLibraryArray } from "./index.js";
 import { handlePageChange } from "./handlePages.js";
 import { createUser, loginUser, loginUserWithGoogle } from "./firebase.js";
 import { sortArray } from "./handleSort.js";

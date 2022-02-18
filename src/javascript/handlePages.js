@@ -1,4 +1,4 @@
-import { global } from "./main.js";
+import { global } from "./index.js";
 import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { removeAllPageNumbersFromDisplay } from "./removeAllFromDisplay.js";
 
