@@ -721,7 +721,7 @@ legend {
 }
 
 #codeWriter {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     bottom: 1rem;

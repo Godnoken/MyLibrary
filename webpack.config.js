@@ -2,6 +2,7 @@ const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/javascript/index.js',
@@ -24,7 +25,15 @@ module.exports = {
   mode: 'production',
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin()
+    ],
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "public/index.html"
+    }),
+    new MiniCssExtractPlugin(),
+  ],
 };
