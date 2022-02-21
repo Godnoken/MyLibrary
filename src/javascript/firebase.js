@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { initializeAuth, indexedDBLocalPersistence, browserLocalPersistence, browserSessionPersistence, browserPopupRedirectResolver, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { myLibraryArray, global } from "./index.js";
 import { loadSettings, userSettings, defaultUserSettings } from "./loadUserSettings.js";
 import { showMyLibrary } from "./showMyLibrary.js";
@@ -21,7 +21,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
-export const auth = getAuth(app);
+
+export const auth = initializeAuth(app, {
+    persistence: [
+        indexedDBLocalPersistence,
+        browserLocalPersistence,
+        browserSessionPersistence
+      ],
+});
 
 const authenticationFormButton = document.querySelector("#authenticationFormButton")
 
@@ -64,7 +71,7 @@ export async function loginUser(email, password) {
 
 export function loginUserWithGoogle() {
     
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, provider, browserPopupRedirectResolver)
             .then((result) => {
             })
             .catch((error) => {
