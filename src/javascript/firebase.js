@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, get, child, ref, set, update } from "firebase/database"
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { myLibraryArray, global } from "./index.js";
 import { loadSettings, userSettings, defaultUserSettings } from "./loadUserSettings.js";
 import { showMyLibrary } from "./showMyLibrary.js";
 import { saveData } from "./handleData.js";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,11 +20,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);
 
 const authenticationFormButton = document.querySelector("#authenticationFormButton")
+
+let getDatabase;
+let get;
+let child;
+let ref;
+let set;
+let update;
+
+async function importDatabase() {
+    const database = await import("firebase/database");
+    getDatabase = database.getDatabase;
+    get = database.get;
+    child = database.child;
+    ref = database.ref;
+    set = database.set;
+    update = database.update;  
+}
 
 export async function createUser(email, password) {
     try {
@@ -47,12 +63,13 @@ export async function loginUser(email, password) {
 }
 
 export function loginUserWithGoogle() {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+    
+        signInWithPopup(auth, provider)
+            .then((result) => {
+            })
+            .catch((error) => {
+                console.log(error)
+            });
 }
 
 function logoutUser() {
@@ -63,7 +80,7 @@ function logoutUser() {
         })
 }
 
-export function onLogin() {
+export async function onLogin() {
 
     // Change login button to a logout button when a user is signed in
     authenticationFormButton.addEventListener("click", logoutUser)
@@ -75,6 +92,7 @@ export function onLogin() {
 }
 
 export function onLogout() {
+    
     authenticationFormButton.removeEventListener("click", logoutUser);
     authenticationFormButton.textContent = "Login";
 }
@@ -140,7 +158,7 @@ export async function clearSettings() {
 
 
 export async function getUserDataFromCloud() {
-
+    await importDatabase();
     const dbRef = ref(getDatabase());
 
     get(child(dbRef, `users/${global.userID}`))

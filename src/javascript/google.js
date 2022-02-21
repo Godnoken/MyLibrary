@@ -1,19 +1,16 @@
 import { displayBooks, googleBooksArray } from "./displayBooks.js";
 import { createPageNumbers } from "./handlePages.js";
 import { handleSort } from "./handleSort.js";
-//import axios from "axios";
-
 
 const google = document.querySelector("#google");
 const googleButton = document.querySelector("#googleButton");
 let axios;
 googleButton.addEventListener("click", () => {
     (async function() {
-        axios = (await import("axios")).default;
-        handleGoogleSearch(googleBooksArray)
+        if (axios === undefined) axios = (await import("axios")).default;
+        if (google.value !== "") handleGoogleSearch(googleBooksArray)
     })();
 })
-//googleButton.addEventListener("click", () => { if (google.value !== "") handleGoogleSearch(googleBooksArray) });
 
 let previousGoogleSearch;
 let googleSearch;
@@ -28,7 +25,7 @@ export function handleGoogleSearch(googleBooksArray) {
         googleBooksArray = [];
         googleSearch = google.value;
         
-        async function waitForSearchResults() {
+        (async () => {
             const axiosRequests = [];
             
             for (let i = 0; i < 10; i++) {
@@ -46,9 +43,7 @@ export function handleGoogleSearch(googleBooksArray) {
             }
             // Should be changed later for better UX.
             else alert("No books found. Refine your search.");
-        }
-        
-        waitForSearchResults();
+        })()
     }
     // Should be changed later for better UX.
     else alert("Input a new search term.");

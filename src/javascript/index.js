@@ -1,8 +1,8 @@
 /** Imports */
-import("../css/style.css");
-import("../css/normalize.css");
+import "../css/style.css";
+import "../css/normalize.css";
 //import { getDummyData } from "./dummyData.js";
-import(/* webpackPreload: true */ "./google.js");
+import(/* webpackPrefetch: true */ "./google.js");
 import { auth, onLogin, onLogout, getUserDataFromCloud } from "./firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { loadSettings } from "./loadUserSettings.js";
@@ -31,7 +31,7 @@ onAuthStateChanged(auth, (user) => {
         global.isLoggedIn = true;
         global.userID = user.uid;
 
-        onLogin();
+        onLogin()
         getUserDataFromCloud();
     }
     else {
