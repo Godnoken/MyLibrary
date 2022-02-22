@@ -20,6 +20,9 @@ export function getUserDataFromLocalStorage() {
 
     // Makes sure myLibraryArray stays updated with local storage on load
     if (JSON.parse(window.localStorage.getItem("userLibrary")).length !== 0) {
+        while (myLibraryArray.length !== 0) {
+            myLibraryArray.pop();
+        }
         myLibraryArray.push(...JSON.parse(window.localStorage.getItem("userLibrary")));
     }
 }

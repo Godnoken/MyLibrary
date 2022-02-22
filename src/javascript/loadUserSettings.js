@@ -16,8 +16,17 @@ export let userSettings = {
 
 export function loadSettings() {
 
-    if (global.isLoggedIn === false && JSON.parse(window.localStorage.getItem("userSettings")) !== null) userSettings = JSON.parse(window.localStorage.getItem("userSettings"));
-    else if (global.isLoggedIn === true && global.userSettingsOnCloud !== undefined) userSettings = global.userSettingsOnCloud;
+    if (global.isLoggedIn === false) {
+        if (JSON.parse(window.localStorage.getItem("userSettings")) !== null) {
+            userSettings = JSON.parse(window.localStorage.getItem("userSettings"));
+        }
+        else {
+            userSettings = defaultUserSettings;
+        }
+    }
+    else if (global.isLoggedIn === true && global.userSettingsOnCloud !== undefined) {
+        userSettings = global.userSettingsOnCloud;
+    }
 
 
     const rootDocument = document.querySelector(":root");

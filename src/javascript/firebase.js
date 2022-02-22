@@ -22,6 +22,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 
+// Use initializeAuth instead of getAuth due to a problem with mobile.
+// A file called iFrame gets requested when using the google login service
+// The only way to disable the request until it actually is getting used
+// is by utilizing initializeAuth and giving signInWithPopup another argument
 export const auth = initializeAuth(app, {
     persistence: [
         indexedDBLocalPersistence,

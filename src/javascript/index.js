@@ -7,6 +7,7 @@ import { auth, onLogin, onLogout, getUserDataFromCloud } from "./firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { loadSettings } from "./loadUserSettings.js";
 import { getUserDataFromLocalStorage } from "./localStorage.js";
+import { showMyLibrary } from "./showMyLibrary";
 
 
 /** Global Variables */
@@ -36,10 +37,9 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         global.isLoggedIn = false;
-
         onLogout();
         loadSettings();
         getUserDataFromLocalStorage();
-        //getDummyData();
+        showMyLibrary();
     }
 })
