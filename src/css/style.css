@@ -444,10 +444,7 @@ legend {
     row-gap: 4rem;
     justify-content: center;
     justify-items: center;
-    padding-top: 12rem;
-    padding-bottom: 8rem;
-    padding-right: 10rem;
-    padding-left: 11rem;
+    padding: 12rem 10rem 12rem 11rem;
 }
 
 .card {

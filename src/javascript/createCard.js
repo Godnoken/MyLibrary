@@ -56,7 +56,6 @@ export function createCard(book) {
     })
 
     card.setAttribute("data-bookindex", myLibraryArray.indexOf(book));
-    //flipCardFrontImg.setAttribute("loading", "lazy");
     flipCardFrontImg.setAttribute("alt", "Book cover");
     flipCardBackImg.setAttribute("loading", "lazy");
     flipCardBackImg.setAttribute("alt", "Book cover");
