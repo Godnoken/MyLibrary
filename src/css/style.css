@@ -546,6 +546,7 @@ legend {
     transform: rotateY(180deg);
     overflow: hidden;
     border-radius: 0.6rem;
+    z-index: 2;
 }
 
 .flipCardBackImg{
