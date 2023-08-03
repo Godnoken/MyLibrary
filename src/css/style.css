@@ -1,310 +1,318 @@
 html {
-    font-size: 62.5%;
-    font-family: 'Inconsolata', monospace;
-    --ui-background-color:#FFFFFF;
-    --main-text-color:#000000;
-    --secondary-text-color:#5d93ff;
-    --exit-button-color:#ff5757;
-    overflow: hidden;
+  font-size: 62.5%;
+  font-family: "Inconsolata", monospace;
+  --ui-background-color: #ffffff;
+  --main-text-color: #000000;
+  --secondary-text-color: #5d93ff;
+  --exit-button-color: #ff5757;
+  overflow: hidden;
 }
 
 body {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
 #myLibraryContainer {
-    position: fixed;
-    height: CALC(100% + 1px);
-    width: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
+  position: fixed;
+  height: CALC(100% + 1px);
+  width: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 #myLibraryContainer::-webkit-scrollbar {
-    width: 1rem;
-    background-color: transparent;
+  width: 1rem;
+  background-color: transparent;
 }
 
 #myLibraryContainer::-webkit-scrollbar-thumb {
-    background: var(--ui-background-color);
-    height: 3rem;
+  background: var(--ui-background-color);
+  height: 3rem;
 }
 
-#myLibraryContainer::-webkit-scrollbar-track-piece
-{
-    display:none;
+#myLibraryContainer::-webkit-scrollbar-track-piece {
+  display: none;
 }
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    width: 80%;
-    border: solid 0.1rem var(--secondary-text-color);
-    color: var(--main-text-color);
-    border-radius: 0.8rem;
-    cursor: pointer;
-    font-size: 1.4rem;
-    overflow: hidden;
-    background: linear-gradient(to right, var(--secondary-text-color) 50%, var(--ui-background-color) 50%);
-    background-size: 200% 100%;
-    background-position: 100% 0%;
-    user-select: none;
-    transition: background-position 0.25s ease-in-out, scale 0.05s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 80%;
+  border: solid 0.1rem var(--secondary-text-color);
+  color: var(--main-text-color);
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    var(--secondary-text-color) 50%,
+    var(--ui-background-color) 50%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0%;
+  user-select: none;
+  transition: background-position 0.25s ease-in-out, scale 0.05s;
 }
 
 .button:hover {
-    background-position: 0% 0%;
+  background-position: 0% 0%;
 }
 
 .button:active {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .googleInput {
-    width: 80%;
-    height: 2.8rem;
-    font-size: 1.4rem;
-    background-color: var(--ui-background-color);
-    border: solid var(--secondary-text-color) 0.1rem;
-    border-radius: 0.8rem;
-    color: var(--main-text-color);
-    text-align: center;
-    outline: none;
+  width: 80%;
+  height: 2.8rem;
+  font-size: 1.4rem;
+  background-color: var(--ui-background-color);
+  border: solid var(--secondary-text-color) 0.1rem;
+  border-radius: 0.8rem;
+  color: var(--main-text-color);
+  text-align: center;
+  outline: none;
 }
 
 .googleInput::placeholder {
-    opacity: 0.75;
-    color: var(--main-text-color);
+  opacity: 0.75;
+  color: var(--main-text-color);
 }
 
 .googleInput:focus::placeholder {
-    color: transparent;
+  color: transparent;
 }
 
 #header {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  user-select: none;
 }
 
 #navigation {
-    width: 75%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    color: var(--main-text-color);
-    height: 7rem;
-    border-radius: 0 0 1.2rem 1.2rem;
-    background-color: var(--ui-background-color);
-    filter: drop-shadow(
-    0 0.2rem 0.4rem rgba(0, 0, 0, 0.4)
-  );
+  width: 75%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--main-text-color);
+  height: 7rem;
+  border-radius: 0 0 1.2rem 1.2rem;
+  background-color: var(--ui-background-color);
+  filter: drop-shadow(0 0.2rem 0.4rem rgba(0, 0, 0, 0.4));
 }
 
 .menus {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 33.34%;
-    white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 33.34%;
+  white-space: nowrap;
 }
 
 .menusText {
-    font-size: 2.8rem;
-    font-weight: normal;
-    overflow: hidden;
-    background: linear-gradient(to bottom, var(--secondary-text-color) 50%, var(--main-text-color) 50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 100% 200%;
-    background-position: 0% 100%;
-    transition: background-position 0.75s;
+  font-size: 2.8rem;
+  font-weight: normal;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    var(--secondary-text-color) 50%,
+    var(--main-text-color) 50%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 200%;
+  background-position: 0% 100%;
+  transition: background-position 0.75s;
 }
 
 .menus:hover .menusText {
-    background-position: 0% 0%;
+  background-position: 0% 0%;
 }
 
 .hoverMenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    position: fixed;
-    top: 5rem;
-    height: 15rem;
-    max-height: 40rem;
-    width: 33.34%;
-    background-color: var(--ui-background-color);
-    clip-path: inset(0 0 15rem 0);
-    transition:  1s;
-    font-size: 2.6rem;
-    border-radius: 0 0 1.2rem 1.2rem;
-    padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  top: 5rem;
+  height: 15rem;
+  max-height: 40rem;
+  width: 33.34%;
+  background-color: var(--ui-background-color);
+  clip-path: inset(0 0 15rem 0);
+  transition: 1s;
+  font-size: 2.6rem;
+  border-radius: 0 0 1.2rem 1.2rem;
+  padding-top: 1rem;
 }
 
 .menus:hover .hoverMenu {
-    clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
 }
 
 .optionsHeaders {
-    color: var(--secondary-text-color);
+  color: var(--secondary-text-color);
 }
 
 .optionsLinks span {
-    color: var(--secondary-text-color);
-    font-style: italic;
-    text-decoration: underline;
+  color: var(--secondary-text-color);
+  font-style: italic;
+  text-decoration: underline;
 }
 
 .optionsLinks span:hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 .uploadBackgroundInput {
-    display: none;
+  display: none;
 }
 
 .uiColorContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .uiOptionsLabels {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 #mainBackgroundImage {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background-size: cover;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-image: url("../images/layered-waves-haikei.svg");
 }
 
 input[type="color"]::-webkit-color-swatch,
-input[type='color']::-webkit-color-swatch-wrapper{
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.28) 0 0.2rem 0.8rem;
-    padding: 0;
+input[type="color"]::-webkit-color-swatch-wrapper {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.28) 0 0.2rem 0.8rem;
+  padding: 0;
 }
 
 .authenticationForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 90%;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 90%;
+  text-align: center;
 }
 
 .loginRegisterText span {
-    color: var(--secondary-text-color);
+  color: var(--secondary-text-color);
 }
 
 .loginWithGoogleButton {
-    width: 75%;
-    display: flex;
-    align-items: center;
-    padding: 1rem 1rem 1rem 2rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    background-color: white;
-    color: rgb(117, 117, 117);
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: bold;
-    user-select: none;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem 1rem 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: white;
+  color: rgb(117, 117, 117);
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+  user-select: none;
 }
 
 .loginWithGoogleButton svg {
-    width: 2rem;
-    margin-right: 1.5rem;
+  width: 2rem;
+  margin-right: 1.5rem;
 }
 
 .ascendingDescendingContainer {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
+  width: 100%;
+  display: flex;
+  gap: 2rem;
 }
 
 .confirmationWindow {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 75%;
-    height: 30%;
-    padding: 1rem 2rem;
-    background-color: var(--ui-background-color);
-    border: 0.4rem solid var(--secondary-text-color);
-    border-radius: 1.2rem;
-    text-align: center;
-    animation: forwards 0.5s createSizeAndOpacityAnimation;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 75%;
+  height: 30%;
+  padding: 1rem 2rem;
+  background-color: var(--ui-background-color);
+  border: 0.4rem solid var(--secondary-text-color);
+  border-radius: 1.2rem;
+  text-align: center;
+  animation: forwards 0.5s createSizeAndOpacityAnimation;
 }
 
 .activeOptionsMenu {
-    --activeOptionsWidth: 30rem;
-    --activeOptionsHeight: 50rem;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: var(--activeOptionsWidth);
-    height: var(--activeOptionsHeight);
-    margin-left: calc(var(--activeOptionsWidth) / 2 - var(--activeOptionsWidth));
-    margin-top: calc(var(--activeOptionsHeight) / 2 - var(--activeOptionsHeight));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    box-sizing: border-box;
-    padding: 2rem;
-    background-color: var(--ui-background-color);
-    z-index: 1;
-    color: var(--main-text-color);
-    border-radius: 1.2rem;
-    animation: forwards 0.3s createSizeAndOpacityAnimation;
+  --activeOptionsWidth: 30rem;
+  --activeOptionsHeight: 50rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: var(--activeOptionsWidth);
+  height: var(--activeOptionsHeight);
+  margin-left: calc(var(--activeOptionsWidth) / 2 - var(--activeOptionsWidth));
+  margin-top: calc(var(--activeOptionsHeight) / 2 - var(--activeOptionsHeight));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 2rem;
+  background-color: var(--ui-background-color);
+  z-index: 1;
+  color: var(--main-text-color);
+  border-radius: 1.2rem;
+  animation: forwards 0.3s createSizeAndOpacityAnimation;
 }
 
 #form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
 }
 
 .exitOptionsButton {
-    position: absolute;
-    top: 0;
-    right: 0.8rem;
-    font-size: 3.2rem;
-    color: var(--exit-button-color);
-    cursor: pointer;
-    user-select: none;
-    opacity: 0.55;
+  position: absolute;
+  top: 0;
+  right: 0.8rem;
+  font-size: 3.2rem;
+  color: var(--exit-button-color);
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.55;
 }
 
 .exitOptionsButton:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button, input:-webkit-autofill {
+input::-webkit-inner-spin-button,
+input:-webkit-autofill {
   -webkit-appearance: none;
   -webkit-box-shadow: 0 0 0 3rem var(--ui-background-color) inset !important;
   -webkit-text-fill-color: var(--main-text-color) !important;
@@ -312,58 +320,58 @@ input::-webkit-inner-spin-button, input:-webkit-autofill {
 }
 
 fieldset {
-    display: flex;
-    width: 70%;
-    text-align: center;
-    border-radius: 1.2rem;
-    background-color: var(--ui-background-color);
-    user-select: none;
-    border: 0.2rem solid var(--secondary-text-color);
-    color: var(--secondary-text-color);
+  display: flex;
+  width: 70%;
+  text-align: center;
+  border-radius: 1.2rem;
+  background-color: var(--ui-background-color);
+  user-select: none;
+  border: 0.2rem solid var(--secondary-text-color);
+  color: var(--secondary-text-color);
 }
 
 legend {
-    padding: 0 1.2rem 0 1.2rem;
-    z-index: 1;
+  padding: 0 1.2rem 0 1.2rem;
+  z-index: 1;
 }
 
 .inputTypeText {
-    width: 100%;
-    background-color: var(--ui-background-color);
-    color: var(--main-text-color);
-    border: none;
-    padding: 0.6rem;
-    text-align: center;
+  width: 100%;
+  background-color: var(--ui-background-color);
+  color: var(--main-text-color);
+  border: none;
+  padding: 0.6rem;
+  text-align: center;
 }
 
 .inputTypeText:hover {
-    opacity: 0.35;
-    outline: 0.2rem var(--main-text-color) solid;
-    border-radius: 0.2rem;
+  opacity: 0.35;
+  outline: 0.2rem var(--main-text-color) solid;
+  border-radius: 0.2rem;
 }
 
 .inputTypeText:focus {
-    opacity: 1;
-    outline: 0.2rem var(--main-text-color) solid;
-    border-radius: 0.2rem;
+  opacity: 1;
+  outline: 0.2rem var(--main-text-color) solid;
+  border-radius: 0.2rem;
 }
 
 .inputTypeText::placeholder {
-    color:var(--main-text-color);
-    opacity: 0.5;
+  color: var(--main-text-color);
+  opacity: 0.5;
 }
 
 .inputTypeText:focus::placeholder {
-    color: transparent;
+  color: transparent;
 }
 
 #checkboxContainer {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
-    color: var(--secondary-text-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  color: var(--secondary-text-color);
 }
 
 .checkbox {
@@ -386,93 +394,95 @@ legend {
 }
 
 #checkboxContainer input:checked ~ .customCheckbox {
-    background-color: var(--secondary-text-color);
-  }
+  background-color: var(--secondary-text-color);
+}
 
-  .customCheckbox:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  #checkboxContainer input:checked ~ .customCheckbox:after {
-    display: block;
-  }
+.customCheckbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
 
-  #checkboxContainer .customCheckbox:after {
-    width: 0.5rem;
-    height: 1rem;
-    border: solid var(--main-text-color);
-    border-width: 0 0.3rem 0.3rem 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
+#checkboxContainer input:checked ~ .customCheckbox:after {
+  display: block;
+}
+
+#checkboxContainer .customCheckbox:after {
+  width: 0.5rem;
+  height: 1rem;
+  border: solid var(--main-text-color);
+  border-width: 0 0.3rem 0.3rem 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 
 #pages {
-    --pagesWidth: 50%;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: var(--pagesWidth);
-    height: 5rem;
-    bottom: 0;
-    left: 50%;
-    margin-left: calc(var(--pagesWidth) / 2 - var(--pagesWidth) - 2rem);
-    margin-bottom: 1rem;
-    padding: 0 2rem 0 2rem;
-    font-size: 2.6rem;
-    color: var(--main-text-color);
-    user-select: none;
-    background-color: var(--ui-background-color);
-    border-radius: 4rem;
-    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.25);
-    transition: opacity 0.5s;
+  --pagesWidth: 50%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--pagesWidth);
+  height: 5rem;
+  bottom: 0;
+  left: 50%;
+  margin-left: calc(var(--pagesWidth) / 2 - var(--pagesWidth) - 2rem);
+  margin-bottom: 1rem;
+  padding: 0 2rem 0 2rem;
+  font-size: 2.6rem;
+  color: var(--main-text-color);
+  user-select: none;
+  background-color: var(--ui-background-color);
+  border-radius: 4rem;
+  box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.25);
+  transition: opacity 0.5s;
 }
 
 #pages p {
-    cursor: pointer;
-    margin: 0;
-    transition-duration: 0.25s;
+  cursor: pointer;
+  margin: 0;
+  transition-duration: 0.25s;
 }
 
 #booksDisplay {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 26rem);
-    row-gap: 4rem;
-    justify-content: center;
-    justify-items: center;
-    padding-top: 12rem;
-    padding-bottom: 8rem;
-    padding-right: 10rem;
-    padding-left: 11rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 26rem);
+  row-gap: 4rem;
+  justify-content: center;
+  justify-items: center;
+  padding-top: 12rem;
+  padding-bottom: 8rem;
+  padding-right: 10rem;
+  padding-left: 11rem;
 }
 
 .card {
-    width: 19.2rem;
-    height: 26.15rem;
-    position: relative;
-    background-color: transparent;
-    perspective: 1000px;
-    transition: all 0.65s ease-in-out;
-    user-select: none;
+  width: 19.2rem;
+  height: 26.15rem;
+  position: relative;
+  background-color: transparent;
+  perspective: 1000px;
+  transition: all 0.65s ease-in-out;
+  user-select: none;
 }
 
 .flipCardInner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    box-shadow: 0 1rem 1.3rem -0.7rem #000000, 0 1.1rem 5rem 0.7rem rgba(0,0,0,0.12), 0 0.5rem 2rem 0.3rem rgba(0, 0, 0, 0.3);
-    transform: perspective(1000px) rotateX(15deg);
-    border-radius: 1.8rem 1rem 1rem 1rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 1rem 1.3rem -0.7rem #000000,
+    0 1.1rem 5rem 0.7rem rgba(0, 0, 0, 0.12),
+    0 0.5rem 2rem 0.3rem rgba(0, 0, 0, 0.3);
+  transform: perspective(1000px) rotateX(15deg);
+  border-radius: 1.8rem 1rem 1rem 1rem;
 }
 
 .flipCardInner::after {
-    content: '';
+  content: "";
   position: fixed;
   bottom: 0.25rem;
   left: 0.27rem;
@@ -480,46 +490,65 @@ legend {
   height: 5%;
   background: white;
   border-radius: 2.8rem 0.4rem 0.2rem 2.8rem;
-  box-shadow: inset 0.2rem 0.3rem 0 0 #72716ac4, inset 0.3rem 0.5rem 0 0 #9b998fc4, inset 0.4rem 0.7rem 0 0 #bbb9afc4, inset 0.5rem 0.9rem 0 0 #dbd9cec4;
-  background-image: linear-gradient(to bottom, transparent 0.2rem, #E4E0CE 0.2rem, transparent 0.3rem, transparent 0.4rem, #E4E0CE 0.4rem, transparent 0.5rem, transparent 0.6rem, #E4E0CE 0.6rem, transparent 0.7rem, transparent 0.8rem, #E4E0CE 0.8rem, transparent 0.9rem, transparent 1rem, #E4E0CE 1rem, transparent 1.1rem);
+  box-shadow: inset 0.2rem 0.3rem 0 0 #72716ac4,
+    inset 0.3rem 0.5rem 0 0 #9b998fc4, inset 0.4rem 0.7rem 0 0 #bbb9afc4,
+    inset 0.5rem 0.9rem 0 0 #dbd9cec4;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0.2rem,
+    #e4e0ce 0.2rem,
+    transparent 0.3rem,
+    transparent 0.4rem,
+    #e4e0ce 0.4rem,
+    transparent 0.5rem,
+    transparent 0.6rem,
+    #e4e0ce 0.6rem,
+    transparent 0.7rem,
+    transparent 0.8rem,
+    #e4e0ce 0.8rem,
+    transparent 0.9rem,
+    transparent 1rem,
+    #e4e0ce 1rem,
+    transparent 1.1rem
+  );
   backface-visibility: hidden;
 }
 
 .card:hover .flipCardInner {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
-.flipCardFront, .flipCardBack {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
-    background-color: rgb(201, 201, 201);
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  background-color: rgb(201, 201, 201);
 }
 
 .flipCardFront {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    /* Has to be fixed, otherwise half of the flipCardBack is unclickable because of ::after. No idea why.*/
-    position: fixed;
-    /* Removes jagged edges that shows up on mobile after rotating and applying perspective */
-    outline: 1px solid transparent;
-    border-radius: 1.8rem 0.6rem 0.6rem 1rem;
-    font-size: 2rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  /* Has to be fixed, otherwise half of the flipCardBack is unclickable because of ::after. No idea why.*/
+  position: fixed;
+  /* Removes jagged edges that shows up on mobile after rotating and applying perspective */
+  outline: 1px solid transparent;
+  border-radius: 1.8rem 0.6rem 0.6rem 1rem;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .flipCardFront svg {
-    width: 50%;
-    transform: translateX(1.4rem);
+  width: 50%;
+  transform: translateX(1.4rem);
 }
 
-.flipCardFront::after
-{
-  content: '';
+.flipCardFront::after {
+  content: "";
   /* Has to be absolute because some shadows disappear on mobile if set to fixed */
   position: absolute;
   top: 0;
@@ -530,310 +559,309 @@ legend {
   border-radius: 1.8rem 0.4rem 0.4rem 1rem;
 }
 
-
 .flipCardFrontImg {
-    width: 100%;
-    height: 100%;
-    border-radius: 1.8rem 0.6rem 0.6rem 1rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.8rem 0.6rem 0.6rem 1rem;
 }
 
 .flipCardBack {
-    content-visibility: hidden;
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transform: rotateY(180deg);
-    overflow: hidden;
-    border-radius: 0.6rem;
-    z-index: 2;
+  content-visibility: hidden;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: rotateY(180deg);
+  overflow: hidden;
+  border-radius: 0.6rem;
+  z-index: 2;
 }
 
-.flipCardBackImg{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -3;
-    opacity: 20%;
+.flipCardBackImg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -3;
+  opacity: 20%;
 }
 
 .isReadCheckbox {
-    display: none;
+  display: none;
 }
 
 .isReadCheckboxLabel {
-    position: absolute;
-    top: 33%;
-    left: 50%;
-    margin-left: -3rem;
-    z-index: -2;
-    cursor: pointer;
-    transition-duration: 0.5s;
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  margin-left: -3rem;
+  z-index: -2;
+  cursor: pointer;
+  transition-duration: 0.5s;
 }
 
 .isReadCheckboxLabel svg {
-    fill: var(--main-text-color);
-    pointer-events: none;
-    transition-duration: 0.5s;
-    width: 6rem;
-    height: 6rem;
+  fill: var(--main-text-color);
+  pointer-events: none;
+  transition-duration: 0.5s;
+  width: 6rem;
+  height: 6rem;
 }
 
 .isReadCheckboxLabel:hover {
-    transform: translateY(-1.5rem);
+  transform: translateY(-1.5rem);
 }
 
 .isReadCheckboxLabel:hover svg {
-    fill: var(--secondary-text-color);
-    background-color: var(--ui-background-color);
-    border-radius: 0.6rem;
-    padding-bottom: 1rem;
+  fill: var(--secondary-text-color);
+  background-color: var(--ui-background-color);
+  border-radius: 0.6rem;
+  padding-bottom: 1rem;
 }
 
 .cardParagraphs {
-    position: relative;
-    display: inline-block;
-    font-size: 1.4rem;
-    padding: 0 1.2rem 0.6rem 1.2rem;
-    color: var(--main-text-color);
-    text-align: left;
-    z-index: 1;
-    user-select: text;
+  position: relative;
+  display: inline-block;
+  font-size: 1.4rem;
+  padding: 0 1.2rem 0.6rem 1.2rem;
+  color: var(--main-text-color);
+  text-align: left;
+  z-index: 1;
+  user-select: text;
 }
 
 .flipCardBack p span {
-    display: none;
+  display: none;
 }
 
 .showAllParagraphText {
-    position: absolute;
-    width: 23.5rem;
-    background-color: var(--main-text-color);
-    color: var(--ui-background-color);
-    border-radius: 0.6rem;
-    padding: 1rem;
-    z-index: 1;
-    animation: forwards 0.5s createSizeAndOpacityAnimation;
-    pointer-events: none;
-    overflow-wrap: break-word;
+  position: absolute;
+  width: 23.5rem;
+  background-color: var(--main-text-color);
+  color: var(--ui-background-color);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  z-index: 1;
+  animation: forwards 0.5s createSizeAndOpacityAnimation;
+  pointer-events: none;
+  overflow-wrap: break-word;
 }
 
 .copied {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    background-color: var(--main-text-color);
-    padding: 1rem;
-    border-radius: 0.6rem;
-    color: var(--ui-background-color);
-    z-index: 1;
-    pointer-events: none;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  background-color: var(--main-text-color);
+  padding: 1rem;
+  border-radius: 0.6rem;
+  color: var(--ui-background-color);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .flipCardBackColouredBackground {
-    position: absolute;
-    width: 140%;
-    height: 90%;
-    top: 50%;
-    z-index: -1;
-    background-color: var(--ui-background-color);
-    transform: skew(15deg, -10deg);
+  position: absolute;
+  width: 140%;
+  height: 90%;
+  top: 50%;
+  z-index: -1;
+  background-color: var(--ui-background-color);
+  transform: skew(15deg, -10deg);
 }
 
-.topLeftBookContainer, .topRightBookContainer {
-    position: absolute;
-    cursor: pointer;
-    background-color: var(--ui-background-color);
-    top: -3.2rem;
-    border-radius: 4rem;
-    user-select: none;
-    width: 6rem;
-    height: 6rem;
+.topLeftBookContainer,
+.topRightBookContainer {
+  position: absolute;
+  cursor: pointer;
+  background-color: var(--ui-background-color);
+  top: -3.2rem;
+  border-radius: 4rem;
+  user-select: none;
+  width: 6rem;
+  height: 6rem;
 }
 
 .topRightBookContainer {
-    right: -3.2rem;
+  right: -3.2rem;
 }
 
 .topLeftBookContainer {
-    left: -3.2rem;
+  left: -3.2rem;
 }
 
-.topLeftBookSymbol, .topRightBookSymbol {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    width: 1.4rem;
-    height: 1.4rem;
-    top: 3.5rem;
-    transition-duration: 0.3s;
-    color: var(--main-text-color);
-    fill: var(--main-text-color);
-    pointer-events: none;
-    cursor: pointer;
+.topLeftBookSymbol,
+.topRightBookSymbol {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  top: 3.5rem;
+  transition-duration: 0.3s;
+  color: var(--main-text-color);
+  fill: var(--main-text-color);
+  pointer-events: none;
+  cursor: pointer;
 }
 
 .topLeftBookSymbol {
-    left: 3.7rem;
+  left: 3.7rem;
 }
 
 .topRightBookSymbol {
-    transform: rotate(-45deg);
-    right: 3.7rem;
+  transform: rotate(-45deg);
+  right: 3.7rem;
 }
 
 .topLeftBookContainer:hover .topLeftBookSymbol {
-    color: var(--secondary-text-color);
-    fill: var(--secondary-text-color);
+  color: var(--secondary-text-color);
+  fill: var(--secondary-text-color);
 }
 
 .topLeftBookContainer:active .topLeftBookSymbol {
-    transition-duration: 0.01s;
-    transform: scale(1.2);
+  transition-duration: 0.01s;
+  transform: scale(1.2);
 }
 
 .topRightBookContainer:hover .topRightBookSymbol {
-    color: var(--exit-button-color);
+  color: var(--exit-button-color);
 }
 
-.topRightBookContainer:active .topRightBookSymbol  {
-    transition-duration: 0.01s;
-    transform: scale(1.2) rotate(-45deg);
+.topRightBookContainer:active .topRightBookSymbol {
+  transition-duration: 0.01s;
+  transform: scale(1.2) rotate(-45deg);
 }
 
 .activePage {
-    color: var(--secondary-text-color);
-    transform: scale(1.2);
-
+  color: var(--secondary-text-color);
+  transform: scale(1.2);
 }
 
 .activeAddBook {
-    display: flex !important;
+  display: flex !important;
 }
 
 .inactiveAddBook {
-    display: none !important;
+  display: none !important;
 }
 
 .hide {
-    opacity: 0;
+  opacity: 0;
 }
 
 #codeWriter {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    bottom: 1rem;
-    right: 0;
-    margin-right: 2rem;
-    color: var(--ui-background-color);
-    font-size: 1rem;
-    text-shadow: 0.1rem 0.1rem 0.4rem var(--secondary-text-color);
-    opacity: 0.4;
-    transition-duration: 0.4s;
-    user-select: none;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 1rem;
+  right: 0;
+  margin-right: 2rem;
+  color: var(--ui-background-color);
+  font-size: 1rem;
+  text-shadow: 0.1rem 0.1rem 0.4rem var(--secondary-text-color);
+  opacity: 0.4;
+  transition-duration: 0.4s;
+  user-select: none;
 }
 
 #codeWriter:hover {
-    opacity: 1;
-    transform: scale(1.1);
-    background-color: var(--ui-background-color);
-    color: var(--main-text-color);
-    padding: 0.35rem;
+  opacity: 1;
+  transform: scale(1.1);
+  background-color: var(--ui-background-color);
+  color: var(--main-text-color);
+  padding: 0.35rem;
 }
 
 #codeWriter p {
-    display: inline;
+  display: inline;
 }
 
 #githubIcon {
-    width: 1rem;
-    height: 1rem;
-    box-shadow: none;
+  width: 1rem;
+  height: 1rem;
+  box-shadow: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 @keyframes createSizeAndOpacityAnimation {
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media only screen and (min-width: 900px) {
-    #navigation {
-        width: 80rem;
-    }
+  #navigation {
+    width: 80rem;
+  }
 
-    .menuButton {
-        width: 50%;
-    }
+  .menuButton {
+    width: 50%;
+  }
 
-    #pages {
-        --pagesWidth: 60rem;
-    }
+  #pages {
+    --pagesWidth: 60rem;
+  }
 }
 
-
 @media only screen and (max-width: 650px) {
-    #navigation {
-        width: 90%;
-    }
+  #navigation {
+    width: 90%;
+  }
 
-    .menusText {
-        font-size: 2rem;
-    }
+  .menusText {
+    font-size: 2rem;
+  }
 
-    .menuButton {
-        font-size: 1rem;
-    }
+  .menuButton {
+    font-size: 1rem;
+  }
 
-    #pages {
-        --pagesWidth: 80%;
-    }
+  #pages {
+    --pagesWidth: 80%;
+  }
 
-    #codeWriter {
-        display: none;
-    }
+  #codeWriter {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 450px) {
-    .menusText {
-        font-size: 1.6rem;
-    }
+  .menusText {
+    font-size: 1.6rem;
+  }
 
-    .activeOptionsMenu {
-        --activeOptionsWidth: 80%;
-    }
+  .activeOptionsMenu {
+    --activeOptionsWidth: 80%;
+  }
 }
 
 @media only screen and (max-width: 350px) {
-    .menusText {
-        font-size: 1.2rem;
-    }
+  .menusText {
+    font-size: 1.2rem;
+  }
 
-    .menuButton {
-        font-size: 0.8rem;
-    }
+  .menuButton {
+    font-size: 0.8rem;
+  }
 }
 
 @media only screen and (max-height: 700px) {
-    html {
-        font-size: 50%;
-    }
+  html {
+    font-size: 50%;
+  }
 
-    .activeOptionsMenu {
-        --activeOptionsHeight: 55rem;
-    }
+  .activeOptionsMenu {
+    --activeOptionsHeight: 55rem;
+  }
 }
